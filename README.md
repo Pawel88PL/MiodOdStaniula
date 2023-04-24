@@ -5,3 +5,4 @@ Data 24.04.2023
 3. Utworzono StoreController do wyœwietlania listy produktów.
 4. Utworzono widoki dla powy¿szych kontrolerów.
 5. Przeprowadzono update bazy danych.
+6. Utworzono widok kart produktów.
