@@ -113,7 +113,7 @@ namespace MiodOdStaniula.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("ProductsList","Store");
             }
             return View(product);
         }

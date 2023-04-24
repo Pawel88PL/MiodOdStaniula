@@ -8,3 +8,4 @@ Data 24.04.2023
 6. Utworzono widok kart produktów.
 7. Dodano kolumnê Photo w tabeli Products.
 8. Utworzono link do szczegó³ów danego produktu klikaj¹c na kartê ze zdjêciem.
+9. Utworzono przekierowanie do strony ProductsList z kontrolera Edit i Details.
