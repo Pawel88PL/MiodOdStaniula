@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using MiodOdStaniula.Services;
+using MiodOdStaniula.Services.Interfaces;
 
 namespace MiodOdStaniula
 {
@@ -8,21 +10,23 @@ namespace MiodOdStaniula
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
+            builder.Services.AddScoped<IStoreService, StoreService>();
+
 
             builder.Services.AddDbContext<DbStoreContext>(builder =>
             {
-                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_sklepzmiodem;Uid=triageadmin_sklepzmiodem;Password=Opel1234@;TrustServerCertificate=True");
+                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_miododstaniula;Uid=triageadmin_miododstaniula;Password=Opel1234@;TrustServerCertificate=True");
             });
 
-            // Configure the HTTP request pipeline.
+            var app = builder.Build();
+            
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                
                 app.UseHsts();
             }
 

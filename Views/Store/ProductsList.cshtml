@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MiodOdStaniula.Models.Product>
+
+@{
+    ViewData["Title"] = "Produkty";
+}
+
+<h2>Produkty</h2>
+<br />
+
+@foreach (var product in Model.OrderBy(x => x.Priority))
+{
+    <h5>@product.Name</h5>
+    <p>cena: @product.Price, waga: @product.Weight, dostępna ilość: @product.AmountAvailable</p>
+    <br />
+}
