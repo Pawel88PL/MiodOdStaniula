@@ -6,3 +6,5 @@ Data 24.04.2023
 4. Utworzono widoki dla powy¿szych kontrolerów.
 5. Przeprowadzono update bazy danych.
 6. Utworzono widok kart produktów.
+7. Dodano kolumnê Photo w tabeli Products.
+8. Utworzono link do szczegó³ów danego produktu klikaj¹c na kartê ze zdjêciem.

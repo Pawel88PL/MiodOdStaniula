@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 
 namespace MiodOdStaniula.Models
 {
@@ -18,13 +19,13 @@ namespace MiodOdStaniula.Models
 
         [Required(ErrorMessage ="Podaj cenę produktu")]
         public int Price { get; set; }
-
-        
+                
         public int Weight { get; set; }
         
         public string? Description { get; set; }
 
         public int AmountAvailable { get; set; }
 
+        public string? Photo { get; set; }
     }
 }

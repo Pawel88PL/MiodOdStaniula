@@ -56,7 +56,7 @@ namespace MiodOdStaniula.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Priority,Category,Name,Price,Weight,Description,AmountAvailable")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Priority,Category,Name,Price,Weight,Description,AmountAvailable,Photo")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace MiodOdStaniula.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Priority,Category,Name,Price,Weight,Description,AmountAvailable")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Priority,Category,Name,Price,Weight,Description,AmountAvailable,Photo")] Product product)
         {
             if (id != product.Id)
             {
