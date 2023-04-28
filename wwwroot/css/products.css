@@ -17,3 +17,6 @@ div.product {
     div.product:hover {
         background-color: Gainsboro;
     }
+    strong{
+        color:red;
+    }

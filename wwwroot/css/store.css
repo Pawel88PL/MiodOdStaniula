@@ -1,0 +1,11 @@
+﻿div.outOfOrder {
+    color: red;
+}
+
+div.smallAmount {
+    color: orange;
+}
+
+div.available {
+    color: green;
+}

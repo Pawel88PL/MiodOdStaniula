@@ -16,3 +16,4 @@ Data 28.04.2023
 2. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Dodaj nowy produkt.
 3. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Edytuj produkt.
 4. Dodano produkty do sklepu.
+5. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Produkty.
