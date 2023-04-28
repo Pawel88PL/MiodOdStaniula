@@ -17,15 +17,15 @@
                     <div class="row">
                         @if (Model.AmountAvailable == 0)
                         {
-                            <div class="col-6">
+                            <div>
                                 <p>Waga: <b>@Model.Weight g</b></p>
                             </div>
-                            <div class="col-6">
+                            <div>
                                 <p>Cena: <b>@Model.Price,00 zł</b></p>
                             </div>
                             <div class="row outOfOrder">
                                 <div class="col-9">
-                                    <h6>Produkt niedostępny</h6>
+                                    <h6>Produkt sprzedany</h6>
                                 </div>
                                 <div class="col-3">
                                     <img src="/img/outOfOrder.png" style="max-width: 40px">
@@ -34,15 +34,15 @@
                         }
                         else if (Model.AmountAvailable > 0 & Model.AmountAvailable < 10)
                         {
-                            <div class="col-6">
+                            <div>
                                 <p>Waga: <b>@Model.Weight g</b></p>
                             </div>
-                            <div class="col-6">
+                            <div>
                                 <p>Cena: <b>@Model.Price,00 zł</b></p>
                             </div>
                             <div class="row smallAmount">
                                 <div class="col-9">
-                                    <h6>Mała ilość</h6>
+                                    <h6>Na wyczerpaniu</h6>
                                 </div>
                                 <div class="col-3">
                                     <img src="/img/smallAmount.png" style="max-width: 40px">
@@ -51,15 +51,15 @@
                         }
                         else if (Model.AmountAvailable >= 10)
                         {
-                            <div class="col-6">
+                            <div>
                                 <p>Waga: <b>@Model.Weight g</b></p>
                             </div>
-                            <div class="col-6">
+                            <div>
                                 <p>Cena: <b>@Model.Price,00 zł</b></p>
                             </div>
                             <div class="row available">
                                 <div class="col-9">
-                                    <h6>Duże zapasy</h6>
+                                    <h6>Produkt dostępny</h6>
                                 </div>
                                 <div class="col-3">
                                     <img src="/img/available.png" style="max-width: 40px">

@@ -92,7 +92,7 @@ namespace MiodOdStaniula.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction("Index","Products");
+                return View(product);
             }
             return View(product);
         }

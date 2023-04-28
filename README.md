@@ -19,3 +19,4 @@ Data 28.04.2023
 5. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Produkty.
 6. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Szczegó³y produktu.
 7. Przeniesiono widok "Szczegó³y produktu" do kontrolera StoreController.
+8. W widoku "Edytuj produkt" dodano podgl¹d strony produktu.

@@ -1,94 +1,173 @@
 ﻿@model MiodOdStaniula.Models.Product
+<link rel="stylesheet" href="~/css/store.css" asp-append-version="true" />
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = Model.Name;
 }
 
 
 <div class="container">
     <div class="row">
-        <div class="border shadow p-3 bg-white rounded" style="max-width: 800px">
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <div class="row">
-                    <div class="col-5">
-                        <div class="form-group">
-                            <p><b>Kategoria</b></p>
-                            <select asp-for="Category" class="form-select">
-                                <option>Miody naturalne</option>
-                                <option>Miody samakowe</option>
-                                <option>Produkty pszczele</option>
-                            </select>
+        <div class="col-8">
+            <div class="border shadow p-3 bg-white rounded">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <p><b>Kategoria</b></p>
+                                <select asp-for="Category" class="form-select">
+                                    <option>Miody naturalne</option>
+                                    <option>Miody samakowe</option>
+                                    <option>Produkty pszczele</option>
+                                </select>
+
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <p><b>Nazwa produktu</b></p>
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <p><b>Cena</b></p>
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <p><b>Waga</b></p>
+                                <input asp-for="Weight" class="form-control" />
+                                <span asp-validation-for="Weight" class="text-danger"></span>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <p><b>Dostępna ilość</b></p>
+                                <input asp-for="AmountAvailable" class="form-control" />
+                                <span asp-validation-for="AmountAvailable" class="text-danger"></span>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <p><b>Kolejność wyświetlania na stronie</b></p>
+                                <input asp-for="Priority" class="form-control" />
+                                <span asp-validation-for="Priority" class="text-danger"></span>
+                            </div>
+                            <br />
+
+                            <div class="form-group">
+                                <p><b>Nazwa pliku ze zdjęciem</b></p>
+                                <input asp-for="Photo" class="form-control" />
+                                <span asp-validation-for="Photo" class="text-danger"></span>
+                            </div>
+                            <br />
 
                         </div>
-                        <br />
 
-                        <div class="form-group">
-                            <p><b>Nazwa produktu</b></p>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
+
+
+                        <div class="col-7">
+                            <div class="form-group">
+                                <p><b>Opis produktu</b></p>
+                                <textarea class="form-control" id="Description" name="Description" rows="27">@Model.Description</textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mt-3">Usuń produkt</a>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-primary mt-3">Zapisz zmiany</button>
+                                </div>
+                            </div>
                         </div>
-                        <br />
-
-                        <div class="form-group">
-                            <p><b>Cena</b></p>
-                            <input asp-for="Price" class="form-control" />
-                            <span asp-validation-for="Price" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <p><b>Waga</b></p>
-                            <input asp-for="Weight" class="form-control" />
-                            <span asp-validation-for="Weight" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <p><b>Dostępna ilość</b></p>
-                            <input asp-for="AmountAvailable" class="form-control" />
-                            <span asp-validation-for="AmountAvailable" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <p><b>Kolejność wyświetlania na stronie</b></p>
-                            <input asp-for="Priority" class="form-control" />
-                            <span asp-validation-for="Priority" class="text-danger"></span>
-                        </div>
-                        <br />
-
-                        <div class="form-group">
-                            <p><b>Nazwa pliku ze zdjęciem</b></p>
-                            <input asp-for="Photo" class="form-control" />
-                            <span asp-validation-for="Photo" class="text-danger"></span>
-                        </div>
-                        <br />
-
                     </div>
+                </form>
+            </div>
+        </div>
 
-
-
-                    <div class="col-7">
-                        <div class="form-group">
-                            <p><b>Opis produktu</b></p>
-                            <textarea class="form-control" id="Description" name="Description" rows="27">@Model.Description</textarea>
-                            <span asp-validation-for="Description" class="text-danger"></span>
-                        </div>
-                        <br />
-
+        <div class="col-4">
+            <div class="container">
+                <div class="border text-center shadow p-3 mb-5 bg-white rounded">
+                    <strong>Podgląd strony produktu</strong>
+                    <div style="font-size: 9px">
                         <div class="row">
-                            <div class="col-6">
-                                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mt-3">Usuń produkt</a>
+                            <div class="col-xs" style="padding: 5px">
+                                <img src="~/img/@Model.Photo" class="w-100" />
                             </div>
-                            <div class="col-6">
-                                <button type="submit" class="btn btn-primary mt-3">Zapisz zmiany</button>
+                            <div class="col-xs border" style="padding: 10px; margin-top: 10px">
+                                <h5>@Model.Name</h5>
+                                <div class="row">
+                                    @if (Model.AmountAvailable == 0)
+                                    {
+                                        <div>
+                                            <p>Waga: <b>@Model.Weight g</b></p>
+                                        </div>
+                                        <div>
+                                            <p>Cena: <b>@Model.Price,00 zł</b></p>
+                                        </div>
+                                        <div class="row outOfOrder">
+                                            <div class="col-8">
+                                                <h6>Produkt sprzedany</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="/img/outOfOrder.png" style="max-width: 40px">
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model.AmountAvailable > 0 & Model.AmountAvailable < 10)
+                                    {
+                                        <div>
+                                            <p>Waga: <b>@Model.Weight g</b></p>
+                                        </div>
+                                        <div>
+                                            <p>Cena: <b>@Model.Price,00 zł</b></p>
+                                        </div>
+                                        <div class="row smallAmount">
+                                            <div class="col-8">
+                                                <h6>Na wyczerpaniu</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="/img/smallAmount.png" style="max-width: 40px">
+                                            </div>
+                                        </div>
+                                    }
+                                    else if (Model.AmountAvailable >= 10)
+                                    {
+                                        <div>
+                                            <p>Waga: <b>@Model.Weight g</b></p>
+                                        </div>
+                                        <div>
+                                            <p>Cena: <b>@Model.Price,00 zł</b></p>
+                                        </div>
+                                        <div class="row available">
+                                            <div class="col-8">
+                                                <h6>Produkt dostępny</h6>
+                                            </div>
+                                            <div class="col-3">
+                                                <img src="/img/available.png" style="max-width: 40px">
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-xs border" style="padding: 10px; margin-top: 10px">
+                                <p>@Model.Description</p>
                             </div>
                         </div>
                     </div>
+
                 </div>
-            </form>
+            </div>
+
         </div>
     </div>
 </div>
