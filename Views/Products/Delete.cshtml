@@ -1,63 +1,37 @@
 ﻿@model MiodOdStaniula.Models.Product
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Usuń produkt";
 }
 
-<h1>Delete</h1>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Priority)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Priority)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AmountAvailable)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AmountAvailable)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+<div class="container">
+    <div class="border text-center shadow p-3 mb-5 bg-white rounded">
+        <h3>Jesteś pewien, że chcesz usunąć ten produkt?</h3>
+        <br />
+        <div class="row">
+            <div class="col-5">
+                <h4>@Model.Name</h4>
+                <h5>cena: @Model.Price,00 zł</h5>
+                <h5>waga @Model.Weight g</h5>
+                <h5>dostępna ilość @Model.AmountAvailable</h5>
+                <div class="border" style="padding: 10px">
+                    <p>@Model.Description</p>
+                </div>
+            </div>
+            <div class="col-4">
+                <img src="~/img/@Model.Photo" class="w-100" />
+                <div class="row">
+                    <div class="col-6">
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="TAK, usuń produkt" class="btn btn-danger mt-3" />
+                        </form>
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary mt-3">NIE, powrót do edycji</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
