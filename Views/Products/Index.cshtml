@@ -31,7 +31,7 @@
             <div class="col-1">
                 <h5>Cena</h5>
             </div>
-            <div class="col-1">
+            <div class="col-2">
                 <h5>Waga</h5>
             </div>
             <div class="col-2">
@@ -44,7 +44,7 @@
 
         <div class="row">
 
-            @foreach (var product in Model.OrderBy(x => x.Category))
+            @foreach (var product in Model.OrderBy(x => x.Category).OrderBy(x => x.Name))
             {
                 <div class="product">
                     <a href="@Url.Action("Edit","Products", new { Id = product.Id })"
@@ -59,11 +59,18 @@
                             <div class="col-1">
                                 <p><b>@product.Price</b> zł</p>
                             </div>
-                            <div class="col-1">
+                            <div class="col-2">
                                 <p><b>@product.Weight</b> gram</p>
                             </div>
                             <div class="col-2">
-                                <p><b>@product.AmountAvailable</b> sztuk</p>
+                                @if (product.AmountAvailable == 0)
+                                {
+                                    <p><b>brak w magazynie</b></p>
+                                }
+                                else
+                                {
+                                    <p><b>@product.AmountAvailable</b> sztuk</p>
+                                }
                             </div>
                             <div class="col-3">
                                 <p>nr <b>@product.Priority</b> na stronie</p>

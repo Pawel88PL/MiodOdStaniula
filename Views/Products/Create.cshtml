@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-7 border shadow p-3 bg-white rounded">
+        <div class="border shadow p-3 bg-white rounded" style="max-width: 800px">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
@@ -72,7 +72,7 @@
                     <div class="col-7">
                         <div class="form-group">
                             <p><b>Opis produktu</b></p>
-                            <textarea class="form-control" id="Description" rows="27"></textarea>
+                            <textarea class="form-control" id="Description" name="Description" rows="27"></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <br />
