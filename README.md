@@ -12,5 +12,6 @@ Data 24.04.2023
 
 Data 28.04.2023
 
-1. Poprawiono wygl퉐 i wy쐗ietlanie strony Magazyn.
-2. 
+1. Poprawiono wygl퉐, funkcjonalno쒏 i wy쐗ietlanie strony Magazyn.
+2. Poprawiono wygl퉐, funkcjonalno쒏 i wy쐗ietlanie strony Dodaj nowy produkt.
+3. Poprawiono wygl퉐, funkcjonalno쒏 i wy쐗ietlanie strony Edytuj produkt.

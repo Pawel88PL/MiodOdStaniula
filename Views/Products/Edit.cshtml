@@ -4,63 +4,92 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
 
-<h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Priority" class="control-label"></label>
-                <input asp-for="Priority" class="form-control" />
-                <span asp-validation-for="Priority" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Weight" class="control-label"></label>
-                <input asp-for="Weight" class="form-control" />
-                <span asp-validation-for="Weight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AmountAvailable" class="control-label"></label>
-                <input asp-for="AmountAvailable" class="form-control" />
-                <span asp-validation-for="AmountAvailable" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Photo" class="control-label"></label>
-                <input asp-for="Photo" class="form-control" />
-                <span asp-validation-for="Photo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-7 border shadow p-3 bg-white rounded">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="row">
+                    <div class="col-5">
+                        <div class="form-group">
+                            <p><b>Kategoria</b></p>
+                            <select asp-for="Category" class="form-select">
+                                <option>Miody naturalne</option>
+                                <option>Miody samakowe</option>
+                                <option>Produkty pszczele</option>
+                            </select>
+
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <p><b>Nazwa produktu</b></p>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <p><b>Cena</b></p>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <p><b>Waga</b></p>
+                            <input asp-for="Weight" class="form-control" />
+                            <span asp-validation-for="Weight" class="text-danger"></span>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <p><b>Dostępna ilość</b></p>
+                            <input asp-for="AmountAvailable" class="form-control" />
+                            <span asp-validation-for="AmountAvailable" class="text-danger"></span>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <p><b>Kolejność wyświetlania na stronie</b></p>
+                            <input asp-for="Priority" class="form-control" />
+                            <span asp-validation-for="Priority" class="text-danger"></span>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <p><b>Nazwa pliku ze zdjęciem</b></p>
+                            <input asp-for="Photo" class="form-control" />
+                            <span asp-validation-for="Photo" class="text-danger"></span>
+                        </div>
+                        <br />
+
+                    </div>
+
+
+
+                    <div class="col-7">
+                        <div class="form-group">
+                            <p><b>Opis produktu</b></p>
+                            <textarea class="form-control" id="Description" name="Description" rows="27">@Model.Description</textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-6">
+                                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger mt-3">Usuń produkt</a>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-primary mt-3">Zapisz zmiany</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 

@@ -17,7 +17,7 @@ namespace MiodOdStaniula.Models
         [Required(ErrorMessage = "Podaj nazwę produktu")]
         public string? Name { get; set; }
 
-        [Required(ErrorMessage ="Podaj cenę produktu")]
+        [Required(ErrorMessage = "Podaj cenę produktu")]
         public int Price { get; set; }
                 
         public int Weight { get; set; }
