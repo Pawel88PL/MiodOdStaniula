@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MiodOdStaniula.Models;
 using MiodOdStaniula.Services;
 using MiodOdStaniula.Services.Interfaces;
@@ -7,11 +8,11 @@ namespace MiodOdStaniula.Controllers
 {
     public class StoreController : Controller
     {
-        private readonly IStoreService _storeService;
+        private readonly DbStoreContext _context;
 
-        public StoreController(IStoreService storeService)
+        public StoreController(DbStoreContext context)
         {
-            _storeService = storeService;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -19,10 +20,28 @@ namespace MiodOdStaniula.Controllers
             return View();
         }
 
-        
+
+        public async Task<IActionResult> ProductDetails(int? id)
+        {
+            if (id == null || _context.Products == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+
         public IActionResult ProductsList()
         {
-            var productList = _storeService.GetAll();
+            var productList = _context.Products.ToList();
             return View(productList);
         }
     }

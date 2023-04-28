@@ -16,7 +16,7 @@
             @foreach (var product in Model.OrderBy(x => x.Priority))
             {
                 <div class="col-lg-3 col-md-12 mb-4">
-                    <a href="@Url.Action("Details","Products", new { Id = product.Id})"
+                    <a href="@Url.Action("ProductDetails","Store", new { Id = product.Id})"
                        style="text-decoration:none; color:black">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -39,7 +39,7 @@
                                         </div>
                                         <div class="row outOfOrder">
                                             <div class="col-9">
-                                                <h6>Produkt niedostępny</h6>
+                                                <h6>Produkt sprzedany</h6>
                                             </div>
                                             <div class="col-3">
                                                 <img src="/img/outOfOrder.png" style="max-width: 40px">
@@ -56,7 +56,7 @@
                                         </div>
                                         <div class="row smallAmount">
                                             <div class="col-9">
-                                                <h6>Mała ilość</h6>
+                                                <h6>Na wyczerpaniu</h6>
                                             </div>
                                             <div class="col-3">
                                                 <img src="/img/smallAmount.png" style="max-width: 40px">
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="row available">
                                             <div class="col-9">
-                                                <h6>Duże zapasy</h6>
+                                                <h6>Produkt dostępny</h6>
                                             </div>
                                             <div class="col-3">
                                                 <img src="/img/available.png" style="max-width: 40px">
