@@ -1,0 +1,19 @@
+﻿
+div.MyStore {
+    padding: 20px;
+}
+
+div.product {
+    border-radius: 10px;
+    border-inline-color: black;
+    border-color: black;
+    border: solid;
+    background-color: ghostwhite;
+    margin: 5px 0px 0px 0px;
+    padding: 5px 10px 0px 15px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+    div.product:hover {
+        background-color: Gainsboro;
+    }

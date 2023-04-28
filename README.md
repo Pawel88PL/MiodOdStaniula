@@ -9,3 +9,8 @@ Data 24.04.2023
 7. Dodano kolumnê Photo w tabeli Products.
 8. Utworzono link do szczegó³ów danego produktu klikaj¹c na kartê ze zdjêciem.
 9. Utworzono przekierowanie do strony ProductsList z kontrolera Edit i Details.
+
+Data 28.04.2023
+
+1. Poprawiono wygl¹d i wyœwietlanie strony Magazyn.
+2. 
