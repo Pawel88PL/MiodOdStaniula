@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MiodOdStaniula.Models;
 
 namespace MiodOdStaniula
 {
-    public class DbStoreContext : DbContext
+    public class DbStoreContext : IdentityDbContext<UserModel>
     {
         public DbStoreContext(DbContextOptions<DbStoreContext> options) : base(options) { }
 

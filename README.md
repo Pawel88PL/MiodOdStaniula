@@ -21,3 +21,8 @@ Data 28.04.2023
 7. Przeniesiono widok "Szczegó³y produktu" do kontrolera StoreController.
 8. W widoku "Edytuj produkt" dodano podgl¹d strony produktu.
 9. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Usuñ produkt.
+
+Data 29.04.2023
+
+1. Dodano mo¿liwoœæ rejestracji u¿ytkownika.
+2. Zabezpieczono kontroler ProductsController metod¹ autentykacji u¿ytkownika.
