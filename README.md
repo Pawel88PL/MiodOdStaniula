@@ -27,3 +27,4 @@ Data 29.04.2023
 1. Dodano mo¿liwoœæ rejestracji u¿ytkownika.
 2. Zabezpieczono kontroler ProductsController metod¹ autentykacji u¿ytkownika.
 3. Dostosowano wyœwietlanie strony do urz¹dzeñ mobilnych.
+4. Poprawiono stopkê.

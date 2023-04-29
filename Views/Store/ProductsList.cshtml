@@ -8,10 +8,6 @@
 
 <section class="border text-center shadow p-3 mb-5 rounded" style="background-color: #eee;">
     <div class="text-center container py-5">
-
-        <img src="~/img/logo.png" class="img-fluid" alt="Responsive image" style="max-width: 70%" />
-
-
         <div class="row">
             @foreach (var product in Model.OrderBy(x => x.Priority))
             {
