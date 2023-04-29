@@ -9,3 +9,14 @@ div.smallAmount {
 div.available {
     color: green;
 }
+
+
+@media (max-width: 768px) {
+    div.container {
+        font-size: 9px;
+    }
+
+    h5 {
+        font-size: 11px;
+    }
+}
