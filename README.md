@@ -1,23 +1,29 @@
 Data 24.04.2023
 
-1. Utworzono pierwsz¹ migracjê dla tabeli produkty.
-2. Utworzono ProductsController odpowiedzialny za dodawanie, edytowanie i usuwanie produktów.
-3. Utworzono StoreController do wyœwietlania listy produktów.
-4. Utworzono widoki dla powy¿szych kontrolerów.
+1. Utworzono pierwszÄ… migracjÄ™ dla tabeli produkty.
+2. Utworzono ProductsController odpowiedzialny za dodawanie, edytowanie i usuwanie produktÃ³w.
+3. Utworzono StoreController do wyÅ›wietlania listy produktÃ³w.
+4. Utworzono widoki dla powyÅ¼szych kontrolerÃ³w.
 5. Przeprowadzono update bazy danych.
-6. Utworzono widok kart produktów.
-7. Dodano kolumnê Photo w tabeli Products.
-8. Utworzono link do szczegó³ów danego produktu klikaj¹c na kartê ze zdjêciem.
+6. Utworzono widok kart produktÃ³w.
+7. Dodano kolumnÄ™ Photo w tabeli Products.
+8. Utworzono link do szczegÃ³Å‚Ã³w danego produktu klikajÄ…c na kartÄ™ ze zdjÄ™ciem.
 9. Utworzono przekierowanie do strony ProductsList z kontrolera Edit i Details.
 
 Data 28.04.2023
 
-1. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Magazyn.
-2. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Dodaj nowy produkt.
-3. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Edytuj produkt.
+1. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Magazyn.
+2. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Dodaj nowy produkt.
+3. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Edytuj produkt.
 4. Dodano produkty do sklepu.
-5. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Produkty.
-6. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Szczegó³y produktu.
-7. Przeniesiono widok "Szczegó³y produktu" do kontrolera StoreController.
-8. W widoku "Edytuj produkt" dodano podgl¹d strony produktu.
-9. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Usuñ produkt.
+5. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Produkty.
+6. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony SzczegÃ³Å‚y produktu.
+7. Przeniesiono widok "SzczegÃ³Å‚y produktu" do kontrolera StoreController.
+8. W widoku "Edytuj produkt" dodano podglÄ…d strony produktu.
+9. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony UsuÅ„ produkt.
+
+Data 26.06.2023
+
+1. ZlikwidowaÄ‡ kolor zielony i niebieski przyciskÃ³w nawigacyjnych - dla przejrzystoÅ›ci biaÅ‚e z odcieniami szaroÅ›ci, wyrÃ³wnaÄ‡ ich rozmiar.
+2. PrzenieÅ›Ä‡ produkty na gÅ‚Ã³wnÄ… stronÄ™ pod informacjÄ… o pasiece, link do produktÃ³w kieruje w dÃ³Å‚ strony.
+3. ZaimportowaÄ‡ link z ikonami bootstrap, dodaÄ‡ niektÃ³re ikony do przyciskÃ³w.
