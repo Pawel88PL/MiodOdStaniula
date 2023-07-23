@@ -21,9 +21,3 @@ Data 28.04.2023
 7. Przeniesiono widok "Szczegóły produktu" do kontrolera StoreController.
 8. W widoku "Edytuj produkt" dodano podgląd strony produktu.
 9. Poprawiono wygląd, funkcjonalność i wyświetlanie strony Usuń produkt.
-
-Data 26.06.2023
-
-1. Zlikwidować kolor zielony i niebieski przycisków nawigacyjnych - dla przejrzystości białe z odcieniami szarości, wyrównać ich rozmiar.
-2. Przenieść produkty na główną stronę pod informacją o pasiece, link do produktów kieruje w dół strony.
-3. Zaimportować link z ikonami bootstrap, dodać niektóre ikony do przycisków.
