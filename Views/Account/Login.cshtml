@@ -1,0 +1,27 @@
+﻿@model MiodOdStaniula.Models.Login
+
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container border text-center shadow p-3 mb-5 bg-white rounded"
+     style="max-width: 350px; margin-top: 100px">
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        <div style="padding: 40px">
+            <h5>Login: </h5>
+            <input asp-for="@Model.UserName" class="form-control" />
+            <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            <br />
+
+            <h5>Hasło: </h5>
+            <input asp-for="@Model.Password" type="password" class="form-control" />
+            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            <br />
+
+            <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-left"></i> Zaloguj </button>
+        </div>
+    }
+</div>

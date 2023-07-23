@@ -3,4 +3,13 @@ html {
   position: relative;
   min-height: 100%;
 }
+body{
+  margin-bottom: 50px;
 
+}
+
+footer{
+    font-size: 10px;
+    position:absolute;
+    bottom: 0;
+}

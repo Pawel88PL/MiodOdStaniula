@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiodOdStaniula;
 
@@ -11,9 +12,10 @@ using MiodOdStaniula;
 namespace MiodOdStaniula.Migrations
 {
     [DbContext(typeof(DbStoreContext))]
-    partial class DbStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20230723094432_newTable_Categories")]
+    partial class newTable_Categories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

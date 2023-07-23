@@ -29,7 +29,7 @@ namespace MiodOdStaniula.Controllers
             }
 
             var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
                 return NotFound();
@@ -41,7 +41,7 @@ namespace MiodOdStaniula.Controllers
 
         public IActionResult ProductsList()
         {
-            var productList = _context.Products.ToList();
+            var productList = _context.Products.Include(p => p.Category).ToList();
             return View(productList);
         }
     }

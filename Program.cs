@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MiodOdStaniula.Models;
 using MiodOdStaniula.Services;
 using MiodOdStaniula.Services.Interfaces;
 
@@ -10,16 +12,32 @@ namespace MiodOdStaniula
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            
+            builder.Configuration
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IStoreService, StoreService>();
 
 
-            builder.Services.AddDbContext<DbStoreContext>(builder =>
+            builder.Services.AddDbContext<DbStoreContext>(options =>
             {
-                builder.UseSqlServer("Data Source=mssql2.webio.pl,2401;Database=triageadmin_miododstaniula;Uid=triageadmin_miododstaniula;Password=Opel1234@;TrustServerCertificate=True");
+                options.UseSqlServer(builder.Configuration.GetConnectionString("miodOdStaniula"));
             });
+
+
+            builder.Services.AddIdentity<UserModel, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+
+            }).AddEntityFrameworkStores<DbStoreContext>();
+
 
             var app = builder.Build();
             
@@ -35,6 +53,7 @@ namespace MiodOdStaniula
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

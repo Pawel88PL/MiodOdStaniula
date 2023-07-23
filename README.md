@@ -21,3 +21,25 @@ Data 28.04.2023
 7. Przeniesiono widok "Szczegóły produktu" do kontrolera StoreController.
 8. W widoku "Edytuj produkt" dodano podgląd strony produktu.
 9. Poprawiono wygląd, funkcjonalność i wyświetlanie strony Usuń produkt.
+
+Data 29.04.2023
+
+1. Dodano możliwość rejestracji użytkownika.
+2. Zabezpieczono kontroler ProductsController metodą autentykacji użytkownika.
+3. Dostosowano wyświetlanie strony do urządzeń mobilnych.
+4. Poprawiono stopkę.
+
+Data 26.06.2023
+
+1. Dodano klasę Cart.cs reprezentującą model koszyka zakupowego.
+2. Zmieniono background dla listy produktów z szarego na białe.
+3. Przyciski paska nawigacyjnego zmieniono na btn-outline, dodano ikony bootstrap icons.
+
+Data 23.07.2023
+
+1. Dodano nową klasę Category.cs reprezentującą kategorie danego produktu.
+2. Poprawiono pola klasy Product.cs i dodano klucz obcy do tabeli Categories.
+3. Przeprowadzono migrację 'newTable_Categories'.
+4. Opublikowano wersję aplikacji 2.0.0.
+5. Poprawiono wyświetlanie stopki.
+6. ConnectionString do bazy danych przeniesiono do pliku appsettings.json, który wyłączono ze śledzenia w GitHub.

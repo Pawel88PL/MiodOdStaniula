@@ -13,7 +13,7 @@
         <div class="col-3">
             <a asp-action="Create" class="text-center" style="text-decoration:none">
                 <div class="btn-primary" style="border-radius: 3px; padding: 3px">
-                    Dodaj nowy produkt
+                    <i class="bi bi-plus-circle"></i> Dodaj nowy produkt
                 </div>
             </a>
         </div>
@@ -47,7 +47,7 @@
             @foreach (var product in Model.OrderBy(x => x.Category).OrderBy(x => x.Name))
             {
                 <div class="product">
-                    <a href="@Url.Action("Edit","Products", new { Id = product.Id })"
+                    <a href="@Url.Action("Edit","Products", new { Id = product.ProductId })"
                        style="text-decoration:none; color:black">
                         <div class="row">
                             <div class="col-2">
