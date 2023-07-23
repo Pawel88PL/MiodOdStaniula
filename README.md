@@ -1,3 +1,11 @@
+# www.miododstaniula.pl
+
+"Miód od Staniula" jest to projekt sklepu internetowego, napisany w techonologi ASP.NET Core MVC 6.0.
+Do po³¹czenia z baz¹ danych MS SQL Server wykorzystano narzêdzie ORM Entity Framework Core.
+<hr/>
+
+Chronologia zmian:
+
 Data 24.04.2023
 
 1. Utworzono pierwsz¹ migracjê dla tabeli produkty.
@@ -9,6 +17,7 @@ Data 24.04.2023
 7. Dodano kolumnê Photo w tabeli Products.
 8. Utworzono link do szczegó³ów danego produktu klikaj¹c na kartê ze zdjêciem.
 9. Utworzono przekierowanie do strony ProductsList z kontrolera Edit i Details.
+<hr/>
 
 Data 28.04.2023
 
@@ -21,6 +30,7 @@ Data 28.04.2023
 7. Przeniesiono widok "Szczegó³y produktu" do kontrolera StoreController.
 8. W widoku "Edytuj produkt" dodano podgl¹d strony produktu.
 9. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Usuñ produkt.
+<hr/>
 
 Data 29.04.2023
 
@@ -28,12 +38,14 @@ Data 29.04.2023
 2. Zabezpieczono kontroler ProductsController metod¹ autentykacji u¿ytkownika.
 3. Dostosowano wyœwietlanie strony do urz¹dzeñ mobilnych.
 4. Poprawiono stopkê.
+<hr/>
 
 Data 26.06.2023
 
 1. Dodano klasê Cart.cs reprezentuj¹c¹ model koszyka zakupowego.
 2. Zmieniono background dla listy produktów z szarego na bia³e.
 3. Przyciski paska nawigacyjnego zmieniono na btn-outline, dodano ikony bootstrap icons.
+<hr/>
 
 Data 23.07.2023
 
