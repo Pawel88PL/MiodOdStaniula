@@ -1,57 +1,57 @@
 # www.miododstaniula.pl
 
-"Miód od Staniula" jest to projekt sklepu internetowego, napisany w techonologi ASP.NET Core MVC 6.0.
-Do po³¹czenia z baz¹ danych MS SQL Server wykorzystano narzêdzie ORM Entity Framework Core.
+"MiÃ³d od Staniula" jest to projekt sklepu internetowego, napisany w techonologi ASP.NET Core MVC 6.0.
+Do poÅ‚Ä…czenia z bazÄ… danych MS SQL Server wykorzystano narzÄ™dzie ORM Entity Framework Core.
 <hr/>
 
 Chronologia zmian:
 
 Data 24.04.2023
 
-1. Utworzono pierwsz¹ migracjê dla tabeli produkty.
-2. Utworzono ProductsController odpowiedzialny za dodawanie, edytowanie i usuwanie produktów.
-3. Utworzono StoreController do wyœwietlania listy produktów.
-4. Utworzono widoki dla powy¿szych kontrolerów.
+1. Utworzono pierwszÄ… migracjÄ™ dla tabeli produkty.
+2. Utworzono ProductsController odpowiedzialny za dodawanie, edytowanie i usuwanie produktÃ³w.
+3. Utworzono StoreController do wyÅ›wietlania listy produktÃ³w.
+4. Utworzono widoki dla powyÅ¼szych kontrolerÃ³w.
 5. Przeprowadzono update bazy danych.
-6. Utworzono widok kart produktów.
-7. Dodano kolumnê Photo w tabeli Products.
-8. Utworzono link do szczegó³ów danego produktu klikaj¹c na kartê ze zdjêciem.
+6. Utworzono widok kart produktÃ³w.
+7. Dodano kolumnÄ™ Photo w tabeli Products.
+8. Utworzono link do szczegÃ³Å‚Ã³w danego produktu klikajÄ…c na kartÄ™ ze zdjÄ™ciem.
 9. Utworzono przekierowanie do strony ProductsList z kontrolera Edit i Details.
 <hr/>
 
 Data 28.04.2023
 
-1. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Magazyn.
-2. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Dodaj nowy produkt.
-3. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Edytuj produkt.
+1. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Magazyn.
+2. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Dodaj nowy produkt.
+3. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Edytuj produkt.
 4. Dodano produkty do sklepu.
-5. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Produkty.
-6. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Szczegó³y produktu.
-7. Przeniesiono widok "Szczegó³y produktu" do kontrolera StoreController.
-8. W widoku "Edytuj produkt" dodano podgl¹d strony produktu.
-9. Poprawiono wygl¹d, funkcjonalnoœæ i wyœwietlanie strony Usuñ produkt.
+5. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony Produkty.
+6. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony SzczegÃ³Å‚y produktu.
+7. Przeniesiono widok "SzczegÃ³Å‚y produktu" do kontrolera StoreController.
+8. W widoku "Edytuj produkt" dodano podglÄ…d strony produktu.
+9. Poprawiono wyglÄ…d, funkcjonalnoÅ›Ä‡ i wyÅ›wietlanie strony UsuÅ„ produkt.
 <hr/>
 
 Data 29.04.2023
 
-1. Dodano mo¿liwoœæ rejestracji u¿ytkownika.
-2. Zabezpieczono kontroler ProductsController metod¹ autentykacji u¿ytkownika.
-3. Dostosowano wyœwietlanie strony do urz¹dzeñ mobilnych.
-4. Poprawiono stopkê.
+1. Dodano moÅ¼liwoÅ›Ä‡ rejestracji uÅ¼ytkownika.
+2. Zabezpieczono kontroler ProductsController metodÄ… autentykacji uÅ¼ytkownika.
+3. Dostosowano wyÅ›wietlanie strony do urzÄ…dzeÅ„ mobilnych.
+4. Poprawiono stopkÄ™.
 <hr/>
 
 Data 26.06.2023
 
-1. Dodano klasê Cart.cs reprezentuj¹c¹ model koszyka zakupowego.
-2. Zmieniono background dla listy produktów z szarego na bia³e.
+1. Dodano klasÄ™ Cart.cs reprezentujÄ…cÄ… model koszyka zakupowego.
+2. Zmieniono background dla listy produktÃ³w z szarego na biaÅ‚e.
 3. Przyciski paska nawigacyjnego zmieniono na btn-outline, dodano ikony bootstrap icons.
 <hr/>
 
 Data 23.07.2023
 
-1. Dodano now¹ klasê Category.cs reprezentuj¹c¹ kategorie danego produktu.
+1. Dodano nowÄ… klasÄ™ Category.cs reprezentujÄ…cÄ… kategorie danego produktu.
 2. Poprawiono pola klasy Product.cs i dodano klucz obcy do tabeli Categories.
-3. Przeprowadzono migracjê 'newTable_Categories'.
-4. Opublikowano wersjê aplikacji 2.0.0.
-5. Poprawiono wyœwietlanie stopki.
-6. ConnectionString do bazy danych przeniesiono do pliku appsettings.json, który wy³¹czono ze œledzenia w GitHub.
+3. Przeprowadzono migracjÄ™ 'newTable_Categories'.
+4. Opublikowano wersjÄ™ aplikacji 2.0.0.
+5. Poprawiono wyÅ›wietlanie stopki.
+6. ConnectionString do bazy danych przeniesiono do pliku appsettings.json, ktÃ³ry wyÅ‚Ä…czono ze Å›ledzenia w GitHub.
