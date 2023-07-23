@@ -63,8 +63,8 @@
 
                             <div class="form-group">
                                 <p><b>Nazwa pliku ze zdjęciem</b></p>
-                                <input asp-for="Photo" class="form-control" />
-                                <span asp-validation-for="Photo" class="text-danger"></span>
+                                <input asp-for="PhotoUrlAddress" class="form-control" />
+                                <span asp-validation-for="PhotoUrlAddress" class="text-danger"></span>
                             </div>
                             <br />
 
@@ -103,7 +103,7 @@
                     <div style="font-size: 9px">
                         <div class="row">
                             <div class="col-sm-12" style="padding: 5px">
-                                <img src="~/img/@Model.Photo" class="w-100" />
+                                <img src="~/img/@Model.PhotoUrlAddress" class="w-100" />
                             </div>
                             <div class="col-sm-12 border" style="padding: 10px; margin-top: 10px">
                                 <h5>@Model.Name</h5>

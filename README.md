@@ -34,3 +34,10 @@ Data 26.06.2023
 1. Dodano klasê Cart.cs reprezentuj¹c¹ model koszyka zakupowego.
 2. Zmieniono background dla listy produktów z szarego na bia³e.
 3. Przyciski paska nawigacyjnego zmieniono na btn-outline, dodano ikony bootstrap icons.
+
+Data 23.07.2023
+
+1. Dodano now¹ klasê Category.cs reprezentuj¹c¹ kategorie danego produktu.
+2. Poprawiono pola klasy Product.cs i dodano klucz obcy do tabeli Categories.
+3. Przeprowadzono migracjê 'newTable_Categories'.
+4. Opublikowano wersjê aplikacji 2.0.0.

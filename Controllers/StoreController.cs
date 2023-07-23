@@ -41,7 +41,7 @@ namespace MiodOdStaniula.Controllers
 
         public IActionResult ProductsList()
         {
-            var productList = _context.Products.ToList();
+            var productList = _context.Products.Include(p => p.Category).ToList();
             return View(productList);
         }
     }
