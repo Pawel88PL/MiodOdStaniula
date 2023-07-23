@@ -28,3 +28,9 @@ Data 29.04.2023
 2. Zabezpieczono kontroler ProductsController metod¹ autentykacji u¿ytkownika.
 3. Dostosowano wyœwietlanie strony do urz¹dzeñ mobilnych.
 4. Poprawiono stopkê.
+
+Data 26.06.2023
+
+1. Dodano klasê Cart.cs reprezentuj¹c¹ model koszyka zakupowego.
+2. Zmieniono background dla listy produktów z szarego na bia³e.
+3. Przyciski paska nawigacyjnego zmieniono na btn-outline, dodano ikony bootstrap icons.

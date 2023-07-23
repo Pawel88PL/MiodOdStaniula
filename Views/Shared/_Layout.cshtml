@@ -7,16 +7,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MiodOdStaniula.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <div class="btn-success" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                        MIÓD OD STANIULA
-                    </div>
-                </a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-shop"></i> MIÓD OD STANIULA </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,37 +21,21 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="ProductsList">
-                                <div class="button btn-success" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                    PRODUKTY
-                                </div>
-                            </a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="ProductsList"><i class="bi bi-bag"></i> PRODUKTY </a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">
-                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                        MÓJ MAGAZYN
-                                    </div>
-                                </a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i class="bi bi-box-seam"></i> MÓJ MAGAZYN </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut">
-                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                        WYLOGUJ
-                                    </div>
-                                </a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut"><i class="bi bi-box-arrow-right"></i> WYLOGUJ </a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">
-                                    <div class="btn-primary" style="border-radius: 3px; padding: 3px 10px 3px 10px">
-                                        ZALOGUJ
-                                    </div>
-                                </a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-left"></i> ZALOGUJ </a>
                             </li>
                         }
                     </ul>

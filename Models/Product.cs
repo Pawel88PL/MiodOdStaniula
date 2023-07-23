@@ -6,7 +6,7 @@ namespace MiodOdStaniula.Models
     public class Product
     {
         [Key]
-        public int Id { get; set; }
+        public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Priorytetem określasz kolejność wyświetlania tego produktu")]
         public int Priority { get; set; }
@@ -18,9 +18,9 @@ namespace MiodOdStaniula.Models
         public string? Name { get; set; }
 
         [Required(ErrorMessage = "Podaj cenę produktu")]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
                 
-        public int Weight { get; set; }
+        public decimal Weight { get; set; }
         
         public string? Description { get; set; }
 

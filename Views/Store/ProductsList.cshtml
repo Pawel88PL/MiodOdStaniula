@@ -6,13 +6,13 @@
 }
 
 
-<section class="border text-center shadow p-3 mb-5 rounded" style="background-color: #eee;">
+<section class="border text-center shadow p-3 mb-5 rounded">
     <div class="text-center container py-5">
         <div class="row">
             @foreach (var product in Model.OrderBy(x => x.Priority))
             {
                 <div class="col-lg-3 col-md-12 mb-4">
-                    <a href="@Url.Action("ProductDetails","Store", new { Id = product.Id})"
+                    <a href="@Url.Action("ProductDetails","Store", new { Id = product.ProductId})"
                        style="text-decoration:none; color:black">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"

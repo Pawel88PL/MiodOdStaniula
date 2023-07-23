@@ -69,9 +69,9 @@ namespace MiodOdStaniula.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Priority,Category,Name,Price,Weight,Description,AmountAvailable,Photo")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Priority,Category,Name,Price,Weight,Description,AmountAvailable,Photo")] Product product)
         {
-            if (id != product.Id)
+            if (id != product.ProductId)
             {
                 return NotFound();
             }
@@ -85,7 +85,7 @@ namespace MiodOdStaniula.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Id))
+                    if (!ProductExists(product.ProductId))
                     {
                         return NotFound();
                     }
@@ -108,7 +108,7 @@ namespace MiodOdStaniula.Controllers
             }
 
             var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
                 return NotFound();
@@ -138,7 +138,7 @@ namespace MiodOdStaniula.Controllers
 
         private bool ProductExists(int id)
         {
-          return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Products?.Any(e => e.ProductId == id)).GetValueOrDefault();
         }
     }
 }
