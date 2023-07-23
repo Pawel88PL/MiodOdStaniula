@@ -41,3 +41,5 @@ Data 23.07.2023
 2. Poprawiono pola klasy Product.cs i dodano klucz obcy do tabeli Categories.
 3. Przeprowadzono migracjê 'newTable_Categories'.
 4. Opublikowano wersjê aplikacji 2.0.0.
+5. Poprawiono wyœwietlanie stopki.
+6. ConnectionString do bazy danych przeniesiono do pliku appsettings.json, który wy³¹czono ze œledzenia w GitHub.
