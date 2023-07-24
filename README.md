@@ -56,3 +56,9 @@ Data 23.07.2023
 5. Poprawiono wyświetlanie stopki.
 6. ConnectionString do bazy danych przeniesiono do pliku appsettings.json, który wyłączono ze śledzenia w GitHub.
 7. Utworzono kontroler 'AddNewProductController', klasę 'AddProductService.cs' z metodą 'AddNewProductAsync()'.
+<hr/>
+
+Data 24.07.2023
+
+1. Utworzono kontroler 'WarehouseController', klasę 'WarehouseService.cs' z metodą 'GetAllProductsAsync()'.
+1. Utworzono kontroler 'EditProductController', klasę 'EditProductService.cs' z metodami 'GetProductAsync()' i 'UpdateProductAsync()'.

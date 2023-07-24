@@ -9,16 +9,16 @@
 <div class="container">
     <div class="row">
         <div class="border shadow p-3 bg-white rounded" style="max-width: 800px">
-            <form asp-action="Create">
+            <form asp-action="AddProduct">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="form-group">
                             <p><b>Kategoria</b></p>
-                            <select asp-for="Category" class="form-select">
-                                <option>Miody naturalne</option>
-                                <option>Miody samakowe</option>
-                                <option>Produkty pszczele</option>
+                            <select asp-for="CategoryId" class="form-select">
+                                <option value="1">Miody naturalne</option>
+                                <option value="2">Miody samakowe</option>
+                                <option value="3">Produkty pszczele</option>
                             </select>
 
                         </div>

@@ -21,12 +21,12 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="ProductsList"><i class="bi bi-bag"></i> PRODUKTY </a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="Index"><i class="bi bi-bag"></i> PRODUKTY </a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i class="bi bi-box-seam"></i> MÓJ MAGAZYN </a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Warehouse" asp-action="Index"><i class="bi bi-box-seam"></i> MÓJ MAGAZYN </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="LogOut"><i class="bi bi-box-arrow-right"></i> WYLOGUJ </a>

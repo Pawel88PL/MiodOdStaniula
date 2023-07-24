@@ -8,41 +8,32 @@ namespace MiodOdStaniula.Controllers
 {
     public class StoreController : Controller
     {
-        private readonly DbStoreContext _context;
+        private readonly IWarehouseService _warehouseService;
 
-        public StoreController(DbStoreContext context)
+        public StoreController(IWarehouseService warehouseService)
         {
-            _context = context;
+            _warehouseService = warehouseService;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var productsList = await _warehouseService.GetAllProductsAsync();
+            return View(productsList);
         }
 
 
-        public async Task<IActionResult> ProductDetails(int? id)
+        [HttpGet]
+        public async Task<IActionResult> Details(int ProductId)
         {
-            if (id == null || _context.Products == null)
-            {
-                return NotFound();
-            }
+            var product = await _warehouseService.GetProductAsync(ProductId);
 
-            var product = await _context.Products
-                .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
-                return NotFound();
+                return View("_NotFound");
             }
 
             return View(product);
-        }
-
-
-        public IActionResult ProductsList()
-        {
-            var productList = _context.Products.Include(p => p.Category).ToList();
-            return View(productList);
         }
     }
 }

@@ -12,7 +12,7 @@
             @foreach (var product in Model.OrderBy(x => x.Priority))
             {
                 <div class="col-lg-3 col-md-12 mb-4">
-                    <a href="@Url.Action("ProductDetails","Store", new { Id = product.ProductId})"
+                    <a href="@Url.Action("Details","Store", new { ProductId = product.ProductId})"
                        style="text-decoration:none; color:black">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -28,7 +28,7 @@
                                     @if (product.AmountAvailable == 0)
                                     {
                                         <div class="col-6">
-                                            <p>Waga: <b>@product.Weight</b></p>
+                                            <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
                                         </div>
                                         <div class="col-6">
                                             <p>Cena: <b>@product.Price zł</b></p>
@@ -45,7 +45,7 @@
                                     else if (product.AmountAvailable > 0 & product.AmountAvailable < 10)
                                     {
                                         <div class="col-6">
-                                            <p>Waga: <b>@product.Weight</b></p>
+                                            <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
                                         </div>
                                         <div class="col-6">
                                             <p>Cena: <b>@product.Price zł</b></p>
@@ -62,7 +62,7 @@
                                     else if (product.AmountAvailable >= 10)
                                     {
                                         <div class="col-6">
-                                            <p>Waga: <b>@product.Weight</b></p>
+                                            <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
                                         </div>
                                         <div class="col-6">
                                             <p>Cena: <b>@product.Price zł</b></p>

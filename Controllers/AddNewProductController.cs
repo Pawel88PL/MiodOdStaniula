@@ -28,10 +28,9 @@ namespace MiodOdStaniula.Controllers
                 return View(product);
             }
 
-            await _addProductService.AddNewProductAsync(product);
-            return RedirectToAction("ProductsList","Store");
+            var productId = await _addProductService.AddNewProductAsync(product);
+
+            return RedirectToAction("Index","Store");
         }
-
-
     }
 }

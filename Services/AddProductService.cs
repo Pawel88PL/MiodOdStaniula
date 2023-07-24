@@ -6,17 +6,17 @@ namespace MiodOdStaniula.Services
     public class AddProductService: IAddProductService
     {
 
-        private readonly DbStoreContext _dbStoreContext;
+        private readonly DbStoreContext _context;
 
-        public AddProductService(DbStoreContext dbStoreContext)
+        public AddProductService(DbStoreContext context)
         {
-            _dbStoreContext = dbStoreContext;
+            _context = context;
         }
 
         public async Task<Product> AddNewProductAsync(Product product)
         {
-            _dbStoreContext.Add(product);
-            await _dbStoreContext.SaveChangesAsync();
+            _context.Add(product);
+            await _context.SaveChangesAsync();
             return product;
         }
     }
