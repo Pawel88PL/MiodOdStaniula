@@ -61,4 +61,4 @@ Data 23.07.2023
 Data 24.07.2023
 
 1. Utworzono kontroler 'WarehouseController', klasę 'WarehouseService.cs' z metodą 'GetAllProductsAsync()'.
-1. Utworzono kontroler 'EditProductController', klasę 'EditProductService.cs' z metodami 'GetProductAsync()' i 'UpdateProductAsync()'.
+2. Utworzono kontroler 'EditProductController', klasę 'EditProductService.cs' z metodami 'GetProductAsync()' i 'UpdateProductAsync()'.
