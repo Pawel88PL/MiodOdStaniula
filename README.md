@@ -55,3 +55,4 @@ Data 23.07.2023
 4. Opublikowano wersję aplikacji 2.0.0.
 5. Poprawiono wyświetlanie stopki.
 6. ConnectionString do bazy danych przeniesiono do pliku appsettings.json, który wyłączono ze śledzenia w GitHub.
+7. Utworzono kontroler 'AddNewProductController', klasę 'AddProductService.cs' z metodą 'AddNewProductAsync()'.

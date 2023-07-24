@@ -19,6 +19,7 @@ namespace MiodOdStaniula
 
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<IAddProductService, AddProductService>();
             builder.Services.AddScoped<IStoreService, StoreService>();
 
 
