@@ -21,6 +21,7 @@ namespace MiodOdStaniula
 
             builder.Services.AddScoped<IAddProductService, AddProductService>();
             builder.Services.AddScoped<IEditProductService, EditProductService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 
 
@@ -60,7 +61,7 @@ namespace MiodOdStaniula
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Store}/{action=Index}/{id?}");
+                pattern: "{controller=Products}/{action=Index}/{id?}");
 
             app.Run();
         }

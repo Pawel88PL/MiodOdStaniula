@@ -6,20 +6,26 @@ using MiodOdStaniula.Services.Interfaces;
 
 namespace MiodOdStaniula.Controllers
 {
-    public class StoreController : Controller
+    public class ProductsController : Controller
     {
         private readonly IWarehouseService _warehouseService;
+        private readonly IProductService _productService;
 
-        public StoreController(IWarehouseService warehouseService)
+        public ProductsController(IWarehouseService warehouseService, IProductService productService)
         {
             _warehouseService = warehouseService;
+            _productService = productService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string filterCondition)
         {
-            var productsList = await _warehouseService.GetAllProductsAsync();
-            return View(productsList);
+            var products = await _warehouseService.GetAllProductsAsync();
+            products = _productService.Sort(products, sortOrder);
+            products = _productService.Filter(products, filterCondition);
+            ViewBag.FilterCondition = string.IsNullOrEmpty(filterCondition) ? "Wszystkie produkty" : filterCondition;
+
+            return View(products);
         }
 
 

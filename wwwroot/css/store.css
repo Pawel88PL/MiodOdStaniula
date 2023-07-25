@@ -2,6 +2,9 @@
     word-wrap: break-word;
 }
 
+.category-item {
+    padding-left: 20px;
+}
 
 
 div.outOfOrder {

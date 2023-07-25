@@ -31,6 +31,10 @@ namespace MiodOdStaniula.Models
         [StringLength(200, ErrorMessage = "URL zdjęcia nie może przekraczać 200 znaków.")]
         public string? PhotoUrlAddress { get; set; }
 
+        public int? Popularity { get; set; }
+
+        public DateTime DateAdded { get; set; }
+
 
 
         //Foregin keys

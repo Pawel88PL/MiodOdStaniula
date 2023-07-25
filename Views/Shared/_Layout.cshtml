@@ -21,7 +21,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Store" asp-action="Index"><i class="bi bi-bag"></i> PRODUKTY </a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i class="bi bi-bag"></i> PRODUKTY </a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -58,7 +58,7 @@
         </div>
     </footer>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
