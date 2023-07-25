@@ -1,0 +1,114 @@
+﻿@model IEnumerable<MiodOdStaniula.Models.Product>
+<link rel="stylesheet" href="~/css/store.css" asp-append-version="true" />
+
+@{
+    ViewData["Title"] = "Produkty";
+}
+
+<div>
+    @await Html.PartialAsync("_WelcomePage")
+</div>
+
+<section class="border text-center shadow p-3 mb-5 rounded">
+    <div class="row">
+        <div class="col-md-9">
+            <h1>@ViewBag.FilterCondition</h1>
+        </div>
+        <div class="col-md-3">
+            <form asp-action="Index" method="get">
+                <select name="sortOrder" onchange="this.form.submit()" class="form-select">
+                    <option value="">Sortuj po ...</option>
+                    <option value="name_asc">Nazwa produktu</option>
+                    <option value="price_asc">Cena rosnąco</option>
+                    <option value="price_desc">Cena malejąco</option>
+                    <option value="date_asc">Data dodania</option>
+                    <option value="available-desc">Dostępność</option>
+                    <option value="popularity">Popularność</option>
+                    <option value="priority">Priorytet</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <hr />
+    <div class="text-center container py-5">
+        <div class="row">
+            <div class="col-md-3 text-start border-end mb-4">
+                <h3>Kategorie:</h3>
+                <br />
+                <div class="list-group">
+                    <a asp-action="Index" class="list-group-item list-group-item-action"><b><i class="bi bi-list-ul"></i> Wszystkie produkty</b></a>
+                    <a asp-action="Index" asp-route-filterCondition="Miody naturalne" class="list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Miody naturalne</a>
+                    <a asp-action="Index" asp-route-filterCondition="Miody smakowe" class="list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Miody smakowe</a>
+                    <a asp-action="Index" asp-route-filterCondition="Zestawy miodów" class="list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Zestawy miodów</a>
+                    <a asp-action="Index" asp-route-filterCondition="Produkty pszczele" class="list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Produkty pszczele</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row">
+                    @foreach (var product in Model)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                            <a asp-action="Details" asp-controller="Products" asp-route-ProductId="@product.ProductId"
+                               style="text-decoration:none; color:black">
+                                <div class="card">
+                                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                                         data-mdb-ripple-color="light">
+                                        <img src="~/img/@product.PhotoUrlAddress" class="w-100" />
+                                    </div>
+                                    <div class="card-body">
+                                        <div>
+                                            <h5 class="card-title mb-3">@product.Name</h5>
+                                            <p><b>@product?.Category?.Name</b></p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
+                                            </div>
+                                            <div class="col-6">
+                                                <p>Cena: <b>@product.Price zł</b></p>
+                                            </div>
+                                            @if (product.AmountAvailable == 0)
+                                            {
+                                                <div class="row outOfOrder">
+                                                    <div class="col-9">
+                                                        <h6>Produkt sprzedany</h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <img src="/img/outOfOrder.png" style="max-width: 40px">
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (product.AmountAvailable > 0 & product.AmountAvailable < 10)
+                                            {
+                                                <div class="row smallAmount">
+                                                    <div class="col-9">
+                                                        <h6>Na wyczerpaniu</h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <img src="/img/smallAmount.png" style="max-width: 40px">
+                                                    </div>
+                                                </div>
+                                            }
+                                            else if (product.AmountAvailable >= 10)
+                                            {
+                                                <div class="row available">
+                                                    <div class="col-9">
+                                                        <h6>Produkt dostępny</h6>
+                                                    </div>
+                                                    <div class="col-3">
+                                                        <img src="/img/available.png" style="max-width: 40px">
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

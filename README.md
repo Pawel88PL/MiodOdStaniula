@@ -62,3 +62,14 @@ Data 24.07.2023
 
 1. Utworzono kontroler 'WarehouseController', klasę 'WarehouseService.cs' z metodą 'GetAllProductsAsync()'.
 2. Utworzono kontroler 'EditProductController', klasę 'EditProductService.cs' z metodami 'GetProductAsync()' i 'UpdateProductAsync()'.
+<hr/>
+
+Data 25.07.2023
+
+1. W pliku 'Program.cs' skonfigurowano domyślny routing na stronę z produktami ('Store/Index').
+2. Utworzono widok dzielony '_WelcomePage', który umieszczono na stronie głównej i na początku strony z produktami.
+3. Poprawiono responsywność kart produktów na stronie z produktami.
+4. Poprawiono wyświetlanie strony 'Details.cshtml' na urządzeniach mobilnych.
+5. Kontroler 'StoreController' zmieniono na 'ProductController' i utworzono w nim medoty filtrowania i sortowania produktów
+	według określonych warunków.
+6. Na stronie z produktami dodano możliwość filtowania i sortowania produktów.
