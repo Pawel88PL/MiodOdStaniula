@@ -5,14 +5,17 @@
     ViewData["Title"] = "Produkty";
 }
 
+<div>
+    @await Html.PartialAsync("_WelcomePage")
+</div>
 
 <section class="border text-center shadow p-3 mb-5 rounded">
     <div class="text-center container py-5">
         <div class="row">
             @foreach (var product in Model.OrderBy(x => x.Priority))
             {
-                <div class="col-lg-3 col-md-12 mb-4">
-                    <a href="@Url.Action("Details","Store", new { ProductId = product.ProductId})"
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <a asp-action="Details" asp-controller="Store" asp-route-ProductId="@product.ProductId"
                        style="text-decoration:none; color:black">
                         <div class="card">
                             <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
@@ -25,14 +28,14 @@
                                     <p>Kategoria: <b>@product?.Category?.Name</b></p>
                                 </div>
                                 <div class="row">
+                                    <div class="col-6">
+                                        <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Cena: <b>@product.Price zł</b></p>
+                                    </div>
                                     @if (product.AmountAvailable == 0)
                                     {
-                                        <div class="col-6">
-                                            <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p>Cena: <b>@product.Price zł</b></p>
-                                        </div>
                                         <div class="row outOfOrder">
                                             <div class="col-9">
                                                 <h6>Produkt sprzedany</h6>
@@ -44,12 +47,6 @@
                                     }
                                     else if (product.AmountAvailable > 0 & product.AmountAvailable < 10)
                                     {
-                                        <div class="col-6">
-                                            <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p>Cena: <b>@product.Price zł</b></p>
-                                        </div>
                                         <div class="row smallAmount">
                                             <div class="col-9">
                                                 <h6>Na wyczerpaniu</h6>
@@ -61,12 +58,6 @@
                                     }
                                     else if (product.AmountAvailable >= 10)
                                     {
-                                        <div class="col-6">
-                                            <p>Waga: <b>@product.Weight.ToString("0.##") g</b></p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p>Cena: <b>@product.Price zł</b></p>
-                                        </div>
                                         <div class="row available">
                                             <div class="col-9">
                                                 <h6>Produkt dostępny</h6>
@@ -82,6 +73,7 @@
                     </a>
                 </div>
             }
+
         </div>
     </div>
 </section>
