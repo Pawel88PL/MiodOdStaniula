@@ -73,3 +73,7 @@ Data 25.07.2023
 5. Kontroler 'StoreController' zmieniono na 'ProductController' i utworzono w nim medoty filtrowania i sortowania produktów
 	według określonych warunków.
 6. Na stronie z produktami dodano możliwość filtowania i sortowania produktów.
+
+Data 27.07.2023
+
+1. Dodano plik 'favicon.png' i odnośnik do ikony w tagu "head" pliku 'Layout.cshtml'.
