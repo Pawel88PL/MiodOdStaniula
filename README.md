@@ -73,7 +73,11 @@ Data 25.07.2023
 5. Kontroler 'StoreController' zmieniono na 'ProductController' i utworzono w nim medoty filtrowania i sortowania produktów
 	według określonych warunków.
 6. Na stronie z produktami dodano możliwość filtowania i sortowania produktów.
+<hr/>
 
 Data 27.07.2023
 
 1. Dodano plik 'favicon.png' i odnośnik do ikony w tagu "head" pliku 'Layout.cshtml'.
+2. Utworzono widok częściowy '_ProductList.cshtml' oraz metodę'GetProducts' w kontrolerze 'ProductsController', która jest odpowiedzialna za przekazywanie
+	widoku częściowego do strony z produktami.
+3. w pliku 'site.js' zastosowano żądanie AJAX w przypadku filtrowania produktów.

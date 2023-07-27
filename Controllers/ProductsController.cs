@@ -28,6 +28,17 @@ namespace MiodOdStaniula.Controllers
             return View(products);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetProducts(string sortOrder, string filterCondition)
+        {
+            var products = await _warehouseService.GetAllProductsAsync();
+            products = _productService.Sort(products, sortOrder);
+            products = _productService.Filter(products, filterCondition);
+
+            return PartialView("_ProductList", products);
+        }
+
+
 
         [HttpGet]
         public async Task<IActionResult> Details(int ProductId)
@@ -41,5 +52,6 @@ namespace MiodOdStaniula.Controllers
 
             return View(product);
         }
+
     }
 }

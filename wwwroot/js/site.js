@@ -1,14 +1,10 @@
-﻿$(document).ready(function () {
-    $(".filter-link").click(function (e) {
-        e.preventDefault();
-        var url = $(this).attr('href');
-        $.ajax({
-            url: url,
-            type: 'get',
-            success: function (data) {
-                // Zaktualizuj stronę z nowymi danymi
-                $("#products-container").html(data);
-            }
-        });
+﻿
+
+$(function () {
+    $(".filter-link, .sort-link").click(function (event) {
+        event.preventDefault();
+
+        var url = $(this).attr("href");
+        $("#products-container").load(url);
     });
 });
