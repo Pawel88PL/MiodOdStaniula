@@ -35,13 +35,13 @@ namespace MiodOdStaniula.Controllers
             return RedirectToAction("Index", "Products");
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Register(Register userRegisterData)
         {

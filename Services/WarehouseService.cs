@@ -17,7 +17,10 @@ namespace MiodOdStaniula.Services
 
         public async Task<Product?> GetProductAsync(int ProductId)
         {
-            var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.ProductId == ProductId);
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Variants)
+                .FirstOrDefaultAsync(p => p.ProductId == ProductId);
 
             if (product == null)
             {
@@ -29,7 +32,10 @@ namespace MiodOdStaniula.Services
 
         public async Task<List<Product>> GetAllProductsAsync()
         {
-            var products = await _context.Products.Include(p => p.Category).ToListAsync();
+            var products = await _context.Products
+                .Include(p => p.Category)
+                .Include (p => p.Variants)
+                .ToListAsync();
             
             return products;
         }

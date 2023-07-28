@@ -9,16 +9,17 @@
     <div class="border text-center shadow p-3 mb-5 bg-white rounded">
         <div class="row">
             <div class="col-sm-4 my-3">
-                <img src="~/img/@Model.PhotoUrlAddress" class="w-100" />
+                <img src="~/img/Model.PhotoUrlAddress" class="w-100" />
             </div>
             <div class="col-sm-3 border my-3 p-4">
                 <h3>@Model.Name</h3>
                 <div>
-                    <p>Waga: <b>@Model.Weight g</b></p>
+                    <p>Waga: <b>Model.Weight g</b></p>
                 </div>
                 <div>
-                    <p>Cena: <b>@Model.Price zł</b></p>
+                    <p>Cena: <b>Model.Price zł</b></p>
                 </div>
+                @*
                 <div class="row
                     @(Model.AmountAvailable <= 0 ? "outOfOrder" :
                       Model.AmountAvailable < 10 ? "smallAmount" : "available")">
@@ -33,6 +34,7 @@
                             Model.AmountAvailable < 10 ? "smallAmount" : "available").png" style="max-width: 40px">
                     </div>
                 </div>
+                *@
             </div>
             <div class="col-sm-4 border my-3 p-4">
                 <p>@Model.Description</p>

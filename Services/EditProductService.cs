@@ -25,11 +25,11 @@ namespace MiodOdStaniula.Services
                 {
                     productInDb.Priority = product.Priority;
                     productInDb.Name = product.Name;
-                    productInDb.Price = product.Price;
-                    productInDb.Weight = product.Weight;
+                    //productInDb.Price = product.Price;
+                    //productInDb.Weight = product.Weight;
                     productInDb.Description = product.Description;
-                    productInDb.AmountAvailable = product.AmountAvailable;
-                    productInDb.PhotoUrlAddress = product.PhotoUrlAddress;
+                    //productInDb.AmountAvailable = product.AmountAvailable;
+                    //productInDb.PhotoUrlAddress = product.PhotoUrlAddress;
                     productInDb.CategoryId = product.CategoryId;
 
                     await _context.SaveChangesAsync();

@@ -5,7 +5,7 @@ namespace MiodOdStaniula.Models
     {
         public List<CartItem> Items { get; set; } 
 
-        public decimal TotalPrice => Items.Sum(item => item.Product.Price * item.Quantity);
+        // public decimal TotalPrice => Items.Sum(item => item.Product.Price * item.Quantity);
 
         public Cart()
         {

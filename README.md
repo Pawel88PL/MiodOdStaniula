@@ -86,3 +86,5 @@ Data 27.07.2023
 Data 28.07.2023
 
 1. Dla karty produktu dodano przycisk 'Dodaj do koszyka' i efekt hover po najechaniu kursorem na kartę produktu.
+2. Utworzono nową klasę 'ProductVariant.cs' powiązaną z modelem 'Product.cs'. Przeniesiono do niej takie pola jak 'Price', 'Weight', 'AmountAvailable' i 'PhotoUrlAddress'.
+3. Na stronie z produktami zaktualizowano karty produktów o możwiwość wyboru wariantu wagowego, odpowiadający danemu produktowi.

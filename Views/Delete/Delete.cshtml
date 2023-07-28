@@ -11,15 +11,15 @@
         <div class="row">
             <div class="col-5">
                 <h4>@Model.Name</h4>
-                <h5>cena: @Model.Price,00 zł</h5>
-                <h5>waga @Model.Weight g</h5>
-                <h5>dostępna ilość @Model.AmountAvailable</h5>
+                <h5>cena: Model.Price,00 zł</h5>
+                <h5>waga Model.Weight g</h5>
+                <h5>dostępna ilość Model.AmountAvailable</h5>
                 <div class="border" style="padding: 10px">
                     <p>@Model.Description</p>
                 </div>
             </div>
             <div class="col-4">
-                <img src="~/img/@Model.PhotoUrlAddress" class="w-100" />
+                <img src="~/img/Model.PhotoUrlAddress" class="w-100" />
                 <div class="row">
                     <div class="col-6">
                         <form asp-action="Delete">

@@ -13,13 +13,11 @@ namespace MiodOdStaniula.Services
                 case "name_asc":
                     return products.OrderBy(p => p.Name).ToList();
                 case "price_asc":
-                    return products.OrderBy(p => p.Price).ToList();
+                    return products.OrderBy(p => p.Variants?.Min(v => v.Price)).ToList();
                 case "price_desc":
-                    return products.OrderByDescending(p => p.Price).ToList();
+                    return products.OrderByDescending(p => p.Variants?.Max(v => v.Price)).ToList();
                 case "date_asc":
                     return products.OrderBy(p => p.DateAdded).ToList();
-                case "available-desc":
-                    return products.OrderByDescending(p => p.AmountAvailable).ToList();
                 case "popularity":
                     return products.OrderByDescending(p => p.Popularity).ToList();
                 case "priority":

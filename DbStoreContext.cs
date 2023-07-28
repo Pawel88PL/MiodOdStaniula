@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MiodOdStaniula.Models;
+using System.Reflection.Emit;
 
 namespace MiodOdStaniula
 {
@@ -12,7 +13,9 @@ namespace MiodOdStaniula
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        
+        public DbSet<ProductVariant> ProductVariants { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

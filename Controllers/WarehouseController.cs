@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MiodOdStaniula.Services;
 using MiodOdStaniula.Services.Interfaces;
 
@@ -13,6 +14,8 @@ namespace MiodOdStaniula.Controllers
             _warehouseService = warehouseService;
         }
 
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var products = await _warehouseService.GetAllProductsAsync();
