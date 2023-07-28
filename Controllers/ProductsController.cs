@@ -20,9 +20,7 @@ namespace MiodOdStaniula.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string sortOrder, string filterCondition)
         {
-            var products = await _warehouseService.GetAllProductsAsync();
-            products = _productService.Sort(products, sortOrder);
-            products = _productService.Filter(products, filterCondition);
+            var products = await GetSortedAndFilteredProducts(sortOrder, filterCondition);
             ViewBag.FilterCondition = string.IsNullOrEmpty(filterCondition) ? "Wszystkie produkty" : filterCondition;
 
             return View(products);
@@ -31,10 +29,9 @@ namespace MiodOdStaniula.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProducts(string sortOrder, string filterCondition)
         {
-            var products = await _warehouseService.GetAllProductsAsync();
-            products = _productService.Sort(products, sortOrder);
-            products = _productService.Filter(products, filterCondition);
-
+            var products = await GetSortedAndFilteredProducts(sortOrder, filterCondition);
+            ViewBag.FilterCondition = filterCondition;
+            
             return PartialView("_ProductList", products);
         }
 
@@ -53,5 +50,12 @@ namespace MiodOdStaniula.Controllers
             return View(product);
         }
 
+        private async Task<IEnumerable<Product>> GetSortedAndFilteredProducts(string sortOrder, string filterCondition)
+        {
+            var products = await _warehouseService.GetAllProductsAsync();
+            products = _productService.Sort(products, sortOrder);
+            products = _productService.Filter(products, filterCondition);
+            return products;
+        }
     }
 }

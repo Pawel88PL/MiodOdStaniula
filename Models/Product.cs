@@ -19,6 +19,18 @@ namespace MiodOdStaniula.Models
         [StringLength(2000, ErrorMessage = "Opis produktu nie może przekraczać 2000 znaków.")]
         public string? Description { get; set; }
 
+        [Required(ErrorMessage = "Podaj cenę produktu")]
+        [Column(TypeName = "decimal(6, 2)")]
+        public decimal Price { get; set; }
+
+        [Required(ErrorMessage = "Podaj wagę produktu")]
+        public int Weight { get; set; }
+
+        public int AmountAvailable { get; set; }
+
+        [StringLength(200, ErrorMessage = "URL zdjęcia nie może przekraczać 200 znaków.")]
+        public string? PhotoUrlAddress { get; set; }
+
         public int? Popularity { get; set; }
 
         public DateTime DateAdded { get; set; }
@@ -28,9 +40,6 @@ namespace MiodOdStaniula.Models
         [ForeignKey("Category")]
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
-
-        // Variants
-        public ICollection<ProductVariant>? Variants { get; set; }
 
     }
 }

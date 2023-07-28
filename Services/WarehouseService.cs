@@ -19,7 +19,6 @@ namespace MiodOdStaniula.Services
         {
             var product = await _context.Products
                 .Include(p => p.Category)
-                .Include(p => p.Variants)
                 .FirstOrDefaultAsync(p => p.ProductId == ProductId);
 
             if (product == null)
@@ -34,7 +33,6 @@ namespace MiodOdStaniula.Services
         {
             var products = await _context.Products
                 .Include(p => p.Category)
-                .Include (p => p.Variants)
                 .ToListAsync();
             
             return products;

@@ -31,7 +31,7 @@ namespace MiodOdStaniula.Controllers
         public async Task<IActionResult> Edit(int ProductId)
         {
             var product = await _warehouseService.GetProductAsync(ProductId);
-            
+
             if (product == null)
             {
                 return View("_NotFound");
@@ -39,7 +39,7 @@ namespace MiodOdStaniula.Controllers
             return View(product);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int ProductId,
@@ -62,7 +62,11 @@ namespace MiodOdStaniula.Controllers
                 return RedirectToAction("Details", "Store", new { ProductId });
             }
 
-            return HandleUpdateError(result.Error, product);
+            if (result.Error != null)
+            {
+                return HandleUpdateError(result.Error, product);
+            }
+            return View(product);
         }
 
 

@@ -64,7 +64,7 @@ namespace MiodOdStaniula.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("ProductsList", "Store");
+            return RedirectToAction("Index", "Products");
         }
     }
 }
