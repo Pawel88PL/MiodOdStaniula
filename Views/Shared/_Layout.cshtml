@@ -24,7 +24,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i class="bi bi-bag"></i> PRODUKTY </a>
                         </li>
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Warehouse" asp-action="Index"><i class="bi bi-box-seam"></i> MÓJ MAGAZYN </a>

@@ -81,3 +81,8 @@ Data 27.07.2023
 2. Utworzono widok częściowy '_ProductList.cshtml' oraz metodę'GetProducts' w kontrolerze 'ProductsController', która jest odpowiedzialna za przekazywanie
 	widoku częściowego do strony z produktami.
 3. w pliku 'site.js' zastosowano żądanie AJAX w przypadku filtrowania produktów.
+<hr/>
+
+Data 28.07.2023
+
+1. Dla karty produktu dodano przycisk 'Dodaj do koszyka' i efekt hover po najechaniu kursorem na kartę produktu.

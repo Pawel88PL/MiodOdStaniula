@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<MiodOdStaniula.Models.Product>
+<link rel="stylesheet" href="~/css/product.css" asp-append-version="true" />
+
 
 @foreach (var product in Model)
 {
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <a asp-action="Details" asp-controller="Products" asp-route-ProductId="@product?.ProductId"
-           style="text-decoration:none; color:black">
-            <div class="card">
+        <div class="card">
+            <a asp-action="Details" asp-controller="Products" asp-route-ProductId="@product?.ProductId"
+               style="text-decoration:none; color:black">
                 <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                      data-mdb-ripple-color="light">
-                    <img src="~/img/@product.PhotoUrlAddress" class="w-100" />
+                    <img src="~/img/@product.PhotoUrlAddress" loading="lazy" class="w-100" />
                 </div>
                 <div class="card-body">
                     <div>
@@ -57,7 +59,10 @@
                         }
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+            <button type="button" class="btn btn-primary mt-2">
+                <i class="bi bi-cart-plus"></i> Dodaj do koszyka
+            </button>
+        </div>
     </div>
 }
