@@ -88,3 +88,8 @@ Data 28.07.2023
 1. Dla karty produktu dodano przycisk 'Dodaj do koszyka' i efekt hover po najechaniu kursorem na kartę produktu.
 2. Utworzono modal dla szczegółów produktu.
 3. Zaimportowano czcionkę 'Playfair Display'.
+
+Data 29.07.2023
+
+1. Dodano model klienta 'Client.cs' i koszyka 'Cart.cs'.
+2. Przeprowadzono migrację i update bazy danych.
