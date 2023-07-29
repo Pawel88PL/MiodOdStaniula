@@ -3,7 +3,7 @@ using MiodOdStaniula.Services.Interfaces;
 
 namespace MiodOdStaniula.Services
 {
-    public class ProductService: IProductService
+    public class ProductService : IProductService
     {
 
         public List<Product> Sort(IEnumerable<Product> products, string sortOrder)
@@ -35,10 +35,12 @@ namespace MiodOdStaniula.Services
         {
             if (!string.IsNullOrEmpty(filterCondition))
             {
-                return products.Where(p => p.Category.Name.Equals(filterCondition)).ToList();
+                if (products.Any(p => p.Category != null && p.Category.Name != null && p.Category.Name.Equals(filterCondition)))
+                {
+                    return products.Where(p => p.Category != null && p.Category.Name != null && p.Category.Name.Equals(filterCondition)).ToList();
+                }
             }
             return products.ToList();
         }
-
     }
 }
