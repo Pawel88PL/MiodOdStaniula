@@ -30,7 +30,7 @@ namespace MiodOdStaniula.Controllers
 
             var productId = await _addProductService.AddNewProductAsync(product);
 
-            return RedirectToAction("Index","Store");
+            return RedirectToAction("Index","Warehouse");
         }
     }
 }

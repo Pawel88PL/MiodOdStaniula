@@ -31,8 +31,7 @@ namespace MiodOdStaniula.Controllers
         public async Task<IActionResult> Edit(int ProductId)
         {
             var product = await _warehouseService.GetProductAsync(ProductId);
-
-            if (product == null)
+            if(product == null)
             {
                 return View("_NotFound");
             }
@@ -59,7 +58,7 @@ namespace MiodOdStaniula.Controllers
 
             if (result.IsSuccess)
             {
-                return RedirectToAction("Details", "Store", new { ProductId });
+                return RedirectToAction("Index", "Warehouse");
             }
 
             if (result.Error != null)

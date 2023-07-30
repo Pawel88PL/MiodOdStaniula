@@ -14,13 +14,13 @@
             <form asp-action="Index" method="get">
                 <select name="sortOrder" onchange="this.form.submit()" class="form-select">
                     <option value="">Sortuj po ...</option>
+                    <option value="category">Kategoria</option>
                     <option value="name_asc">Nazwa produktu</option>
                     <option value="price_asc">Cena rosnąco</option>
                     <option value="price_desc">Cena malejąco</option>
                     <option value="date_asc">Data dodania</option>
                     <option value="available-desc">Dostępność</option>
                     <option value="popularity">Popularność</option>
-                    <option value="priority">Priorytet</option>
                 </select>
             </form>
         </div>

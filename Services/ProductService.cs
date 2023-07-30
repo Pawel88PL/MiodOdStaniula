@@ -10,6 +10,8 @@ namespace MiodOdStaniula.Services
         {
             switch (sortOrder)
             {
+                case "category":
+                    return products.OrderBy(p => p.CategoryId).ToList();
                 case "name_asc":
                     return products.OrderBy(p => p.Name).ToList();
                 case "price_asc":
@@ -22,12 +24,8 @@ namespace MiodOdStaniula.Services
                     return products.OrderByDescending(p => p.AmountAvailable).ToList();
                 case "popularity":
                     return products.OrderByDescending(p => p.Popularity).ToList();
-                case "priority":
-                    return products.OrderBy(p => p.Priority).ToList();
                 default:
-                    return products.OrderBy(p => p.Weight)
-                        .ThenBy(p => p.CategoryId)
-                        .ToList();
+                    return products.OrderBy(p => p.Priority).ToList();
             }
         }
 
