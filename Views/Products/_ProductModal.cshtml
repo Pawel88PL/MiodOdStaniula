@@ -2,16 +2,16 @@
 <link rel="stylesheet" href="~/css/productModal.css" asp-append-version="true" />
 
 <div class="modal fade" id="productDetails-@Model?.ProductId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">@Model?.Name</h5>
+                <h5 class="modal-title text-center" id="exampleModalLabel">@Model?.Name</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-4 my-3">
-                        <img src="~/img/@Model?.PhotoUrlAddress" loading="lazy" class="w-100 product-image" />
+                        <img src="@Model?.PhotoUrlAddress" loading="lazy" class="w-100 product-image" />
                     </div>
                     <div class="col-sm-3 border my-3 p-4">
                         <div>
@@ -75,7 +75,15 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ZAMKNIJ</button>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a
+                    href="@Url.Action("Edit","EditProduct", new { ProductId = Model?.ProductId })"
+                    class="btn btn-secondary"
+                    >EDYTUJ</a
+                  >
+                }
             </div>
         </div>
     </div>

@@ -88,8 +88,15 @@ Data 28.07.2023
 1. Dla karty produktu dodano przycisk 'Dodaj do koszyka' i efekt hover po najechaniu kursorem na kartę produktu.
 2. Utworzono modal dla szczegółów produktu.
 3. Zaimportowano czcionkę 'Playfair Display'.
-
+<hr/>
 Data 29.07.2023
 
 1. Dodano model klienta 'Client.cs' i koszyka 'Cart.cs'.
 2. Przeprowadzono migrację i update bazy danych.
+<hr/>
+
+Data 30.07.2023
+
+1. Utworzono klasę 'DeleteServis.cs', interfejs 'IDeleteService.cs' i kontroler 'DeleteController.cs'.
+2. Utworzono klasę 'FileUploadService.cs' i odpowiadający mu interfejs. Klasa ta odpowiada za dołączanie zdjęć
+	produktów w trakcie dodawania nowego produktu.
