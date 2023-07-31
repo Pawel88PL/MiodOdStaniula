@@ -100,3 +100,10 @@ Data 30.07.2023
 1. Utworzono klasę 'DeleteServis.cs', interfejs 'IDeleteService.cs' i kontroler 'DeleteController.cs'.
 2. Utworzono klasę 'FileUploadService.cs' i odpowiadający mu interfejs. Klasa ta odpowiada za dołączanie zdjęć
 	produktów w trakcie dodawania nowego produktu.
+<hr/>
+
+Data 31.07.2023
+
+	Utworzono nowy projekt MiodOdStaniula.Tests.
+1. W modelu 'Cart.cs' pole 'CartId' i 'ClientId' zmieniono na typ Guid.
+2. Zmieniono wyświetlanie paska nawigacyjnego na zawsze widoczny.

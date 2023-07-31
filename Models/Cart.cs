@@ -5,9 +5,9 @@ namespace MiodOdStaniula.Models
 {
     public class Cart
     {
-        public int CartId { get; set; }
+        public Guid CartId { get; set; } = Guid.NewGuid();
         
-        public int ClientId { get; set; }
+        public Guid? ClientId { get; set; }
         
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
     }

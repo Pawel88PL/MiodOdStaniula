@@ -13,7 +13,7 @@ namespace MiodOdStaniula.Services
             _context = context;
         }
 
-        public async Task AddItemToCart(int cartId, int productId, int quantity)
+        public async Task AddItemToCart(Guid cartId, int productId, int quantity)
         {
             if (_context.Carts != null)
             {

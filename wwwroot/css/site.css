@@ -4,6 +4,7 @@ html {
   min-height: 100%;
 }
 body {
+    padding-top: 70px;
     margin-bottom: 50px;
     font-family: 'Playfair Display', serif;
 }

@@ -1,5 +1,4 @@
 ﻿@model MiodOdStaniula.Models.Product
-<link rel="stylesheet" href="~/css/productModal.css" asp-append-version="true" />
 
 <div class="modal fade" id="productDetails-@Model?.ProductId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
@@ -63,7 +62,14 @@
                         </div>
                         <br />
                         <div>
-                            <button type="button" class="btn btn-primary"><i class="bi bi-cart-plus"></i> Dodaj do koszyka</button>
+                            <form method="post" asp-controller="Cart" asp-action="AddItemToCart">
+                                <input type="hidden" name="cartId" value="Model.CartId" />
+                                <input type="hidden" name="productId" value="@Model?.ProductId" />
+                                <input type="number" name="quantity" min="1" max="@Model?.AmountAvailable" value="1" />
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-cart-plus"></i> Dodaj do koszyka
+                                </button>
+                            </form>
                             <hr />
                             <p>Lub zadzwoń i zamów:</p>
                             <h3>+48 570 436 579</h3>

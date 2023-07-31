@@ -14,7 +14,7 @@ namespace MiodOdStaniula.Controllers
         }
 
         [HttpPost("{cartId}/items")]
-        public async Task<IActionResult> AddItemToCart(int cartId, AddCartItemModel model)
+        public async Task<IActionResult> AddItemToCart(Guid cartId, AddCartItemModel model)
         {
             try
             {
