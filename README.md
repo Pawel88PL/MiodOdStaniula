@@ -107,3 +107,4 @@ Data 31.07.2023
 	Utworzono nowy projekt MiodOdStaniula.Tests.
 1. W modelu 'Cart.cs' pole 'CartId' i 'ClientId' zmieniono na typ Guid.
 2. Zmieniono wyświetlanie paska nawigacyjnego na zawsze widoczny.
+3. Dodano projekt biblioteki klas MiodOdStaniula.Domain.
