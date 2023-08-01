@@ -108,3 +108,7 @@ Data 31.07.2023
 1. W modelu 'Cart.cs' pole 'CartId' i 'ClientId' zmieniono na typ Guid.
 2. Zmieniono wyświetlanie paska nawigacyjnego na zawsze widoczny.
 3. Dodano projekt biblioteki klas MiodOdStaniula.Domain.
+<hr/>
+
+	Przeniesiono projekt 'MiodOdStaniula.Tests' i 'MiodOdStaniula.Domain.'
+1. Usunięto tym samym problem ze śledzeniem tych projektów przez Git.
