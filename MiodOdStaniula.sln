@@ -5,6 +5,10 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiodOdStaniula", "MiodOdStaniula.csproj", "{2367CEDB-3069-43FC-B1B9-CAA7A504969D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiodOdStaniula.Tests", "MiodOdStaniula.Tests\MiodOdStaniula.Tests.csproj", "{72FE683C-72D9-4F3C-AB8F-5E4EF1686DE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiodOdStaniula.Domain", "MiodOdStaniula.Domain\MiodOdStaniula.Domain.csproj", "{61873515-52AA-4AF5-B230-97A7157809FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{2367CEDB-3069-43FC-B1B9-CAA7A504969D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2367CEDB-3069-43FC-B1B9-CAA7A504969D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2367CEDB-3069-43FC-B1B9-CAA7A504969D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72FE683C-72D9-4F3C-AB8F-5E4EF1686DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72FE683C-72D9-4F3C-AB8F-5E4EF1686DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72FE683C-72D9-4F3C-AB8F-5E4EF1686DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72FE683C-72D9-4F3C-AB8F-5E4EF1686DE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61873515-52AA-4AF5-B230-97A7157809FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61873515-52AA-4AF5-B230-97A7157809FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61873515-52AA-4AF5-B230-97A7157809FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61873515-52AA-4AF5-B230-97A7157809FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
