@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiodOdStaniula;
 
@@ -11,9 +12,10 @@ using MiodOdStaniula;
 namespace MiodOdStaniula.Migrations
 {
     [DbContext(typeof(DbStoreContext))]
-    partial class DbStoreContextModelSnapshot : ModelSnapshot
+    [Migration("20230804050448_ClientsTableRenameToCustomes")]
+    partial class ClientsTableRenameToCustomes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,6 +157,22 @@ namespace MiodOdStaniula.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MiodOdStaniula.Models.Cart", b =>
+                {
+                    b.Property<int>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartId");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("MiodOdStaniula.Models.CartItem", b =>
                 {
                     b.Property<int>("CartItemId")
@@ -162,6 +180,9 @@ namespace MiodOdStaniula.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartItemId"), 1L, 1);
+
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(8,2)");
@@ -172,14 +193,11 @@ namespace MiodOdStaniula.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("ShopingCartId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("CartItemId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("CartId");
 
-                    b.HasIndex("ShopingCartId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("CartItem");
                 });
@@ -303,20 +321,6 @@ namespace MiodOdStaniula.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("MiodOdStaniula.Models.ShopingCart", b =>
-                {
-                    b.Property<Guid>("ShopingCartId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ShopingCartId");
-
-                    b.ToTable("ShopingCarts");
-                });
-
             modelBuilder.Entity("MiodOdStaniula.Models.UserModel", b =>
                 {
                     b.Property<string>("Id")
@@ -435,13 +439,13 @@ namespace MiodOdStaniula.Migrations
 
             modelBuilder.Entity("MiodOdStaniula.Models.CartItem", b =>
                 {
+                    b.HasOne("MiodOdStaniula.Models.Cart", null)
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId");
+
                     b.HasOne("MiodOdStaniula.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId");
-
-                    b.HasOne("MiodOdStaniula.Models.ShopingCart", null)
-                        .WithMany("CartItems")
-                        .HasForeignKey("ShopingCartId");
 
                     b.Navigation("Product");
                 });
@@ -455,7 +459,7 @@ namespace MiodOdStaniula.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("MiodOdStaniula.Models.ShopingCart", b =>
+            modelBuilder.Entity("MiodOdStaniula.Models.Cart", b =>
                 {
                     b.Navigation("CartItems");
                 });

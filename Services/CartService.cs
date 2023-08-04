@@ -15,11 +15,11 @@ namespace MiodOdStaniula.Services
 
         public async Task AddItemToCart(Guid cartId, int productId, int quantity)
         {
-            if (_context.Carts != null)
+            if (_context.ShopingCarts != null)
             {
-                var cart = await _context.Carts
+                var cart = await _context.ShopingCarts
                     .Include(c => c.CartItems)
-                    .FirstOrDefaultAsync(c => c.CartId == cartId);
+                    .FirstOrDefaultAsync(c => c.ShopingCartId == cartId);
 
                 if (cart != null)
                 {
@@ -61,9 +61,7 @@ namespace MiodOdStaniula.Services
                 {
                     throw new Exception("Cart not found");
                 }
-
             }
-
         }
     }
 }

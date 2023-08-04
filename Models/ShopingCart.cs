@@ -1,13 +1,15 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MiodOdStaniula.Models
 {
-    public class Cart
+    public class ShopingCart
     {
-        public Guid CartId { get; set; } = Guid.NewGuid();
+        [Key]
+        public Guid ShopingCartId { get; set; } 
         
-        public Guid? ClientId { get; set; }
+        public Guid? CustomerId { get; set; }
         
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
     }

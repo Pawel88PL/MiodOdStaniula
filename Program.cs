@@ -20,6 +20,7 @@ namespace MiodOdStaniula
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IAddProductService, AddProductService>();
+            builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IDeleteService, DeleteService>();
             builder.Services.AddScoped<IEditProductService, EditProductService>();
             builder.Services.AddScoped<IFileUploadService, FileUploadService>();

@@ -10,11 +10,10 @@ namespace MiodOdStaniula
         public DbStoreContext(DbContextOptions<DbStoreContext> options) : base(options) { }
 
         
-
         public DbSet<Product>? Products { get; set; }
         public DbSet<Category>? Categories { get; set; }
-        public DbSet<Cart>? Carts { get; set; }
-        public DbSet<Client>? Clients { get; set; }
+        public DbSet<ShopingCart>? ShopingCarts { get; set; }
+        public DbSet<Customer>? Customers { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

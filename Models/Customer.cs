@@ -2,10 +2,10 @@
 
 namespace MiodOdStaniula.Models
 {
-    public class Client
+    public class Customer
     {
         [Key]
-        public int ClientId { get; set; }
+        public Guid CustomerId { get; set; }
 
         [Required (ErrorMessage = "Wpisz swoje imię")]
         [StringLength(50, ErrorMessage = "Imię jest za długie.")]
