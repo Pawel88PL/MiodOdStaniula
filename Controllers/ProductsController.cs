@@ -27,20 +27,9 @@ namespace MiodOdStaniula.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts(string sortOrder, string filterCondition)
+        public async Task<IActionResult> Details(int id)
         {
-            var products = await GetSortedAndFilteredProducts(sortOrder, filterCondition);
-            ViewBag.FilterCondition = filterCondition;
-            
-            return PartialView("_ProductList", products);
-        }
-
-
-
-        [HttpGet]
-        public async Task<IActionResult> Details(int ProductId)
-        {
-            var product = await _warehouseService.GetProductAsync(ProductId);
+            var product = await _warehouseService.GetProductAsync(id);
             var cartId = HttpContext.Session.GetString("CartId");
 
             ViewData["CartId"] = cartId;
@@ -51,6 +40,15 @@ namespace MiodOdStaniula.Controllers
             }
 
             return View(product);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetProducts(string sortOrder, string filterCondition)
+        {
+            var products = await GetSortedAndFilteredProducts(sortOrder, filterCondition);
+            ViewBag.FilterCondition = filterCondition;
+
+            return PartialView("_ProductList", products);
         }
 
         private async Task<IEnumerable<Product>> GetSortedAndFilteredProducts(string sortOrder, string filterCondition)

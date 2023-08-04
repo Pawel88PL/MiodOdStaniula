@@ -70,7 +70,7 @@ namespace MiodOdStaniula.Controllers
                     var cartId = Guid.Parse(cartIdStr);
 
                     await _cartService.AddItemToCart(cartId, model.ProductId, model.Quantity);
-                    return RedirectToAction("Index", "Products");
+                    return RedirectToAction("Details", "Products", new { id = model.ProductId });
                 }
                 return View("_NotFound");
             }

@@ -1,0 +1,82 @@
+@model MiodOdStaniula.Models.Product
+<link rel="stylesheet" href="~/css/productList.css" asp-append-version="true" />
+
+<div class="row">
+    <div class="col-sm-4 my-3">
+        <img src="@Model?.PhotoUrlAddress" loading="lazy" class="w-100 product-image" />
+    </div>
+    <div class="col-sm-3 my-3 p-4">
+        <div>
+            <h3>@Model?.Name</h3>
+            <strong>@Model?.Category?.Name</strong>
+        </div>
+        <br />
+
+        <div>
+            <h3 class="border shadow p-2 mb-2 rounded-3">@Model?.Price zł</h3>
+            <h3 class="border shadow p-2 mb-2 rounded-3">@Model?.Weight g</h3>
+        </div>
+        <br />
+
+        <div class="availability">
+            @if (Model?.AmountAvailable == 0)
+            {
+                <div class="row outOfOrder">
+                    <div class="col-9">
+                        <h6>Produkt sprzedany</h6>
+                    </div>
+                    <div class="col-3">
+                        <img src="/img/outOfOrder.png" style="max-width: 40px">
+                    </div>
+                </div>
+            }
+            else if (Model?.AmountAvailable > 0 & Model?.AmountAvailable < 10)
+            {
+                <div class="row smallAmount">
+                    <div class="col-9">
+                        <h6>Na wyczerpaniu</h6>
+                    </div>
+                    <div class="col-3">
+                        <img src="/img/smallAmount.png" style="max-width: 40px">
+                    </div>
+                </div>
+            }
+            else if (Model?.AmountAvailable >= 10)
+            {
+                <div class="row available">
+                    <div class="col-9">
+                        <h6>Produkt dostępny</h6>
+                    </div>
+                    <div class="col-3">
+                        <img src="/img/available.png" style="max-width: 40px">
+                    </div>
+                </div>
+            }
+        </div>
+        <br />
+        <div>
+            <form method="post" asp-controller="Cart" asp-action="AddItemToCart">
+                <input type="hidden" name="cartId" value="@ViewData["CartId"]" />
+                <input type="hidden" name="productId" value="@Model?.ProductId" />
+                <input type="hidden" name="quantity" value="1" />
+                <button type="submit" class="btn btn-dark btn-lg">
+                    <i class="bi bi-cart-plus"></i> Dodaj do koszyka
+                </button>
+            </form>
+
+            <hr />
+            <p>Lub zadzwoń i zamów:</p>
+            <h3>+48 570 436 579</h3>
+            <div class="footer">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a href="@Url.Action("Edit","EditProduct", new { ProductId = Model?.ProductId })"
+                        class="btn btn-danger">EDYTUJ</a>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 my-3 p-4 text-start">
+        @Html.Raw(Model?.Description)
+    </div>
+</div>

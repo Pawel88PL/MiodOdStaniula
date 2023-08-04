@@ -5,24 +5,24 @@
 @foreach (var product in Model)
 {
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-        <div class="card">
-            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                 data-mdb-ripple-color="light" data-bs-toggle="modal" data-bs-target="#productDetails-@product?.ProductId">
-                <img src="@product?.PhotoUrlAddress" loading="lazy" class="w-100 data-image" />
+    <div class="card">
+        <a href="@Url.Action("Details", "Products", new { id = product?.ProductId })"
+            class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+            <img src="@product?.PhotoUrlAddress" loading="lazy" class="w-100 data-image" />
+        </a>
+        <div class="card-body">
+            <div>
+                <h5 class="card-title mb-3">@product?.Name</h5>
+                <p><b>@product?.Category?.Name</b></p>
             </div>
-            <div class="card-body">
-                <div>
-                    <h5 class="card-title mb-3">@product?.Name</h5>
-                    <p><b>@product?.Category?.Name</b></p>
+            <div class="row">
+                <div class="col-6">
+                    <p>Waga: <b>@product?.Weight.ToString("0.##") g</b></p>
                 </div>
-                <div class="row">
-                    <div class="col-6">
-                        <p>Waga: <b>@product?.Weight.ToString("0.##") g</b></p>
-                    </div>
-                    <div class="col-6">
-                        <p>Cena: <b>@product?.Price zł</b></p>
-                    </div>
-                    @if (product?.AmountAvailable == 0)
+                <div class="col-6">
+                    <p>Cena: <b>@product?.Price zł</b></p>
+                </div>
+                @if (product?.AmountAvailable == 0)
                     {
                         <div class="row outOfOrder">
                             <div class="col-9">
@@ -68,6 +68,5 @@
                 </form>
             </div>
         </div>
-        @await Html.PartialAsync("_ProductModal", product)
     </div>
 }
