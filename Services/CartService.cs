@@ -83,16 +83,17 @@ namespace MiodOdStaniula.Services
         {
             if (_context.ShopingCarts != null)
             {
-                var cart = await _context.ShopingCarts.FindAsync(cartId);
+                var cart = await _context.ShopingCarts
+                    .Include(c => c.CartItems)
+                    .FirstOrDefaultAsync(c => c.ShopingCartId == cartId);
 
                 if (cart != null)
                 {
                     return cart.CartItems.Sum(item => item.Quantity);
                 }
-
-                return 0;
             }
             return 0;
         }
+
     }
 }

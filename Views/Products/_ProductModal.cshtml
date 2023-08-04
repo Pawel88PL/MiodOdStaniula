@@ -65,7 +65,8 @@
                             <form method="post" asp-controller="Cart" asp-action="AddItemToCart">
                                 <input type="hidden" name="cartId" value="@ViewData["CartId"]" />
                                 <input type="hidden" name="productId" value="@Model?.ProductId" />
-                                <button type="submit" class="btn btn-primary btn-lg">
+                                <input type="hidden" name="quantity" value="1" />
+                                <button type="submit" class="btn btn-dark btn-lg">
                                     <i class="bi bi-cart-plus"></i> Dodaj do koszyka
                                 </button>
                             </form>

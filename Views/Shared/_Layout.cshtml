@@ -28,7 +28,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i class="bi bi-bag"></i> PRODUKTY </a>
                         </li>
                     </ul>
-                    <div class="d-flex">
+                    <div class="navbar-nav d-flex">
                         <ul class="navbar-nav flex-grow-1">
                             @if (User.Identity?.IsAuthenticated == true)
                             {
@@ -47,8 +47,14 @@
                             }
                         </ul>
                         <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
-                            <i class="bi bi-cart"></i> MÓJ KOSZYK
-                            <span id="cartCount" class="bg-secondary"></span>
+                            <div class="row">
+                                <div class="col-10">
+                                    <i class="bi bi-cart"></i> MÓJ KOSZYK 
+                                </div>
+                                <div class="col-2">
+                                    <h5 id="cartCount"></h5>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -71,18 +77,11 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $.ajax({
-                url: '@Url.Action("GetCartItemCount", "Cart")',
-                type: 'GET',
-                success: function (data) {
-                    $('#cartCount').text(data);
-                }
-            });
-        });
-    </script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        var getCartItemCountUrl = '@Url.Action("GetCartItemCount", "Cart")';
+    </script>
+    <script src="~/js/cart.js" asp-append-version="true"></script>
     <script src="~/js/productList.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

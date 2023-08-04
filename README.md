@@ -122,3 +122,5 @@ Data 04.08.2023
 1. Utworzono 'CartController', 'CartService' i interfejs 'ICartService'.
 2. W projekcie 'MiodOdStaniula.Tests' napisano test dla metody 'AddItemToCart' - test zaliczony.
 3. Utworzono gałąź 'version_5.0.0'.
+4. Utworzono metodę, która zlicza produkty w koszyku i wyświetla ilość na pasku nawigacyjnym.
+5. Zmieniono kolor przycisków 'Dodaj do koszyka' na czarne.

@@ -17,7 +17,8 @@ namespace MiodOdStaniula.Controllers
             _context = context;
         }
 
-        [HttpGet("cart/count")]
+
+        [HttpGet]
         public async Task<IActionResult> Index(Guid ShopingCartId)
         {
             var cart = await _cartService.GetCartAsync(ShopingCartId);
@@ -25,7 +26,7 @@ namespace MiodOdStaniula.Controllers
         }
 
 
-        [HttpGet("cart/count")]
+        [HttpGet]
         public async Task<IActionResult> GetCartItemCount()
         {
             var cartIdStr = HttpContext.Session.GetString("CartId");
@@ -48,7 +49,7 @@ namespace MiodOdStaniula.Controllers
             {
                 var cartIdStr = HttpContext.Session.GetString("CartId");
 
-                // Je¿eli koszyka jeszcze nie ma, utwórz nowy
+                // Jeï¿½eli koszyka jeszcze nie ma, utwï¿½rz nowy
                 if (string.IsNullOrEmpty(cartIdStr))
                 {
                     var newCart = new ShopingCart();
@@ -75,7 +76,7 @@ namespace MiodOdStaniula.Controllers
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Pojawi³ siê b³¹d podczas dodawania produktu do koszyka.\nSpróbuj ponownie póŸniej.";
+                TempData["ErrorMessage"] = "Pojawiï¿½ siï¿½ bï¿½ï¿½d podczas dodawania produktu do koszyka.\nSprï¿½buj ponownie pï¿½niej.";
                 return RedirectToAction("Index", "Products");
             }
         }
