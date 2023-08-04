@@ -110,5 +110,15 @@ Data 31.07.2023
 3. Dodano projekt biblioteki klas MiodOdStaniula.Domain.
 <hr/>
 
+Data 02.08.2023
+
 	Przeniesiono projekt 'MiodOdStaniula.Tests' i 'MiodOdStaniula.Domain.'
 1. Usunięto tym samym problem ze śledzeniem tych projektów przez Git.
+<hr/>
+
+Data 04.08.2023
+
+	Z sukcesem zaimplementowano funkcjonalność dodawania produktu do koszyka.
+1. Utworzono 'CartController', 'CartService' i interfejs 'ICartService'.
+2. W projekcie 'MiodOdStaniula.Tests' napisano test dla metody 'AddItemToCart' - test zaliczony.
+3. Utworzono gałąź 'version_5.0.0'.

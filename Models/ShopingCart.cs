@@ -12,12 +12,24 @@ namespace MiodOdStaniula.Models
         public Guid? CustomerId { get; set; }
         
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
+
+        public decimal GetTotalValue()
+        {
+            return CartItems.Sum(item => item.Price * item.Quantity);
+        }
     }
 
     public class CartItem
     {
         public int CartItemId { get; set; }
-        
+
+        public Guid ShopingCartId { get; set; }
+
+        [ForeignKey(nameof(ShopingCartId))]
+        public ShopingCart? ShopingCart { get; set; }
+
+        public int ProductId { get; set; }
+
         public Product? Product { get; set; }
         
         public int Quantity { get; set; }

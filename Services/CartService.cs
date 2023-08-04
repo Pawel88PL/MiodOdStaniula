@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MiodOdStaniula.Models;
 using MiodOdStaniula.Services.Interfaces;
 
@@ -13,6 +14,19 @@ namespace MiodOdStaniula.Services
             _context = context;
         }
 
+
+        public async Task<ShopingCart?> GetCartAsync(Guid ShopingCartId)
+        {
+            if (_context.ShopingCarts != null)
+            {
+                var cart = await _context.ShopingCarts
+                    .Include(p => p.CartItems)
+                    .FirstOrDefaultAsync(p => p.ShopingCartId == ShopingCartId);
+
+                return cart;
+            }
+            return null;
+        }
         public async Task AddItemToCart(Guid cartId, int productId, int quantity)
         {
             if (_context.ShopingCarts != null)
@@ -43,7 +57,7 @@ namespace MiodOdStaniula.Services
                                 // If the item is not in the cart, add a new cart item
                                 cart.CartItems.Add(new CartItem
                                 {
-                                    Product = product,
+                                    ProductId = product.ProductId,
                                     Quantity = quantity,
                                     Price = product.Price,
                                 });
@@ -62,6 +76,23 @@ namespace MiodOdStaniula.Services
                     throw new Exception("Cart not found");
                 }
             }
+        }
+
+
+        public async Task<int> GetCartItemCount(Guid cartId)
+        {
+            if (_context.ShopingCarts != null)
+            {
+                var cart = await _context.ShopingCarts.FindAsync(cartId);
+
+                if (cart != null)
+                {
+                    return cart.CartItems.Sum(item => item.Quantity);
+                }
+
+                return 0;
+            }
+            return 0;
         }
     }
 }

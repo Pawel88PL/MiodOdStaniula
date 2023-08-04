@@ -19,6 +19,11 @@ namespace MiodOdStaniula
 
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+
             builder.Services.AddScoped<IAddProductService, AddProductService>();
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IDeleteService, DeleteService>();
@@ -57,6 +62,12 @@ namespace MiodOdStaniula
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            });
+
 
             app.UseAuthentication();
             app.UseAuthorization();

@@ -41,6 +41,9 @@ namespace MiodOdStaniula.Controllers
         public async Task<IActionResult> Details(int ProductId)
         {
             var product = await _warehouseService.GetProductAsync(ProductId);
+            var cartId = HttpContext.Session.GetString("CartId");
+
+            ViewData["CartId"] = cartId;
 
             if (product == null)
             {
