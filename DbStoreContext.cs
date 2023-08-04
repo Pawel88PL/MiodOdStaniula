@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MiodOdStaniula.Models;
+using System.Reflection.Emit;
 
 namespace MiodOdStaniula
 {
@@ -9,10 +10,11 @@ namespace MiodOdStaniula
         public DbStoreContext(DbContextOptions<DbStoreContext> options) : base(options) { }
 
         
+        public DbSet<Product>? Products { get; set; }
+        public DbSet<Category>? Categories { get; set; }
+        public DbSet<ShopingCart>? ShopingCarts { get; set; }
+        public DbSet<Customer>? Customers { get; set; }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -35,13 +35,13 @@ namespace MiodOdStaniula.Controllers
             return RedirectToAction("Index", "Products");
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Register(Register userRegisterData)
         {
@@ -64,7 +64,7 @@ namespace MiodOdStaniula.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("ProductsList", "Store");
+            return RedirectToAction("Index", "Products");
         }
     }
 }

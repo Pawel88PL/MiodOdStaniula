@@ -1,0 +1,97 @@
+﻿@model MiodOdStaniula.Models.Product
+
+<div class="modal fade" id="productDetails-@Model?.ProductId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">@Model?.Name</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4 my-3">
+                        <img src="@Model?.PhotoUrlAddress" loading="lazy" class="w-100 product-image" />
+                    </div>
+                    <div class="col-sm-3 border my-3 p-4">
+                        <div>
+                            <h3>@Model?.Name</h3>
+                            <strong>@Model?.Category?.Name</strong>
+                        </div>
+                        <br />
+
+                        <div>
+                            <h3 class="border shadow p-2 mb-2 rounded-3">@Model?.Price zł</h3>
+                            <h3 class="border shadow p-2 mb-2 rounded-3">@Model?.Weight g</h3>
+                        </div>
+                        <br />
+
+                        <div class="availability">
+                            @if (Model?.AmountAvailable == 0)
+                            {
+                                <div class="row outOfOrder">
+                                    <div class="col-9">
+                                        <h6>Produkt sprzedany</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="/img/outOfOrder.png" style="max-width: 40px">
+                                    </div>
+                                </div>
+                            }
+                            else if (Model?.AmountAvailable > 0 & Model?.AmountAvailable < 10)
+                            {
+                                <div class="row smallAmount">
+                                    <div class="col-9">
+                                        <h6>Na wyczerpaniu</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="/img/smallAmount.png" style="max-width: 40px">
+                                    </div>
+                                </div>
+                            }
+                            else if (Model?.AmountAvailable >= 10)
+                            {
+                                <div class="row available">
+                                    <div class="col-9">
+                                        <h6>Produkt dostępny</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src="/img/available.png" style="max-width: 40px">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <br />
+                        <div>
+                            <form method="post" asp-controller="Cart" asp-action="AddItemToCart">
+                                <input type="hidden" name="cartId" value="@ViewData["CartId"]" />
+                                <input type="hidden" name="productId" value="@Model?.ProductId" />
+                                <input type="number" name="quantity" min="1" max="@Model?.AmountAvailable" value="1" />
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-cart-plus"></i> Dodaj do koszyka
+                                </button>
+                            </form>
+
+                            <hr />
+                            <p>Lub zadzwoń i zamów:</p>
+                            <h3>+48 570 436 579</h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border my-3 p-4 text-start">
+                        @Html.Raw(Model?.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ZAMKNIJ</button>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a
+                    href="@Url.Action("Edit","EditProduct", new { ProductId = Model?.ProductId })"
+                    class="btn btn-danger"
+                    >EDYTUJ</a
+                  >
+                }
+            </div>
+        </div>
+    </div>
+</div>

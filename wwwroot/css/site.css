@@ -3,9 +3,10 @@ html {
   position: relative;
   min-height: 100%;
 }
-body{
-  margin-bottom: 50px;
-
+body {
+    padding-top: 70px;
+    margin-bottom: 50px;
+    font-family: 'Playfair Display', serif;
 }
 
 footer{

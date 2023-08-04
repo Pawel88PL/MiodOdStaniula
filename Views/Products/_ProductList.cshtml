@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MiodOdStaniula.Models.Product>
+<link rel="stylesheet" href="~/css/productList.css" asp-append-version="true" />
+
+
+@foreach (var product in Model)
+{
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+        <div class="card">
+            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                 data-mdb-ripple-color="light" data-bs-toggle="modal" data-bs-target="#productDetails-@product?.ProductId">
+                <img src="@product?.PhotoUrlAddress" loading="lazy" class="w-100 data-image" />
+            </div>
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title mb-3">@product?.Name</h5>
+                    <p><b>@product?.Category?.Name</b></p>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <p>Waga: <b>@product?.Weight.ToString("0.##") g</b></p>
+                    </div>
+                    <div class="col-6">
+                        <p>Cena: <b>@product?.Price zł</b></p>
+                    </div>
+                    @if (product?.AmountAvailable == 0)
+                    {
+                        <div class="row outOfOrder">
+                            <div class="col-9">
+                                <h6>Produkt sprzedany</h6>
+                            </div>
+                            <div class="col-3">
+                                <img src="/img/outOfOrder.png" style="max-width: 40px">
+                            </div>
+                        </div>
+                    }
+                    else if (product?.AmountAvailable > 0 & product?.AmountAvailable < 10)
+                    {
+                        <div class="row smallAmount">
+                            <div class="col-9">
+                                <h6>Na wyczerpaniu</h6>
+                            </div>
+                            <div class="col-3">
+                                <img src="/img/smallAmount.png" style="max-width: 40px">
+                            </div>
+                        </div>
+                    }
+                    else if (product?.AmountAvailable >= 10)
+                    {
+                        <div class="row available">
+                            <div class="col-9">
+                                <h6>Produkt dostępny</h6>
+                            </div>
+                            <div class="col-3">
+                                <img src="/img/available.png" style="max-width: 40px">
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary mt-2">
+                <i class="bi bi-cart-plus"></i> Dodaj do koszyka
+            </button>
+        </div>
+        @await Html.PartialAsync("_ProductModal", product)
+    </div>
+}

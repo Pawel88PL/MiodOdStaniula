@@ -19,8 +19,18 @@ namespace MiodOdStaniula
 
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<IStoreService, StoreService>();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
 
+            builder.Services.AddScoped<IAddProductService, AddProductService>();
+            builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IDeleteService, DeleteService>();
+            builder.Services.AddScoped<IEditProductService, EditProductService>();
+            builder.Services.AddScoped<IFileUploadService, FileUploadService>();
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 
             builder.Services.AddDbContext<DbStoreContext>(options =>
             {
@@ -52,13 +62,19 @@ namespace MiodOdStaniula
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            });
+
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Products}/{action=Index}/{id?}");
 
             app.Run();
         }

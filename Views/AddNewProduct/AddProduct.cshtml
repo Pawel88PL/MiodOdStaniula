@@ -1,0 +1,23 @@
+﻿@model MiodOdStaniula.Models.ProductViewModel
+
+<link rel="stylesheet" href="~/css/create.css" asp-append-version="true" />
+
+@{
+  ViewData["Title"] = "Dodaj produkt";
+}
+
+<div class="container">
+  <div class="row">
+    <div class="border shadow p-3 bg-white rounded" style="max-width: 800px">
+      <form asp-action="AddProduct" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @await Html.PartialAsync("_ProductFormsPartial", Model)
+        <div class="form-group text-lg-end">
+          <button type="submit" class="btn btn-primary mt-3">
+            DODAJ PRODUKT
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

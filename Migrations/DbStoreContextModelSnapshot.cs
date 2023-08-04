@@ -155,6 +155,35 @@ namespace MiodOdStaniula.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MiodOdStaniula.Models.CartItem", b =>
+                {
+                    b.Property<int>("CartItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartItemId"), 1L, 1);
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(8,2)");
+
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("ShopingCartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CartItemId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShopingCartId");
+
+                    b.ToTable("CartItem");
+                });
+
             modelBuilder.Entity("MiodOdStaniula.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -177,6 +206,54 @@ namespace MiodOdStaniula.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("MiodOdStaniula.Models.Customer", b =>
+                {
+                    b.Property<Guid>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("MiodOdStaniula.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -191,6 +268,9 @@ namespace MiodOdStaniula.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
@@ -204,20 +284,37 @@ namespace MiodOdStaniula.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<int?>("Popularity")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(6,2)");
 
                     b.Property<int>("Priority")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(8,2)");
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
 
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MiodOdStaniula.Models.ShopingCart", b =>
+                {
+                    b.Property<Guid>("ShopingCartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ShopingCartId");
+
+                    b.ToTable("ShopingCarts");
                 });
 
             modelBuilder.Entity("MiodOdStaniula.Models.UserModel", b =>
@@ -336,6 +433,19 @@ namespace MiodOdStaniula.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MiodOdStaniula.Models.CartItem", b =>
+                {
+                    b.HasOne("MiodOdStaniula.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
+
+                    b.HasOne("MiodOdStaniula.Models.ShopingCart", null)
+                        .WithMany("CartItems")
+                        .HasForeignKey("ShopingCartId");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("MiodOdStaniula.Models.Product", b =>
                 {
                     b.HasOne("MiodOdStaniula.Models.Category", "Category")
@@ -343,6 +453,11 @@ namespace MiodOdStaniula.Migrations
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("MiodOdStaniula.Models.ShopingCart", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 #pragma warning restore 612, 618
         }
