@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="~/css/productList.css" asp-append-version="true" />
 
 <div class="row">
-    <div class="col-sm-4 my-3">
-        <img src="@Model?.PhotoUrlAddress" loading="lazy" class="w-100 product-image" />
+    <div class="col-sm-5 my-3">
+        <img src="@Model?.PhotoUrlAddress" loading="lazy" class="w-100 shadow" />
     </div>
-    <div class="col-sm-3 my-3 p-4">
+    <div class="col-sm-3 my-3 p-4 text-center">
         <div>
             <h3>@Model?.Name</h3>
             <strong>@Model?.Category?.Name</strong>

@@ -6,6 +6,10 @@
     transition: all 0.2s ease-in-out;
 }
 
+.btn-dark:hover {
+    background-color: #495158;
+    color: white;
+}
 
 div.outOfOrder {
     color: red;
