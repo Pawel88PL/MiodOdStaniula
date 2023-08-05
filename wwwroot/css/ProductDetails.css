@@ -1,0 +1,40 @@
+﻿
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-dark:hover {
+    background-color: #495158;
+    color: white;
+}
+
+div.outOfOrder {
+    color: red;
+}
+
+div.smallAmount {
+    color: orange;
+}
+
+div.available {
+    color: green;
+}
+
+
+#cartModal.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    transform: translateX(100%);
+    width: 500px;
+    transition: transform 0.3s ease-out;
+}
+
+    #cartModal.modal.show {
+        transform: translateX(0);
+    }

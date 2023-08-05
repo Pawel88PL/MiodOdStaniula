@@ -124,3 +124,11 @@ Data 04.08.2023
 3. Utworzono gałąź 'version_5.0.0'.
 4. Utworzono metodę, która zlicza produkty w koszyku i wyświetla ilość na pasku nawigacyjnym.
 5. Zmieniono kolor przycisków 'Dodaj do koszyka' na czarne.
+6. Dodano widok "_CartModal".
+<hr/>
+
+Data 05.08.2023
+
+	Utworzono modal '_CartModal.cshtml', który pojawia się po dodaniu produktu do koszyka.
+1. Dodano kod javascript do pliku 'cart.js', który aktualizuje '_CartModal.cshtml' i stan aktualnego koszyka. Modal ten jest udostępniony
+	jako Partial View w folderze 'Shared'.

@@ -1,28 +1,28 @@
 ﻿@model IEnumerable<MiodOdStaniula.Models.Product>
-<link rel="stylesheet" href="~/css/productList.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
 
 @foreach (var product in Model)
 {
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-    <div class="card">
-        <a href="@Url.Action("Details", "Products", new { id = product?.ProductId })"
-            class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-            <img src="@product?.PhotoUrlAddress" loading="lazy" class="w-100 data-image" />
-        </a>
-        <div class="card-body">
-            <div>
-                <h5 class="card-title mb-3">@product?.Name</h5>
-                <p><b>@product?.Category?.Name</b></p>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <p>Waga: <b>@product?.Weight.ToString("0.##") g</b></p>
+        <div class="card">
+            <a href="@Url.Action("Details", "Products", new { id = product?.ProductId })"
+               class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
+                <img src="@product?.PhotoUrlAddress" loading="lazy" class="w-100 data-image" />
+            </a>
+            <div class="card-body">
+                <div>
+                    <h5 class="card-title mb-3">@product?.Name</h5>
+                    <p><b>@product?.Category?.Name</b></p>
                 </div>
-                <div class="col-6">
-                    <p>Cena: <b>@product?.Price zł</b></p>
-                </div>
-                @if (product?.AmountAvailable == 0)
+                <div class="row">
+                    <div class="col-6">
+                        <p>Waga: <b>@product?.Weight.ToString("0.##") g</b></p>
+                    </div>
+                    <div class="col-6">
+                        <p>Cena: <b>@product?.Price zł</b></p>
+                    </div>
+                    @if (product?.AmountAvailable == 0)
                     {
                         <div class="row outOfOrder">
                             <div class="col-9">
@@ -60,13 +60,14 @@
             <div>
                 <form method="post" asp-controller="Cart" asp-action="AddItemToCart">
                     <input type="hidden" name="cartId" value="@ViewData["CartId"]" />
-                    <input type="hidden" name="productId" value="@product?.ProductId" />
+                    <input type="hidden" name="productId" value="@product?.ProductId" class="product-id" />
                     <input type="hidden" name="quantity" value="1" />
-                    <button type="submit" class="btn btn-dark m-2">
+                    <button type="submit" class="btn btn-dark m-2 addToCartButton">
                         <i class="bi bi-cart-plus"></i> Dodaj do koszyka
                     </button>
                 </form>
             </div>
         </div>
     </div>
+    @await Html.PartialAsync("_CartModal")
 }

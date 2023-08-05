@@ -42,14 +42,13 @@ namespace MiodOdStaniula.Controllers
         }
 
 
-        [HttpPost("items")]
+        [HttpPost]
         public async Task<IActionResult> AddItemToCart(AddCartItemModel model)
         {
             try
             {
                 var cartIdStr = HttpContext.Session.GetString("CartId");
 
-                // Je�eli koszyka jeszcze nie ma, utw�rz nowy
                 if (string.IsNullOrEmpty(cartIdStr))
                 {
                     var newCart = new ShopingCart();
@@ -60,7 +59,6 @@ namespace MiodOdStaniula.Controllers
 
                         cartIdStr = newCart.ShopingCartId.ToString();
 
-                        // Zapisz identyfikator koszyka w sesji
                         HttpContext.Session.SetString("CartId", cartIdStr);
                     }
                 }
@@ -70,13 +68,31 @@ namespace MiodOdStaniula.Controllers
                     var cartId = Guid.Parse(cartIdStr);
 
                     await _cartService.AddItemToCart(cartId, model.ProductId, model.Quantity);
-                    return RedirectToAction("Details", "Products", new { id = model.ProductId });
+
+                    if (_context.Products != null)
+                    {
+                        var product = await _context.Products.FindAsync(model.ProductId);
+                        return Json(new
+                        {
+                            success = true,
+                            product = new
+                            {
+                                name = product?.Name,
+                                image = product?.PhotoUrlAddress,
+                                weight = product?.Weight,
+                                price = product?.Price,
+                            }
+                        });
+
+                    }
+
+                    return Json(new { success = false });
                 }
                 return View("_NotFound");
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Pojawi� si� b��d podczas dodawania produktu do koszyka.\nSpr�buj ponownie p�niej.";
+                TempData["ErrorMessage"] = "Pojawił się błądd podczas dodawania produktu do koszyka.\nSpróbuj ponownie p�niej.";
                 return RedirectToAction("Index", "Products");
             }
         }

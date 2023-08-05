@@ -1,5 +1,5 @@
 @model MiodOdStaniula.Models.Product
-<link rel="stylesheet" href="~/css/productList.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
 <div class="row">
     <div class="col-sm-5 my-3">
@@ -57,9 +57,9 @@
         <div>
             <form method="post" asp-controller="Cart" asp-action="AddItemToCart">
                 <input type="hidden" name="cartId" value="@ViewData["CartId"]" />
-                <input type="hidden" name="productId" value="@Model?.ProductId" />
+                <input type="hidden" name="productId" value="@Model?.ProductId" class="product-id" />
                 <input type="hidden" name="quantity" value="1" />
-                <button type="submit" class="btn btn-dark btn-lg">
+                <button type="submit" class="btn btn-dark btn-lg addToCartButton">
                     <i class="bi bi-cart-plus"></i> Dodaj do koszyka
                 </button>
             </form>
@@ -80,3 +80,7 @@
         @Html.Raw(Model?.Description)
     </div>
 </div>
+
+@await Html.PartialAsync("_CartModal")
+
+
