@@ -130,7 +130,13 @@ Data 04.08.2023
 Data 05.08.2023
 
 	Utworzono modal '_CartModal.cshtml', który pojawia się po dodaniu produktu do koszyka.
-1. Dodano kod javascript do pliku 'cart.js', który aktualizuje '_CartModal.cshtml' i stan aktualnego koszyka. Modal ten jest udostępniony
-	jako Partial View w folderze 'Shared'.
+1. Dodano kod javascript do pliku 'cart.js', który aktualizuje '_CartModal.cshtml' i stan aktualnego koszyka. 
+	Modal ten jest udostępniony jako Partial View w folderze 'Shared'.
 2. Utworzono widok koszyka.
 <hr/>
+
+Data 06.08.2023
+
+	Utworzono serwis odpowiadający za obliczanie całkowitej kwoty koszyka.
+1. Utworzono 'TotalCostService.cs', zaimplementowano w nim metody obliczające koszt wysyłki, koszt produktów
+	i podsumowujące całkowity koszty koszyka.

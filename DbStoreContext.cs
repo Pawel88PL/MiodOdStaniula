@@ -14,6 +14,8 @@ namespace MiodOdStaniula
         public DbSet<Category>? Categories { get; set; }
         public DbSet<ShopingCart>? ShopingCarts { get; set; }
         public DbSet<Customer>? Customers { get; set; }
+        public DbSet<CartItem>? CartItem { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)

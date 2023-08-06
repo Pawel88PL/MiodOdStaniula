@@ -9,11 +9,14 @@ namespace MiodOdStaniula.Controllers
     public class CartController : Controller
     {
         private readonly ICartService _cartService;
+        private readonly ITotalCostService _totalCostService;
         private readonly DbStoreContext _context;
 
-        public CartController(ICartService cartService, DbStoreContext context)
+        public CartController(ICartService cartService, DbStoreContext context,
+            ITotalCostService totalCostService)
         {
             _cartService = cartService;
+            _totalCostService = totalCostService;
             _context = context;
         }
 
@@ -25,15 +28,27 @@ namespace MiodOdStaniula.Controllers
 
             if (string.IsNullOrEmpty(cartIdStr))
             {
-                // Jeżeli nie ma koszyka w sesji, zwróć widok z pustym koszykiem
-                return View(new List<CartItem>());
+                return View(new CartViewModel() { CartItems = new List<CartItem>(), TotalCost = 0 });
             }
 
             var cartId = Guid.Parse(cartIdStr);
             var cart = await _cartService.GetCartAsync(cartId);
+            var productCost = await _totalCostService.CalculateProductCostAsync(cartId);
+            var shippingCost = await _totalCostService.CalculateShippingCostAsync(cartId);
+            var totalCost = await _totalCostService.CalculateTotalAsync(cartId);
 
-            return View(cart?.CartItems ?? new List<CartItem>());
+            var cartViewModel = new CartViewModel
+            {
+                CartItems = cart?.CartItems ?? new List<CartItem>(),
+                ProductCost = productCost,
+                ShippingCost = shippingCost,
+                TotalCost = totalCost
+            };
+
+            return View(cartViewModel);
         }
+
+
 
 
 

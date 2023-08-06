@@ -1,19 +1,20 @@
-@model List<MiodOdStaniula.Models.CartItem>
+@model MiodOdStaniula.Models.CartViewModel
 <link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
 <div class="row mt-5">
     <div class="col-sm-8">
         <h4>Koszyk</h4>
-            <table class="table mt-3">
-                <thead>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
+        <table class="table mt-3">
+            <thead>
+            </thead>
+            <tbody>
+                @if (Model.CartItems != null)
+                {
+                    @foreach (var item in Model.CartItems)
                     {
                         <tr>
                             <td>
-                                <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" width="50"
-                                    height="50" />
+                                <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" width="50" height="50" />
                             </td>
                             <td>@item?.Product?.Name</td>
                             <td>@item?.Quantity</td>
@@ -26,17 +27,41 @@
                             </td>
                         </tr>
                     }
-                </tbody>
-            </table>
+                }
+            </tbody>
+        </table>
     </div>
     <div class="col-sm-4">
         <h4>Podsumowanie</h3>
-        <p>Suma częściowa: @Model.Sum(item => item?.Product?.Price * item?.Quantity)?.ToString("C2")</h2>
-        <p>Szacowany koszt wysyłki: </p>
-        <hr>
-        <p>Suma</p>
-        <hr>
-        <a href="~/Cart/Checkout" class="btn btn-lg btn-dark mt-2">Przejdź do kasy</a>
+            <br>
+            <div class="row">
+                <div class="col-sm-7">
+                    <p>Suma częściowa:</p>
+                    <p>Szacowany koszt wysyłki:</p>
+                </div>
+                <div class="col-sm-5 d-flex flex-column align-items-end">
+                    <div>
+                        <p>@Model.ProductCost.ToString("C2")</p>
+                    </div>
+                    <div>
+                        <p>@Model.ShippingCost.ToString("C2")</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <div class="col-sm-7">
+                    <p>Suma:</p>
+                </div>
+                <div class="col-sm-5 d-flex flex-column align-items-end">
+                    <p>@Model.TotalCost.ToString("C2")</p>
+                </div>
+            </div>
+            <hr>
+            <div class="col-sm-12">
+                <a href="~/Cart/Checkout" class="btn btn-lg btn-dark mt-2">Przejdź do kasy</a>
+            </div>
     </div>
 </div>
 

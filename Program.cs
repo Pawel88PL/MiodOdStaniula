@@ -33,6 +33,7 @@ namespace MiodOdStaniula
             builder.Services.AddScoped<IEditProductService, EditProductService>();
             builder.Services.AddScoped<IFileUploadService, FileUploadService>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ITotalCostService, TotalCostService>();
             builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 
             builder.Services.AddDbContext<DbStoreContext>(options =>
