@@ -1,5 +1,8 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using MiodOdStaniula.Models;
 using MiodOdStaniula.Services;
 using MiodOdStaniula.Services.Interfaces;
@@ -48,13 +51,20 @@ namespace MiodOdStaniula
 
             }).AddEntityFrameworkStores<DbStoreContext>();
 
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[] { new CultureInfo("pl-PL") };
+                options.DefaultRequestCulture = new RequestCulture("pl-PL", "pl-PL");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
 
             var app = builder.Build();
-            
+
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                
+
                 app.UseHsts();
             }
 
@@ -63,11 +73,17 @@ namespace MiodOdStaniula
 
             app.UseRouting();
             app.UseSession();
+
             app.UseCookiePolicy(new CookiePolicyOptions
             {
                 MinimumSameSitePolicy = SameSiteMode.Strict,
             });
 
+            var locOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+            if (locOptions != null)
+            {
+                app.UseRequestLocalization(locOptions.Value);
+            }
 
             app.UseAuthentication();
             app.UseAuthorization();

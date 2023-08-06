@@ -49,7 +49,7 @@ namespace MiodOdStaniula.Controllers
                 PhotoUrlAddress = productViewModel.PhotoUrlAddress
             };
 
-            var productId = await _addProductService.AddNewProductAsync(product);
+            await _addProductService.AddNewProductAsync(product);
 
             return RedirectToAction("Index", "Warehouse");
         }

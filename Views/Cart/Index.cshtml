@@ -1,39 +1,43 @@
 @model List<MiodOdStaniula.Models.CartItem>
+<link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
-<h1>MÛj koszyk</h1>
+<div class="row mt-5">
+    <div class="col-sm-8">
+        <h4>Koszyk</h4>
+            <table class="table mt-3">
+                <thead>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" width="50"
+                                    height="50" />
+                            </td>
+                            <td>@item?.Product?.Name</td>
+                            <td>@item?.Quantity</td>
+                            <td>@item?.Product?.Price.ToString("C2")</td>
+                            <td>
+                                <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
+                                    <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
+                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+    </div>
+    <div class="col-sm-4">
+        <h4>Podsumowanie</h3>
+        <p>Suma czƒô≈õciowa: @Model.Sum(item => item?.Product?.Price * item?.Quantity)?.ToString("C2")</h2>
+        <p>Szacowany koszt wysy≈Çki: </p>
+        <hr>
+        <p>Suma</p>
+        <hr>
+        <a href="~/Cart/Checkout" class="btn btn-lg btn-dark mt-2">Przejd≈∫ do kasy</a>
+    </div>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>ZdjÍcie</th>
-            <th>Nazwa produktu</th>
-            <th>IloúÊ</th>
-            <th>Cena</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var item in Model)
-        {
-            <tr>
-                <td>
-                    <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" width="50" height="50" />
-                </td>
-                <td>@item?.Product?.Name</td>
-                <td>@item?.Quantity</td>
-                <td>@item?.Product?.Price.ToString("C2")</td>
-                <td>
-                    <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
-                        <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
-                        <input type="submit" value="UsuÒ" class="btn btn-danger" />
-                    </form>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 
-
-<h2>£πcznie: @Model.Sum(item => item?.Product?.Price * item?.Quantity)?.ToString("C2")</h2>
-
-<a href="~/Cart/Checkout" class="btn btn-success">Przejdü do p≥atnoúci</a>
