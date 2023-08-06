@@ -15,25 +15,30 @@ namespace MiodOdStaniula.Services
         }
 
 
-        public async Task<ShopingCart?> GetCartAsync(Guid ShopingCartId)
+        public async Task<ShopingCart?> GetCartAsync(Guid cartId)
         {
             if (_context.ShopingCarts != null)
             {
                 var cart = await _context.ShopingCarts
                     .Include(p => p.CartItems)
-                    .FirstOrDefaultAsync(p => p.ShopingCartId == ShopingCartId);
+                    .ThenInclude(c => c.Product)
+                    .FirstOrDefaultAsync(p => p.ShopingCartId == cartId);
 
                 return cart;
             }
             return null;
         }
+
+
         public async Task AddItemToCart(Guid cartId, int productId, int quantity)
         {
             if (_context.ShopingCarts != null)
             {
+
                 var cart = await _context.ShopingCarts
                     .Include(c => c.CartItems)
-                    .FirstOrDefaultAsync(c => c.ShopingCartId == cartId);
+                    .ThenInclude(i => i.Product)
+                    .FirstOrDefaultAsync(p => p.ShopingCartId == cartId);
 
                 if (cart != null)
                 {
@@ -58,6 +63,7 @@ namespace MiodOdStaniula.Services
                                 cart.CartItems.Add(new CartItem
                                 {
                                     ProductId = product.ProductId,
+                                    Product = product,
                                     Quantity = quantity,
                                     Price = product.Price,
                                 });

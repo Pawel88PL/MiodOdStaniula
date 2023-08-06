@@ -1,0 +1,39 @@
+@model List<MiodOdStaniula.Models.CartItem>
+
+<h1>Mój koszyk</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Zdjêcie</th>
+            <th>Nazwa produktu</th>
+            <th>Iloœæ</th>
+            <th>Cena</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" width="50" height="50" />
+                </td>
+                <td>@item?.Product?.Name</td>
+                <td>@item?.Quantity</td>
+                <td>@item?.Product?.Price.ToString("C2")</td>
+                <td>
+                    <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
+                        <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
+                        <input type="submit" value="Usuñ" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<h2>£¹cznie: @Model.Sum(item => item?.Product?.Price * item?.Quantity)?.ToString("C2")</h2>
+
+<a href="~/Cart/Checkout" class="btn btn-success">PrzejdŸ do p³atnoœci</a>

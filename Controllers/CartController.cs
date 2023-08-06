@@ -19,11 +19,22 @@ namespace MiodOdStaniula.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index(Guid ShopingCartId)
+        public async Task<IActionResult> Index()
         {
-            var cart = await _cartService.GetCartAsync(ShopingCartId);
-            return View(cart);
+            var cartIdStr = HttpContext.Session.GetString("CartId");
+
+            if (string.IsNullOrEmpty(cartIdStr))
+            {
+                // Jeżeli nie ma koszyka w sesji, zwróć widok z pustym koszykiem
+                return View(new List<CartItem>());
+            }
+
+            var cartId = Guid.Parse(cartIdStr);
+            var cart = await _cartService.GetCartAsync(cartId);
+
+            return View(cart?.CartItems ?? new List<CartItem>());
         }
+
 
 
         [HttpGet]

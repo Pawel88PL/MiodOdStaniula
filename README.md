@@ -132,3 +132,5 @@ Data 05.08.2023
 	Utworzono modal '_CartModal.cshtml', który pojawia się po dodaniu produktu do koszyka.
 1. Dodano kod javascript do pliku 'cart.js', który aktualizuje '_CartModal.cshtml' i stan aktualnego koszyka. Modal ten jest udostępniony
 	jako Partial View w folderze 'Shared'.
+2. Utworzono widok koszyka.
+<hr/>
