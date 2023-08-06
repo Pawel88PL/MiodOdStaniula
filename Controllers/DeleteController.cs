@@ -7,12 +7,10 @@ namespace MiodOdStaniula.Controllers
     public class DeleteController : Controller
     {
         private readonly IDeleteService _deleteService;
-        private readonly IWarehouseService _warehouseService;
 
-        public DeleteController(IDeleteService deleteService, IWarehouseService warehouseService)
+        public DeleteController(IDeleteService deleteService)
         {
             _deleteService = deleteService;
-            _warehouseService = warehouseService;
         }
 
         [HttpPost]

@@ -20,7 +20,8 @@
                             <td>@item?.Quantity</td>
                             <td>@item?.Product?.Price.ToString("C2")</td>
                             <td>
-                                <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
+                                <form asp-action="DeleteItemFromCartAsync" asp-controller="Cart" 
+                                    asp-route-productId="@item?.Product?.ProductId" method="post">
                                     <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
                                     <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
                                 </form>

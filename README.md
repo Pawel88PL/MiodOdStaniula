@@ -1,6 +1,7 @@
 # www.miododstaniula.pl
 
-"Miód od Staniula" jest to projekt sklepu internetowego, napisany w techonologi ASP.NET Core MVC 6.0.
+Projekt "Miód od Staniula" jest to sklep internetowy, w którym można zamówić polski i prawdziwy miód pszczeli.
+Aplikacja sklepu internetowego została napisana w techonologi ASP.NET Core MVC 6.0.
 Do połączenia z bazą danych MS SQL Server wykorzystano narzędzie ORM Entity Framework Core.
 <hr/>
 

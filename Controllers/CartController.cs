@@ -49,9 +49,6 @@ namespace MiodOdStaniula.Controllers
         }
 
 
-
-
-
         [HttpGet]
         public async Task<IActionResult> GetCartItemCount()
         {
@@ -118,9 +115,25 @@ namespace MiodOdStaniula.Controllers
             }
             catch (Exception)
             {
-                TempData["ErrorMessage"] = "Pojawił się błądd podczas dodawania produktu do koszyka.\nSpróbuj ponownie p�niej.";
+                TempData["ErrorMessage"] = "Pojawił się błąd podczas dodawania produktu do koszyka.\nSpróbuj ponownie później.";
                 return RedirectToAction("Index", "Products");
             }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("Cart/DeleteItemFromCartAsync")]
+        public async Task<IActionResult> DeleteItemFromCartAsync([FromForm]int productId)
+        {
+            var result = await _cartService.DeleteItemFromCartAsync(productId);
+
+            if (!result)
+            {
+                return View("_NotFound");
+            }
+
+            return RedirectToAction("Index", "Cart");
+        }
+
     }
 }

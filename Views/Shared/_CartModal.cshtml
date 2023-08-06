@@ -3,24 +3,35 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="cartModalLabel">Produkt dodany do koszyka</h5>
+                <h5 class="modal-title" id="cartModalLabel">
+                    <i class="bi bi-check-circle-fill" style="color: green;"></i>
+                    Produkt dodany do koszyka
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-4">
-                        <img id="productImage" src="" alt="Product image" class="w-100">
+                        <img id="productImage" src="" alt="Product image" class="w-75">
                     </div>
                     <div class="col-sm-8">
-                        <h3 id="productName"></h3>
-                        Cena: <h5 id="productPrice"></h5>
-                        Waga: <h5 id="productWeight"></h5>
+                        <h4 id="productName"></h4>
+                        <div class="row">
+                            <div class="col-6">
+                                Cena: <p id="productPrice"></p>
+                            </div>
+                            <div class="col-6">
+                                Waga: <p id="productWeight"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal" onclick="window.location.href='/Cart/Index'">Wyświetl koszyk</button>
-                <button type="button" class="btn btn-lg btn-dark" onclick="window.location.href='/Cart/Checkout'">Przejdź do kasy</button>
+                <button type="button" class="btn btn-lg btn-outline-dark" data-bs-dismiss="modal"
+                    onclick="window.location.href='/Cart/Index'">Wyświetl koszyk</button>
+                <button type="button" class="btn btn-lg btn-dark"
+                    onclick="window.location.href='/Cart/Checkout'">Przejdź do kasy</button>
             </div>
         </div>
     </div>

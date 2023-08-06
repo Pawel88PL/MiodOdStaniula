@@ -28,13 +28,17 @@ namespace MiodOdStaniula.Services
                 {
                     return 18.99m;
                 }
-                else if (totalItems <= 10)
+                else if (totalItems > 6 && totalItems <= 10)
                 {
                     return 20.99m;
                 }
-                else
+                else if (totalItems > 10)
                 {
                     return 36.99m;
+                }
+                else
+                {
+                    return 0;
                 }
             }
             return 0;

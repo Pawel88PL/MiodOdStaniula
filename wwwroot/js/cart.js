@@ -18,9 +18,18 @@ function showCartModal(product) {
     document.getElementById('productPrice').textContent = product.price + ",00 PLN";
     document.getElementById('productWeight').textContent = product.weight + " G";
 
-    var cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+    var cartModalElement = document.getElementById('cartModal');
+    var cartModal = new bootstrap.Modal(cartModalElement);
     cartModal.show();
     updateCartItemCount();
+    
+    setTimeout(function() {
+        $(cartModalElement).addClass('slide-out');
+        setTimeout(function() {
+            cartModal.hide();
+            cartModal.dispose();
+        }, 300);
+    }, 5000);
 }
 
 function updateCartItemCount() {
@@ -34,6 +43,24 @@ function updateCartItemCount() {
 }
 
 $(document).ready(function () {
+    $('#cartModal').on('hidePrevented.bs.modal', function(event) {
+    var cartModal = new bootstrap.Modal(this);
+    $(this).addClass('slide-out');
+    setTimeout(function() {
+        cartModal.hide();
+    }, 300);
+    });
+
+
+    $('#cartModal').on('hide.bs.modal', function(event) {
+    if ($(this).hasClass('slide-out')) {
+        $(this).removeClass('slide-out');
+    } else {
+        return false;  // prevent hiding
+    }
+    });
+
+
     $(".addToCartButton").click(function (e) {
         console.log('addToCartButton was clicked');
         e.preventDefault();
