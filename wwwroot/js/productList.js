@@ -5,8 +5,7 @@
         var url = $(this).attr("href");
         var filterCondition = $(this).text().trim();
 
-        // update the h1 text
-        $("h1").text(filterCondition);
+        $("#categories").text(filterCondition);
 
         $("#products-container").load(url);
     });

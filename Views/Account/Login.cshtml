@@ -1,27 +1,36 @@
 ﻿@model MiodOdStaniula.Models.Login
 
+<link rel="stylesheet" href="~/css/LoginRegister.css" asp-append-version="true" />
 
 @{
     ViewData["Title"] = "Login";
 }
 
-<div class="container border text-center shadow p-3 mb-5 bg-white rounded"
-     style="max-width: 350px; margin-top: 100px">
+<div class="container border text-center shadow p-3 my-5 bg-white rounded col-md-10 col-lg-8 col-xxl-6">
 
     @using (Html.BeginForm("Login", "Account", FormMethod.Post))
     {
         <div style="padding: 40px">
-            <h5>Login: </h5>
             <input asp-for="@Model.UserName" class="form-control" />
             <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+            <p>Login</p>
             <br />
 
-            <h5>Hasło: </h5>
             <input asp-for="@Model.Password" type="password" class="form-control" />
             <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            <p>Hasło</p>
             <br />
 
-            <button type="submit" class="btn btn-primary"><i class="bi bi-box-arrow-in-left"></i> Zaloguj </button>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-dark w-100 m-2"><i class="bi bi-box-arrow-in-left"></i> Zaloguj
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <a asp-action="Register" asp-controller="Account" class="btn btn-outline-dark w-100 m-2"><i
+                            class="bi bi-box-arrow-in-left"></i> Zarejestruj się </a>
+                </div>
+            </div>
         </div>
     }
 </div>

@@ -1,109 +1,68 @@
 ﻿@model IEnumerable<MiodOdStaniula.Models.Product>
-<link rel="stylesheet" href="~/css/products.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Warehouse" asp-append-version="true" />
 @{
   ViewData["Title"] = "Magazyn";
 }
 
-<div class="container border text-center shadow p-3 mb-5 bg-white rounded">
+<div class="container border text-center shadow p-3 my-5 bg-white rounded">
   <div class="row">
     <div class="col-9">
       <h3>Mój magazyn</h3>
     </div>
     <div class="col-3">
-      <a
-        asp-controller="AddNewProduct"
-        asp-action="AddProduct"
-        class="text-center"
-        style="text-decoration: none"
-      >
-        <div class="btn-primary" style="border-radius: 3px; padding: 3px">
-          <i class="bi bi-plus-circle"></i> Dodaj nowy produkt
-        </div>
-      </a>
+      <a asp-controller="AddNewProduct" asp-action="AddProduct" class="btn btn-dark">
+        <i class="bi bi-plus-circle"></i> Dodaj produkt</a>
     </div>
   </div>
   <br />
 
-  <div class="MyStore">
-    <div class="row" style="border-bottom: solid">
-      <div class="col-2">
-        <h5>Kategoria</h5>
-      </div>
-      <div class="col-2">
-        <h5>Nazwa produktu</h5>
-      </div>
-      <div class="col-1">
-        <h5>Cena</h5>
-      </div>
-      <div class="col-2">
-        <h5>Waga</h5>
-      </div>
-      <div class="col-2">
-        <h5>Dostępna ilość</h5>
-      </div>
-      <div class="col-3">
-        <h5>Edytuj | Usuń</h5>
-      </div>
-    </div>
-
-    <div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Kategoria</th>
+        <th scope="col">Nazwa produktu</th>
+        <th scope="col">Cena</th>
+        <th scope="col">Waga</th>
+        <th scope="col">Dostępna ilość</th>
+        <th scope="col">Edytuj</th>
+        <th scope="col">Usuń</th>
+      </tr>
+    </thead>
+    <tbody>
       @foreach (var product in Model)
       {
-        <div class="product">
-          <div class="row">
-            <div class="col-2">
-              <p>@product?.Category?.Name</p>
-            </div>
-            <div class="col-3">
-              <p>@product?.Name</p>
-            </div>
-            <div class="col-1">
-              <p><b>@product?.Price</b> zł</p>
-            </div>
-            <div class="col-1">
-              <p><b>@product?.Weight</b> gram</p>
-            </div>
-            <div class="col-2">
-              @if (product?.AmountAvailable == 0)
-              {
-                <strong>brak towaru</strong>
-              }
-              else
-              {
-                <p><b>@product?.AmountAvailable</b> sztuk</p>
-              }
-            </div>
-            <div class="col-3">
-              <div class="row">
-                <div class="col-6">
-                  <a
-                    href="@Url.Action("Edit","EditProduct", new { ProductId = product?.ProductId })"
-                    class="btn btn-secondary"
-                    >EDYTUJ</a
-                  >
-                </div>
-                <div class="col-6">
-                  @using (Html.BeginForm("DeleteProduct", "Delete", new
-                  {
-                    ProductId = product?.ProductId
-                  }, FormMethod.Post))
-                  {
-                    @Html.AntiForgeryToken()
-                    <input
-                      type="submit"
-                      value="USUŃ"
-                      class="btn btn-danger"
-                      onclick="return confirm('Czy na pewno usunąć ten produkt?');"
-                    />
-                  }
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <tr>
+          <td>@product?.Category?.Name</td>
+          <td>@product?.Name</td>
+          <td><b>@product?.Price</b> zł</td>
+          <td><b>@product?.Weight</b> gram</td>
+          <td>
+            @if (product?.AmountAvailable == 0)
+            {
+              <strong>brak towaru</strong>
+            }
+            else
+            {
+              <p><b>@product?.AmountAvailable</b> sztuk</p>
+            }
+          </td>
+          <td>
+            <a href="@Url.Action("Edit","EditProduct", new { ProductId = product?.ProductId })"
+              class="btn btn-secondary">EDYTUJ</a>
+          </td>
+          <td>
+            @using (Html.BeginForm("DeleteProduct", "Delete", new
+            {
+              ProductId = product?.ProductId
+            }, FormMethod.Post))
+            {
+              @Html.AntiForgeryToken()
+              <input type="submit" value="USUŃ" class="btn btn-danger"
+                onclick="return confirm('Czy na pewno usunąć ten produkt?');" />
+            }
+          </td>
+        </tr>
       }
-    </div>
-  </div>
+    </tbody>
+  </table>
 </div>
-
-

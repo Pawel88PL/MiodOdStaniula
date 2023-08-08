@@ -149,3 +149,7 @@ Data 06.08.2023
 Data 08.08.2023
 
 	Przeprowadzono refaktoryzację skryptu 'cart.js'.
+1. Poprawiono wyświetlanie widoku 'Details.cshtml'.
+2. Poprawiono wygląd strony logowania.
+3. Zmieniono całkowicie wygląd sekcji 'footer'.
+4. W wioduku 'Warehouse' zmieniono sposób wyświetlania danych - zastosowano tabelę.

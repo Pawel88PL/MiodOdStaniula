@@ -1,0 +1,10 @@
+.btn-outline-dark,
+.btn-dark {
+    border-radius: 30px;
+    
+}
+
+.btn-dark:hover {
+    background-color: #495158;
+    color: white;
+}

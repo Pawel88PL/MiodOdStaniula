@@ -16,17 +16,17 @@
                     <p><b>@product?.Category?.Name</b></p>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6">
                         <p>Waga: <b>@product?.Weight.ToString("0.##") g</b></p>
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6">
                         <p>Cena: <b>@product?.Price zł</b></p>
                     </div>
                     @if (product?.AmountAvailable == 0)
                     {
                         <div class="row outOfOrder">
                             <div class="col-9">
-                                <h6>Produkt sprzedany</h6>
+                                <h6>Sprzedany</h6>
                             </div>
                             <div class="col-3">
                                 <img src="/img/outOfOrder.png" style="max-width: 40px">
@@ -37,7 +37,7 @@
                     {
                         <div class="row smallAmount">
                             <div class="col-9">
-                                <h6>Na wyczerpaniu</h6>
+                                <h6>Ograniczona ilość</h6>
                             </div>
                             <div class="col-3">
                                 <img src="/img/smallAmount.png" style="max-width: 40px">
@@ -48,7 +48,7 @@
                     {
                         <div class="row available">
                             <div class="col-9">
-                                <h6>Produkt dostępny</h6>
+                                <h6>Dostępny</h6>
                             </div>
                             <div class="col-3">
                                 <img src="/img/available.png" style="max-width: 40px">
@@ -62,7 +62,7 @@
                     <input type="hidden" name="cartId" value="@ViewData["CartId"]" />
                     <input type="hidden" name="productId" value="@product?.ProductId" class="product-id" />
                     <input type="hidden" name="quantity" value="1" />
-                    <button type="submit" class="btn btn-dark m-2 addToCartButton">
+                    <button type="submit" class="btn btn-dark m-2 addToCartButton w-75">
                         <i class="bi bi-cart-plus"></i> Dodaj do koszyka
                     </button>
                 </form>

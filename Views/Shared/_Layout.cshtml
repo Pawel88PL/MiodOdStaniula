@@ -29,8 +29,8 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i
-                                    class="bi bi-bag"></i> PRODUKTY </a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">
+                                <i class="bi bi-bag"></i> PRODUKTY </a>
                         </li>
                     </ul>
                     <div class="navbar-nav d-flex">
@@ -50,16 +50,16 @@
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><i
-                                            class="bi bi-box-arrow-in-left"></i> ZALOGUJ </a>
+                                            class="bi bi-box-arrow-in-left"></i> MOJE KONTO </a>
                                 </li>
                             }
                         </ul>
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
+                        <a class="nav-link text-dark" style="width: 150px" asp-area="" asp-controller="Cart" asp-action="Index">
                             <div class="row">
-                                <div class="col-10">
-                                    <i class="bi bi-cart"></i> MÓJ KOSZYK
+                                <div class="col-8">
+                                    <i class="bi bi-cart"></i> KOSZYK
                                 </div>
-                                <div class="col-2">
+                                <div class="col-4">
                                     <h5 id="cartCount"></h5>
                                 </div>
                             </div>
@@ -69,16 +69,14 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="main container">
+        <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="footer text-muted">
-        <div class="container border-top">
-            <p>Copyright &copy; 2023 Paweł Staniul. All rights reserved. Ver. 5.0.0. Published 28.07.2023.</p>
-        </div>
+    <footer class="footer bg-dark text-white text-center">
+        @await Html.PartialAsync("_Footer")
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

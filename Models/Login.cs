@@ -4,10 +4,10 @@ namespace MiodOdStaniula.Models
 {
     public class Login
     {
-        [Required]
+        [Required(ErrorMessage = "Podaj nazwę użytkownika")]
         public string? UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Podaj hasło")]
         public string? Password { get; set; }
     }
 }

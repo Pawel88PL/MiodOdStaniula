@@ -7,7 +7,7 @@
 <section class="border shadow p-3 mb-5 rounded">
     <div class="row">
         <div class="col-md-9">
-            <h1>@ViewBag.FilterCondition</h1>
+            <h1 id="categories">@ViewBag.FilterCondition</h1>
             @{
                 var errorMessage = TempData["ErrorMessage"] as string;
                 if (!string.IsNullOrEmpty(errorMessage))
@@ -38,11 +38,20 @@
                 <h3>Kategorie:</h3>
                 <br />
                 <div class="list-group">
-                    <a asp-action="GetProducts" class="filter-link list-group-item list-group-item-action"><b><i class="bi bi-list-ul"></i> Wszystkie produkty</b></a>
-                    <a asp-action="GetProducts" asp-route-filterCondition="Miody naturalne" class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Miody naturalne</a>
-                    <a asp-action="GetProducts" asp-route-filterCondition="Miody smakowe" class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Miody smakowe</a>
-                    <a asp-action="GetProducts" asp-route-filterCondition="Zestawy miodów" class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Zestawy miodów</a>
-                    <a asp-action="GetProducts" asp-route-filterCondition="Produkty pszczele" class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Produkty pszczele</a>
+                    <a asp-action="GetProducts" class="filter-link list-group-item list-group-item-action"><b><i
+                                class="bi bi-list-ul"></i> Wszystkie produkty</b></a>
+                    <a asp-action="GetProducts" asp-route-filterCondition="Miody naturalne"
+                        class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Miody
+                        naturalne</a>
+                    <a asp-action="GetProducts" asp-route-filterCondition="Miody smakowe"
+                        class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i> Miody
+                        smakowe</a>
+                    <a asp-action="GetProducts" asp-route-filterCondition="Zestawy miodów"
+                        class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i>
+                        Zestawy miodów</a>
+                    <a asp-action="GetProducts" asp-route-filterCondition="Produkty pszczele"
+                        class="filter-link list-group-item list-group-item-action ps-5"><i class="bi bi-dash"></i>
+                        Produkty pszczele</a>
                 </div>
             </div>
 

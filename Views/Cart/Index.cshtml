@@ -1,33 +1,33 @@
 @model MiodOdStaniula.Models.CartViewModel
 <link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
-<div class="row m-2 mt-5 mb-5">
-    <div class="col-sm-8">
+<div class="cart row mt-5">
+    <div class="col-md-8">
         <h4>Koszyk</h4>
         @if (Model.CartItems != null)
         {
             @foreach (var item in Model.CartItems)
             {
                 <div class="row mt-3">
-                    <div class="col-sm-3 col-6">
+                    <div class="col-6 col-sm-3">
                         <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })">
                             <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" class="w-75" />
                         </a>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6 col-sm-6">
                         <div>
                             <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })"
                                 style="text-decoration: none; color: black">
-                                @item?.Product?.Name
+                                <h5>@item?.Product?.Name</h5>
                             </a>
                         </div>
                         <div class="row mt-3">
                             <div class="col-4">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-8 col-sm-7">
                                         <p>Ilość: </p>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4 col-sm-5 ">
                                         <form asp-action="UpdateCartItemQuantity" asp-controller="Cart" method="post">
                                             <select name="quantity" onchange="this.form.submit()">
                                                 @{
@@ -59,18 +59,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <h5>@item?.Product?.Price.ToString("C2")</h5>
+                    <div class="col-12 col-sm-3">
+                        @{
+                            var totalItemPrice = item?.Product?.Price * item?.Quantity;
+                        }
+                        <h5>@(totalItemPrice.HasValue ? totalItemPrice.Value.ToString("C2") : "N/A")</h5>
                     </div>
                 </div>
                 <hr />
             }
         }
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
         <h4>Podsumowanie</h3>
             <br>
-            <div class="row mt-5">
+            <div class="row mt-1">
                 <div class="col-7">
                     <p>Suma częściowa:</p>
                     <p>Szacowany koszt wysyłki:</p>
@@ -88,15 +91,15 @@
             <hr>
             <div class="row">
                 <div class="col-7">
-                    <p>Suma:</p>
+                    <h4>Suma:</h4>
                 </div>
                 <div class="col-5 d-flex flex-column align-items-end">
-                    <p>@Model.TotalCost.ToString("C2")</p>
+                    <h4>@Model.TotalCost.ToString("C2")</h4>
                 </div>
             </div>
             <hr>
             <div class="col-sm-12">
-                <a href="~/Cart/Checkout" class="btn btn-lg btn-dark mt-2">Przejdź do kasy</a>
+                <a href="~/Cart/Checkout" class="btn btn-lg btn-dark mt-2 w-100">Przejdź do kasy</a>
             </div>
     </div>
 </div>
