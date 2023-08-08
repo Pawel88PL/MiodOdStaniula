@@ -94,20 +94,56 @@ namespace MiodOdStaniula.Services
             return 0;
         }
 
-        public async Task<bool> DeleteItemFromCartAsync(int productId)
+        public async Task<bool> UpdateCartItemQuantityAsync(Guid cartId, int productId, int quantity)
         {
-            if (_context.CartItem != null)
+            if (_context.ShopingCarts != null)
             {
-                var productInCart = await _context.CartItem.FirstOrDefaultAsync(item => item.ProductId == productId);
+                var cart = await _context.ShopingCarts
+                    .Include(c => c.CartItems)
+                    .FirstOrDefaultAsync(c => c.ShopingCartId == cartId);
 
-                if (productInCart == null)
+                if (cart != null)
                 {
-                    return false;
-                }
-                _context.CartItem.Remove(productInCart);
-                await _context.SaveChangesAsync();
+                    var cartItem = cart.CartItems.FirstOrDefault(item => item.ProductId == productId);
 
-                return true;
+                    if (cartItem != null)
+                    {
+                        cartItem.Quantity = quantity;
+                        await _context.SaveChangesAsync();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return false;
+
+        }
+
+
+        public async Task<bool> DeleteItemFromCartAsync(Guid cartId, int productId)
+        {
+            if (_context.ShopingCarts != null)
+            {
+                var cart = await _context.ShopingCarts
+                    .Include(c => c.CartItems)
+                    .FirstOrDefaultAsync(c => c.ShopingCartId == cartId);
+
+                if (cart != null)
+                {
+                    var productInCart = cart.CartItems.FirstOrDefault(item => item.ProductId == productId);
+
+                    if (productInCart == null)
+                    {
+                        return false;
+                    }
+
+                    if (_context.CartItem != null)
+                    {
+                        _context.CartItem.Remove(productInCart);
+                        await _context.SaveChangesAsync();
+                        return true;
+                    }
+                }
             }
             return false;
         }

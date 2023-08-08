@@ -8,25 +8,17 @@ namespace MiodOdStaniula.Services
 
         public List<Product> Sort(IEnumerable<Product> products, string sortOrder)
         {
-            switch (sortOrder)
+            return sortOrder switch
             {
-                case "category":
-                    return products.OrderBy(p => p.CategoryId).ToList();
-                case "name_asc":
-                    return products.OrderBy(p => p.Name).ToList();
-                case "price_asc":
-                    return products.OrderBy(p => p.Price).ToList();
-                case "price_desc":
-                    return products.OrderByDescending(p => p.Price).ToList();
-                case "date_asc":
-                    return products.OrderBy(p => p.DateAdded).ToList();
-                case "available-desc":
-                    return products.OrderByDescending(p => p.AmountAvailable).ToList();
-                case "popularity":
-                    return products.OrderByDescending(p => p.Popularity).ToList();
-                default:
-                    return products.OrderBy(p => p.Priority).ToList();
-            }
+                "category" => products.OrderBy(p => p.CategoryId).ToList(),
+                "name_asc" => products.OrderBy(p => p.Name).ToList(),
+                "price_asc" => products.OrderBy(p => p.Price).ToList(),
+                "price_desc" => products.OrderByDescending(p => p.Price).ToList(),
+                "date_asc" => products.OrderBy(p => p.DateAdded).ToList(),
+                "available-desc" => products.OrderByDescending(p => p.AmountAvailable).ToList(),
+                "popularity" => products.OrderByDescending(p => p.Popularity).ToList(),
+                _ => products.OrderBy(p => p.Priority).ToList(),
+            };
         }
 
         public List<Product> Filter(IEnumerable<Product> products, string filterCondition)

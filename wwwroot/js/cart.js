@@ -1,21 +1,8 @@
-
-$(document).ready(function () {
-    $.ajax({
-        url: getCartItemCountUrl,
-        type: 'GET',
-        success: function (data) {
-            $('#cartCount').text(data);
-        }
-    });
-});
-
-
-
 function showCartModal(product) {
 
     document.getElementById('productName').textContent = product.name;
     document.getElementById('productImage').src = product.image;
-    document.getElementById('productPrice').textContent = product.price + ",00 PLN";
+    document.getElementById('productPrice').textContent = product.price;
     document.getElementById('productWeight').textContent = product.weight + " G";
 
     var cartModalElement = document.getElementById('cartModal');
@@ -27,14 +14,13 @@ function showCartModal(product) {
         $(cartModalElement).addClass('slide-out');
         setTimeout(function() {
             cartModal.hide();
-            cartModal.dispose();
         }, 300);
-    }, 5000);
+    }, 3000);
 }
 
 function updateCartItemCount() {
     $.ajax({
-        url: getCartItemCountUrl,
+        url: '/Cart/GetCartItemCount',
         type: 'GET',
         success: function (data) {
             $('#cartCount').text(data);
@@ -43,23 +29,24 @@ function updateCartItemCount() {
 }
 
 $(document).ready(function () {
-    $('#cartModal').on('hidePrevented.bs.modal', function(event) {
-    var cartModal = new bootstrap.Modal(this);
-    $(this).addClass('slide-out');
-    setTimeout(function() {
-        cartModal.hide();
-    }, 300);
-    });
+    
+    updateCartItemCount();
 
+    $('#cartModal').on('hidePrevented.bs.modal', function(event) {
+        var cartModal = new bootstrap.Modal(this);
+        $(this).addClass('slide-out');
+        setTimeout(function() {
+            cartModal.hide();
+        }, 300);
+    });
 
     $('#cartModal').on('hide.bs.modal', function(event) {
-    if ($(this).hasClass('slide-out')) {
-        $(this).removeClass('slide-out');
-    } else {
-        return false;  // prevent hiding
-    }
+        if ($(this).hasClass('slide-out')) {
+            $(this).removeClass('slide-out');
+        } else {
+            return false;
+        }
     });
-
 
     $(".addToCartButton").click(function (e) {
         console.log('addToCartButton was clicked');
@@ -84,8 +71,8 @@ $(document).ready(function () {
             },
             error: function (error) {
                 console.log('AJAX request failed, error:', error);
+                alert('Wystąpił problem podczas dodawania produktu do koszyka.\nSpróbuj ponownie.');
             }
         });
     });
 });
-

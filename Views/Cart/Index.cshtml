@@ -1,46 +1,81 @@
 @model MiodOdStaniula.Models.CartViewModel
 <link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
-<div class="row mt-5">
+<div class="row m-2 mt-5 mb-5">
     <div class="col-sm-8">
         <h4>Koszyk</h4>
-        <table class="table mt-3">
-            <thead>
-            </thead>
-            <tbody>
-                @if (Model.CartItems != null)
-                {
-                    @foreach (var item in Model.CartItems)
-                    {
-                        <tr>
-                            <td>
-                                <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" width="50" height="50" />
-                            </td>
-                            <td>@item?.Product?.Name</td>
-                            <td>@item?.Quantity</td>
-                            <td>@item?.Product?.Price.ToString("C2")</td>
-                            <td>
-                                <form asp-action="DeleteItemFromCartAsync" asp-controller="Cart" 
-                                    asp-route-productId="@item?.Product?.ProductId" method="post">
-                                    <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
-                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash3"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                }
-            </tbody>
-        </table>
+        @if (Model.CartItems != null)
+        {
+            @foreach (var item in Model.CartItems)
+            {
+                <div class="row mt-3">
+                    <div class="col-sm-3 col-6">
+                        <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })">
+                            <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name" class="w-75" />
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <div>
+                            <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })"
+                                style="text-decoration: none; color: black">
+                                @item?.Product?.Name
+                            </a>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Ilość: </p>
+                                    </div>
+                                    <div class="col-6">
+                                        <form asp-action="UpdateCartItemQuantity" asp-controller="Cart" method="post">
+                                            <select name="quantity" onchange="this.form.submit()">
+                                                @{
+                                                    int maxQuantity = Math.Min(10, item?.Product?.AmountAvailable ?? 0);
+                                                    for (int i = 1; i <= maxQuantity; i++)
+                                                    {
+                                                        if (item?.Quantity == i)
+                                                        {
+                                                            <option value="@i" selected>@i</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@i">@i</option>
+                                                        }
+                                                    }
+                                                }
+                                            </select>
+                                            <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <form asp-action="DeleteItemFromCartAsync" asp-controller="Cart"
+                                        asp-route-productId="@item?.Product?.ProductId" method="post">
+                                        <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
+                                        <button type="submit" class="btn"><i class="bi bi-trash3"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5>@item?.Product?.Price.ToString("C2")</h5>
+                    </div>
+                </div>
+                <hr />
+            }
+        }
     </div>
     <div class="col-sm-4">
         <h4>Podsumowanie</h3>
             <br>
-            <div class="row">
-                <div class="col-sm-7">
+            <div class="row mt-5">
+                <div class="col-7">
                     <p>Suma częściowa:</p>
                     <p>Szacowany koszt wysyłki:</p>
                 </div>
-                <div class="col-sm-5 d-flex flex-column align-items-end">
+                <div class="col-5 d-flex flex-column align-items-end">
                     <div>
                         <p>@Model.ProductCost.ToString("C2")</p>
                     </div>
@@ -52,10 +87,10 @@
 
             <hr>
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-7">
                     <p>Suma:</p>
                 </div>
-                <div class="col-sm-5 d-flex flex-column align-items-end">
+                <div class="col-5 d-flex flex-column align-items-end">
                     <p>@Model.TotalCost.ToString("C2")</p>
                 </div>
             </div>

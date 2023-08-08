@@ -83,9 +83,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
-        var getCartItemCountUrl = '@Url.Action("GetCartItemCount", "Cart")';
-    </script>
     <script src="~/js/cart.js" asp-append-version="true"></script>
     <script src="~/js/productList.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

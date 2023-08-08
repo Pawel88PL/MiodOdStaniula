@@ -103,7 +103,7 @@ namespace MiodOdStaniula.Controllers
                                 name = product?.Name,
                                 image = product?.PhotoUrlAddress,
                                 weight = product?.Weight,
-                                price = product?.Price,
+                                price = product?.Price.ToString("C2"),
                             }
                         });
 
@@ -122,10 +122,37 @@ namespace MiodOdStaniula.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Cart/UpdateCartItemQuantity")]
+        public async Task<IActionResult> UpdateCartItemQuantity(int productId, int quantity)
+        {
+            var cartIdStr = HttpContext.Session.GetString("CartId");
+            if (string.IsNullOrEmpty(cartIdStr))
+            {
+                return View("_NotFound");
+            }
+            var cartId = Guid.Parse(cartIdStr);
+            var result = await _cartService.UpdateCartItemQuantityAsync(cartId, productId, quantity);
+            if (!result)
+            {
+                return View("_NotFound");
+            }
+
+            return RedirectToAction("Index", "Cart");
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         [Route("Cart/DeleteItemFromCartAsync")]
         public async Task<IActionResult> DeleteItemFromCartAsync([FromForm]int productId)
         {
-            var result = await _cartService.DeleteItemFromCartAsync(productId);
+            var cartIdStr = HttpContext.Session.GetString("CartId");
+            if (string.IsNullOrEmpty(cartIdStr))
+            {
+                return View("_NotFound");
+            }
+            var cartId = Guid.Parse(cartIdStr);
+            var result = await _cartService.DeleteItemFromCartAsync(cartId, productId);
 
             if (!result)
             {

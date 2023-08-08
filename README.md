@@ -141,3 +141,11 @@ Data 06.08.2023
 	Utworzono serwis odpowiadający za obliczanie całkowitej kwoty koszyka.
 1. Utworzono 'TotalCostService.cs', zaimplementowano w nim metody obliczające koszt wysyłki, koszt produktów
 	i podsumowujące całkowity koszty koszyka.
+2. Utworzono metodę 'UpdateCartItemQuantityAsync', która aktualizuje ilość danego produktu w koszyku.
+3. W pliku 'cart.js' i 'ProductDetails.css' napisano funkcję, która odpowiada za wysuwanie się i chowanie modala
+	po dodaniu produktu do koszyka.
+<hr/>
+
+Data 08.08.2023
+
+	Przeprowadzono refaktoryzację skryptu 'cart.js'.
