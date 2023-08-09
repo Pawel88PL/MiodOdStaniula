@@ -11,3 +11,9 @@ strong{
         font-size: 11px;
     }
 }
+
+@media (max-width: 575px) {
+  .smallScreenDisplayNone{
+    display: none;
+  }
+}

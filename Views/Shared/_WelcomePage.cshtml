@@ -1,11 +1,10 @@
-﻿<div class="container border text-center shadow p-3 mb-5 bg-white rounded">
+﻿<div class="container text-center p-4 my-5">
     <div class="row">
-        <div class="col-sm-7">
+        <div class="col-md-5 pt-4">
             <div>
-
                 <h4>Pasiekę prowadzą:</h4>
                 <br />
-                <h3>Piotr i Wiktor Staniul</h3>
+                <h3>Piotr, Maria i Wiktor Staniul</h3>
                 <br />
                 <p>
                     Numer sprzedaży bezpośredniej:
@@ -28,8 +27,58 @@
                 <br />
             </div>
         </div>
-        <div class="col-sm-5">
-            <img src="~/img/miody_nowe.jpeg" class="img-fluid" alt="Responsive image" />
+        <div class="col-md-7">
+            <div id="exampleCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="5"
+                        aria-label="Slide 6"></button>
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="6"
+                        aria-label="Slide 7"></button>
+                </div>
+                <div class="carousel-inner rounded-3 shadow">
+                    <div class="carousel-item active" data-bs-interval="3000">
+                        <img src="~/images/piotr.jpeg" class="d-block w-100" alt="Piotr" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="~/images/maria_wiktor.jpg" class="d-block w-100" alt="Maria i Wiktor" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="~/images/wiktor1.jpeg" class="d-block w-100" alt="Wiktor" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="~/images/wiktor2.jpeg" class="d-block w-100" alt="Wiktor" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="~/images/wiktor3.jpeg" class="d-block w-100" alt="Wiktor" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="~/images/miody.jpeg" class="d-block w-100" alt="Zestaw miodów" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="~/images/kotlina_kłodzka.jpeg" class="d-block w-100" alt="Kotlina kłodzka" />
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#exampleCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#exampleCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
     </div>
 </div>

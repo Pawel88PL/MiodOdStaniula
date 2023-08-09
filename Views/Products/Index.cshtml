@@ -4,10 +4,10 @@
     @await Html.PartialAsync("_WelcomePage")
 </div>
 
-<section class="border shadow p-3 mb-5 rounded">
+<section class="p-3 mb-5">
     <div class="row">
         <div class="col-md-9">
-            <h1 id="categories">@ViewBag.FilterCondition</h1>
+            <h1 id="categories" class="text-center">@ViewBag.FilterCondition</h1>
             @{
                 var errorMessage = TempData["ErrorMessage"] as string;
                 if (!string.IsNullOrEmpty(errorMessage))

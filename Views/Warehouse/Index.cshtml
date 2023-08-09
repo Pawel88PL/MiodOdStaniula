@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<MiodOdStaniula.Models.Product>
-<link rel="stylesheet" href="~/css/Warehouse" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/Warehouse.css" asp-append-version="true" />
 @{
   ViewData["Title"] = "Magazyn";
 }
@@ -19,10 +19,10 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Kategoria</th>
+        <th scope="col" class="smallScreenDisplayNone">Kategoria</th>
         <th scope="col">Nazwa produktu</th>
         <th scope="col">Cena</th>
-        <th scope="col">Waga</th>
+        <th scope="col" class="smallScreenDisplayNone">Waga</th>
         <th scope="col">Dostępna ilość</th>
         <th scope="col">Edytuj</th>
         <th scope="col">Usuń</th>
@@ -32,10 +32,10 @@
       @foreach (var product in Model)
       {
         <tr>
-          <td>@product?.Category?.Name</td>
+          <td class="smallScreenDisplayNone">@product?.Category?.Name</td>
           <td>@product?.Name</td>
           <td><b>@product?.Price</b> zł</td>
-          <td><b>@product?.Weight</b> gram</td>
+          <td class="smallScreenDisplayNone"><b>@product?.Weight</b> gram</td>
           <td>
             @if (product?.AmountAvailable == 0)
             {

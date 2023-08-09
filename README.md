@@ -153,3 +153,8 @@ Data 08.08.2023
 2. Poprawiono wygląd strony logowania.
 3. Zmieniono całkowicie wygląd sekcji 'footer'.
 4. W wioduku 'Warehouse' zmieniono sposób wyświetlania danych - zastosowano tabelę.
+<hr/>
+
+Data 09.08.2023
+
+	W widoku współdzielonym '_WelcomePage.cshtml' dodano karuzelę zdjęć.
