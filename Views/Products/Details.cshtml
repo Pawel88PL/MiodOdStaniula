@@ -4,7 +4,32 @@
 <div class="product-details p-2">
     <div class="row my-5">
         <div class="col-sm-7">
-            <img src="@Model?.PhotoUrlAddress" loading="lazy" class="product-img shadow rounded-3" />
+            <div id="exampleCarousel" class="carousel slide carousel-fade w-75" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                </div>
+                <div class="carousel-inner rounded-3 shadow">
+                    <div class="carousel-item active" data-bs-interval="4000">
+                        <img src="@Model?.PhotoUrlAddress" class="d-block w-100" alt="Produkt" />
+                    </div>
+                    <div class="carousel-item" data-bs-interval="4000">
+                        <img src="~/images/Lipa.jpg" class="d-block w-100" alt="Produkt2" />
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#exampleCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#exampleCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </div>
         <div class="col-sm-5 p-4 text-center">
             <div>
@@ -27,7 +52,7 @@
                             <h5>Sprzedany</h5>
                         </div>
                         <div class="col-3">
-                            <img src="/img/outOfOrder.png" style="max-width: 40px">
+                            <img src="/images/outOfOrder.png" style="max-width: 40px">
                         </div>
                     </div>
                 }
@@ -38,7 +63,7 @@
                             <h5>Ograniczona ilość!</h5>
                         </div>
                         <div class="col-3">
-                            <img src="/img/smallAmount.png" style="max-width: 40px">
+                            <img src="/images/smallAmount.png" style="max-width: 40px">
                         </div>
                     </div>
                 }
@@ -49,7 +74,7 @@
                             <h5>Produkt dostępny!</h5>
                         </div>
                         <div class="col-3">
-                            <img src="/img/available.png" style="max-width: 40px">
+                            <img src="/images/available.png" style="max-width: 40px">
                         </div>
                     </div>
                 }

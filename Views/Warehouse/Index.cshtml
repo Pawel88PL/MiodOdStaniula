@@ -57,8 +57,7 @@
             }, FormMethod.Post))
             {
               @Html.AntiForgeryToken()
-              <input type="submit" value="USUŃ" class="btn btn-danger"
-                onclick="return confirm('Czy na pewno usunąć ten produkt?');" />
+              <button type="button" class="btn btn-danger" onclick="confirmDeleteAlert(this.form);">USUŃ</button>
             }
           </td>
         </tr>
