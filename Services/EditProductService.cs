@@ -22,7 +22,10 @@ namespace MiodOdStaniula.Services
             {
                 if (_context.Products != null)
                 {
-                    var productInDb = await _context.Products.FindAsync(product.ProductId);
+                    var productInDb = await _context.Products
+                        .Include(p => p.ProductImages)
+                        .FirstOrDefaultAsync(p => p.ProductId == product.ProductId);
+
                     if (productInDb != null)
                     {
                         productInDb.Priority = product.Priority;
@@ -33,6 +36,20 @@ namespace MiodOdStaniula.Services
                         productInDb.AmountAvailable = product.AmountAvailable;
                         productInDb.PhotoUrlAddress = product.PhotoUrlAddress;
                         productInDb.CategoryId = product.CategoryId;
+
+                        if (product.ProductImages != null)
+                        {
+                            foreach (var image in product.ProductImages)
+                            {
+                                if (productInDb.ProductImages != null)
+                                {
+                                    if (!productInDb.ProductImages.Any(i => i.ImageId == image.ImageId))
+                                    {
+                                        productInDb.ProductImages.Add(image);
+                                    }
+                                }
+                            }
+                        }
 
                         await _context.SaveChangesAsync();
                         return (true, null);

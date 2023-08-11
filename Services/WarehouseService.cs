@@ -39,6 +39,7 @@ namespace MiodOdStaniula.Services
             {
                 var products = await _context.Products
                     .Include(p => p.Category)
+                    .Include(p => p.ProductImages)
                     .ToListAsync();
 
                 return products;

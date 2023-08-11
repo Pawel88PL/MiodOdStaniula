@@ -10,11 +10,14 @@ namespace MiodOdStaniula.Controllers
     public class AddNewProductController : Controller
     {
         private readonly IAddProductService _addProductService;
+        private readonly IEditProductService _editProductService;
         private readonly IFileUploadService _fileUploadService;
 
-        public AddNewProductController(IAddProductService addProductService, IFileUploadService fileUploadService)
+        public AddNewProductController(IAddProductService addProductService,
+            IEditProductService editProductService, IFileUploadService fileUploadService)
         {
             _addProductService = addProductService;
+            _editProductService = editProductService;
             _fileUploadService = fileUploadService;
         }
 
@@ -32,11 +35,6 @@ namespace MiodOdStaniula.Controllers
                 return View(productViewModel);
             }
 
-            if (productViewModel.ProductImage != null)
-            {
-                productViewModel.PhotoUrlAddress = await _fileUploadService.UploadFileAsync(productViewModel.ProductImage);
-            }
-
             var product = new Product
             {
                 Name = productViewModel.Name,
@@ -46,11 +44,25 @@ namespace MiodOdStaniula.Controllers
                 Weight = productViewModel.Weight,
                 AmountAvailable = productViewModel.AmountAvailable,
                 CategoryId = productViewModel.CategoryId,
-                PhotoUrlAddress = productViewModel.PhotoUrlAddress
+                PhotoUrlAddress = productViewModel.PhotoUrlAddress,
+                ProductImages = new List<ProductImage>()
             };
 
-            await _addProductService.AddNewProductAsync(product);
+            var addedProduct = await _addProductService.AddNewProductAsync(product);
 
+
+            if (productViewModel.ProductImages != null && productViewModel.ProductImages.Any())
+            {
+                var imagePaths = await _fileUploadService.UploadFilesAsync(productViewModel.ProductImages);
+
+                foreach (var path in imagePaths)
+                {
+                    addedProduct?.ProductImages?.Add(new ProductImage { ImagePath = path, ProductId = addedProduct.ProductId });
+                }
+
+                // Aktualizacja produktu z nowymi zdjęciami (jeśli Twój serwis tego wymaga)
+                await _editProductService.UpdateProductAsync(addedProduct);
+            }
             return RedirectToAction("Index", "Warehouse");
         }
 

@@ -8,26 +8,49 @@ namespace MiodOdStaniula.Controllers
 {
     public class ProductsController : Controller
     {
+        private readonly DbStoreContext _context;
         private readonly IWarehouseService _warehouseService;
         private readonly IProductService _productService;
 
-        public ProductsController(IWarehouseService warehouseService, IProductService productService)
+        public ProductsController(DbStoreContext context, IWarehouseService warehouseService,
+            IProductService productService)
         {
+            _context = context;
             _warehouseService = warehouseService;
             _productService = productService;
         }
+
+        private List<ProductViewModel> ConvertToViewModel(IEnumerable<Product> products)
+        {
+            
+            return products.Select(product => new ProductViewModel
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Price = product.Price,
+                Weight = product.Weight,
+                Description = product.Description,
+                CategoryId = product.CategoryId,
+                Priority = product.Priority,
+                AmountAvailable = product.AmountAvailable,
+                PhotoUrlAddress = product.PhotoUrlAddress,
+                ProductImagesURL = product.ProductImages?.Select(pi => pi.ImagePath).ToList()
+            }).ToList();
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> Index(string sortOrder, string filterCondition)
         {
             var products = await GetSortedAndFilteredProducts(sortOrder, filterCondition);
+            var viewModel = ConvertToViewModel(products);
             ViewBag.FilterCondition = string.IsNullOrEmpty(filterCondition) ? "Wszystkie produkty" : filterCondition;
 
-            return View(products);
+            return View(viewModel);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id, ProductViewModel model)
         {
             var product = await _warehouseService.GetProductAsync(id);
             var cartId = HttpContext.Session.GetString("CartId");
@@ -39,7 +62,30 @@ namespace MiodOdStaniula.Controllers
                 return View("_NotFound");
             }
 
-            return View(product);
+            if (_context.ProductImages != null)
+            {
+                var productImages = await _context.ProductImages
+                                          .Where(pi => pi.ProductId == id)
+                                          .Select(pi => pi.ImagePath)
+                                          .ToListAsync();
+
+                var productViewModel = new ProductViewModel
+                {
+                    ProductId = product.ProductId,
+                    Name = product.Name,
+                    Price = product.Price,
+                    Weight = product.Weight,
+                    Description = product.Description,
+                    CategoryId = product.CategoryId,
+                    Priority = product.Priority,
+                    AmountAvailable = product.AmountAvailable,
+                    PhotoUrlAddress = product.PhotoUrlAddress,
+                    ProductImagesURL = productImages
+                };
+
+                return View(productViewModel);
+            }
+            return View("_NotFound");
         }
 
         [HttpGet]

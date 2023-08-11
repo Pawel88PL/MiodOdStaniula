@@ -1,4 +1,4 @@
-@model MiodOdStaniula.Models.Product
+@model MiodOdStaniula.Models.ProductViewModel
 <link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
 <div class="product-details p-2">
@@ -6,18 +6,20 @@
         <div class="col-sm-7">
             <div id="exampleCarousel" class="carousel slide carousel-fade w-75" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
+                    @for (int i = 0; i < Model?.ProductImagesURL?.Count; i++)
+                    {
+                        <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="@i" @(i == 0 ?
+                        "class=active aria-current=true" : "") aria-label="Slide @(i + 1)"></button>
+                    }
                 </div>
                 <div class="carousel-inner rounded-3 shadow">
-                    <div class="carousel-item active" data-bs-interval="4000">
-                        <img src="@Model?.PhotoUrlAddress" class="d-block w-100" alt="Produkt" />
-                    </div>
-                    <div class="carousel-item" data-bs-interval="4000">
-                        <img src="~/images/Lipa.jpg" class="d-block w-100" alt="Produkt2" />
-                    </div>
+                    @for (int i = 0; i < Model?.ProductImagesURL?.Count; i++)
+                    {
+                        var image = Model.ProductImagesURL[i];
+                        <div class="carousel-item @(i == 0 ? "active" : "")" data-bs-interval="4000">
+                            <img src="@image" class="d-block w-100" alt="Produkt - zdjęcie @(i+1)" />
+                        </div>
+                    }
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#exampleCarousel"
                     data-bs-slide="prev">
@@ -105,5 +107,3 @@
 </div>
 
 @await Html.PartialAsync("_CartModal")
-
-

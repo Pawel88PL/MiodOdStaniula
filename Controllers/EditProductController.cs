@@ -69,13 +69,14 @@ namespace MiodOdStaniula.Controllers
             string? photoUrlAddress = product.PhotoUrlAddress;
 
             // If a new photo was uploaded.
-            if (model.ProductImage != null)
-            {
-                // Use FileUploadService to upload the file.
-                var uploadResult = await _fileUploadService.UploadFileAsync(model.ProductImage);
-                if (uploadResult != null)
+            if(model.ProductImages != null && model.ProductImages.Any())
+    {
+                var imagePaths = await _fileUploadService.UploadFilesAsync(model.ProductImages);
+
+                product.ProductImages = product.ProductImages ?? new List<ProductImage>();
+                foreach (var path in imagePaths)
                 {
-                    photoUrlAddress = uploadResult;
+                    product.ProductImages.Add(new ProductImage { ImagePath = path, ProductId = product.ProductId });
                 }
             }
 

@@ -26,5 +26,19 @@ namespace MiodOdStaniula.Services
 
             return $"/images/{file.FileName}";
         }
+
+        public async Task<List<string>> UploadFilesAsync(List<IFormFile> files)
+        {
+            List<string> uploadedFilesPaths = new List<string>();
+            foreach (var file in files)
+            {
+                var filePath = await UploadFileAsync(file);
+                if (!string.IsNullOrEmpty(filePath))
+                {
+                    uploadedFilesPaths.Add(filePath);
+                }
+            }
+            return uploadedFilesPaths;
+        }
     }
 }

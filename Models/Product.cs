@@ -35,6 +35,8 @@ namespace MiodOdStaniula.Models
 
         public DateTime DateAdded { get; set; }
 
+        public ICollection<ProductImage>? ProductImages { get; set; }
+
 
         // Categories  
         [ForeignKey("Category")]
