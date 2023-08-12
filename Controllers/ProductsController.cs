@@ -49,7 +49,7 @@ namespace MiodOdStaniula.Controllers
         {
             var products = await GetSortedAndFilteredProducts(sortOrder, filterCondition);
             var viewModel = ConvertToViewModel(products);
-            ViewBag.FilterCondition = string.IsNullOrEmpty(filterCondition) ? "Wszystkie produkty" : filterCondition;
+            ViewBag.FilterCondition = string.IsNullOrEmpty(filterCondition) ? "NASZE PRODUKTY:" : filterCondition;
 
             return View(viewModel);
         }

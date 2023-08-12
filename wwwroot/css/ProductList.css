@@ -1,0 +1,11 @@
+.carousel-caption {
+    left: 1%;
+    padding: 1px;
+    transform: translateX(30%);
+    font-size: 4rem;
+}
+
+#categories{
+    margin-left: 6rem;
+    padding-left: 6rem;
+}

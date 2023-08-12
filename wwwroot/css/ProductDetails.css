@@ -38,7 +38,7 @@ div.available {
     color: green;
 }
 
-.product-img{
+.carousel-details{
     width: 75%;
 }
 
@@ -77,7 +77,8 @@ div.available {
 }
 
 @media (max-width: 768px) {
-  .product-img{
-    width: 95%;
+  .carousel-details{
+    width: 90%;
+    margin: auto;
   }
 }

@@ -1,10 +1,10 @@
 @model MiodOdStaniula.Models.ProductViewModel
 <link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
-<div class="product-details p-2">
+<div class="container product-details p-2">
     <div class="row my-5">
         <div class="col-sm-7">
-            <div id="exampleCarousel" class="carousel slide carousel-fade w-75" data-bs-ride="carousel">
+            <div id="exampleCarousel" class="carousel carousel-details slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     @for (int i = 0; i < Model?.ProductImageInfos?.Count; i++)
                     {
@@ -89,10 +89,14 @@
                     <input type="hidden" name="cartId" value="@ViewData["CartId"]" />
                     <input type="hidden" name="productId" value="@Model?.ProductId" class="product-id" />
                     <input type="hidden" name="quantity" value="1" />
-                    <button type="submit" class="btn btn-dark btn-lg addToCartButton w-100">
+                    <button type="submit" class="btn btn-dark btn-lg mb-3 addToCartButton w-100">
                         <i class="bi bi-cart-plus"></i> Dodaj do koszyka
                     </button>
                 </form>
+                <div>
+                    <p>Lub zadzwoń i zamów pod nr tel:</p>
+                    <h3>+48 570 436 579</h3>
+                </div>
 
                 @if (User.Identity?.IsAuthenticated == true)
                 {
@@ -102,7 +106,7 @@
             </div>
         </div>
     </div>
-    <div class="my-4 py-5 text-start">
+    <div class="my-4 p-5 text-start">
         @Html.Raw(Model?.Description)
     </div>
 </div>

@@ -1,109 +1,110 @@
 @model MiodOdStaniula.Models.CartViewModel
 <link rel="stylesheet" href="~/css/ProductDetails.css" asp-append-version="true" />
 
-<div class="cart row mt-5">
-    <div class="col-md-8">
-        <h4>Koszyk</h4>
-        @if (Model.CartItems != null)
-        {
-            @foreach (var item in Model.CartItems)
+<div class="container">
+    <div class="cart row mt-5">
+        <div class="col-md-8">
+            <h4>Koszyk</h4>
+            @if (Model.CartItems != null)
             {
-                <div class="row mt-3">
-                    <div class="col-6 col-sm-3">
-                        <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })">
-                            <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name"
-                                class="w-75 shadow rounded-3" />
-                        </a>
-                    </div>
-                    <div class="col-6 col-sm-6">
-                        <div>
-                            <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })"
-                                style="text-decoration: none; color: black">
-                                <h5>@item?.Product?.Name</h5>
+                @foreach (var item in Model.CartItems)
+                {
+                    <div class="row mt-3">
+                        <div class="col-6 col-sm-3">
+                            <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })">
+                                <img src="@item?.Product?.PhotoUrlAddress" alt="@item?.Product?.Name"
+                                    class="w-75 shadow rounded-3" />
                             </a>
                         </div>
-                        <div class="row mt-3">
-                            <div class="col-4">
-                                <div class="row">
-                                    <div class="col-8 col-sm-7">
-                                        <p>Ilość: </p>
-                                    </div>
-                                    <div class="col-4 col-sm-5 ">
-                                        <form asp-action="UpdateCartItemQuantity" asp-controller="Cart" method="post">
-                                            <select name="quantity" onchange="this.form.submit()">
-                                                @{
-                                                    int maxQuantity = Math.Min(10, item?.Product?.AmountAvailable ?? 0);
-                                                    for (int i = 1; i <= maxQuantity; i++)
-                                                    {
-                                                        if (item?.Quantity == i)
+                        <div class="col-6 col-sm-6">
+                            <div>
+                                <a href="@Url.Action("Details", "Products", new { id = item?.Product?.ProductId })"
+                                    style="text-decoration: none; color: black">
+                                    <h5>@item?.Product?.Name</h5>
+                                </a>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-8 col-sm-7">
+                                            <p>Ilość: </p>
+                                        </div>
+                                        <div class="col-4 col-sm-5 ">
+                                            <form asp-action="UpdateCartItemQuantity" asp-controller="Cart" method="post">
+                                                <select name="quantity" onchange="this.form.submit()">
+                                                    @{
+                                                        int maxQuantity = Math.Min(10, item?.Product?.AmountAvailable ?? 0);
+                                                        for (int i = 1; i <= maxQuantity; i++)
                                                         {
-                                                            <option value="@i" selected>@i</option>
-                                                        }
-                                                        else
-                                                        {
-                                                            <option value="@i">@i</option>
+                                                            if (item?.Quantity == i)
+                                                            {
+                                                                <option value="@i" selected>@i</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option value="@i">@i</option>
+                                                            }
                                                         }
                                                     }
-                                                }
-                                            </select>
+                                                </select>
+                                                <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <form asp-action="DeleteItemFromCartAsync" asp-controller="Cart"
+                                            asp-route-productId="@item?.Product?.ProductId" method="post">
                                             <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
+                                            <button type="submit" class="btn"><i class="bi bi-trash3"></i></button>
                                         </form>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <form asp-action="DeleteItemFromCartAsync" asp-controller="Cart"
-                                        asp-route-productId="@item?.Product?.ProductId" method="post">
-                                        <input type="hidden" name="productId" value="@item?.Product?.ProductId" />
-                                        <button type="submit" class="btn"><i class="bi bi-trash3"></i></button>
-                                    </form>
-                                </div>
                             </div>
                         </div>
+                        <div class="col-12 col-sm-3">
+                            @{
+                                var totalItemPrice = item?.Product?.Price * item?.Quantity;
+                            }
+                            <h5>@(totalItemPrice.HasValue ? totalItemPrice.Value.ToString("C2") : "N/A")</h5>
+                        </div>
                     </div>
-                    <div class="col-12 col-sm-3">
-                        @{
-                            var totalItemPrice = item?.Product?.Price * item?.Quantity;
-                        }
-                        <h5>@(totalItemPrice.HasValue ? totalItemPrice.Value.ToString("C2") : "N/A")</h5>
-                    </div>
-                </div>
-                <hr />
+                    <hr />
+                }
             }
-        }
-    </div>
-    <div class="col-md-4">
-        <h4>Podsumowanie</h3>
-            <br>
-            <div class="row mt-1">
-                <div class="col-7">
-                    <p>Suma częściowa:</p>
-                    <p>Szacowany koszt wysyłki:</p>
-                </div>
-                <div class="col-5 d-flex flex-column align-items-end">
-                    <div>
-                        <p>@Model.ProductCost.ToString("C2")</p>
+        </div>
+        <div class="col-md-4">
+            <h4>Podsumowanie</h3>
+                <br>
+                <div class="row mt-1">
+                    <div class="col-7">
+                        <p>Suma częściowa:</p>
+                        <p>Szacowany koszt wysyłki:</p>
                     </div>
-                    <div>
-                        <p>@Model.ShippingCost.ToString("C2")</p>
+                    <div class="col-5 d-flex flex-column align-items-end">
+                        <div>
+                            <p>@Model.ProductCost.ToString("C2")</p>
+                        </div>
+                        <div>
+                            <p>@Model.ShippingCost.ToString("C2")</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <hr>
-            <div class="row">
-                <div class="col-7">
-                    <h4>Suma:</h4>
+                <hr>
+                <div class="row">
+                    <div class="col-7">
+                        <h4>Suma:</h4>
+                    </div>
+                    <div class="col-5 d-flex flex-column align-items-end">
+                        <h4>@Model.TotalCost.ToString("C2")</h4>
+                    </div>
                 </div>
-                <div class="col-5 d-flex flex-column align-items-end">
-                    <h4>@Model.TotalCost.ToString("C2")</h4>
+                <hr>
+                <div class="col-sm-12">
+                    <a href="#" class="btn btn-lg btn-dark mt-2 w-100"
+                        onclick="showCheckoutAlert(); return false;">Przejdź
+                        do kasy</a>
                 </div>
-            </div>
-            <hr>
-            <div class="col-sm-12">
-                <a href="#" class="btn btn-lg btn-dark mt-2 w-100" onclick="showCheckoutAlert(); return false;">Przejdź
-                    do kasy</a>
-            </div>
+        </div>
     </div>
 </div>
-
-
