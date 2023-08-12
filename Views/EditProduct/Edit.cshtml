@@ -8,19 +8,43 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-8">
-      <div class="border shadow p-3 bg-white rounded">
-        <form asp-action="Edit" method="post" enctype="multipart/form-data">
-          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          <input type="hidden" asp-for="ProductId" />
-          @await Html.PartialAsync("_ProductFormsPartial", Model)
-          <div class="col-6">
-            <button type="submit" class="btn btn-primary mt-3">
-              ZAPISZ ZMIANY
-            </button>
-          </div>
-        </form>
-      </div>
+    <div class="col-md-8 p-3">
+      <form asp-action="Edit" method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ProductId" />
+        @await Html.PartialAsync("_ProductFormsPartial", Model)
+        <div class="col-6">
+          <button type="submit" class="btn btn-primary mt-3">
+            ZAPISZ ZMIANY
+          </button>
+        </div>
+      </form>
     </div>
+    <div class="col-md-4 p-3">
+      @if (Model.ProductImageInfos != null && Model.ProductImageInfos.Any())
+      {
+        <h4>Zdjęcia produktu:</h4>
+        foreach (var imageInfo in Model.ProductImageInfos)
+        {
+          <div class="product-image-wrapper">
+            <img src="@imageInfo.ImagePath" alt="Zdjęcie produktu" class="product-image w-25 mb-3 rounded-3 shadow" />
+            <form asp-action="DeleteImage" method="post" class="d-inline">
+              <input type="hidden" name="imageId" value="@imageInfo.ImageId" />
+              <input type="hidden" asp-for="ProductId" />
+              <button type="submit" class="btn btn-danger btn-sm ms-2"><i class="bi bi-trash3"></i></button>
+            </form>
+          </div>
+        }
+
+      }
+      else
+      {
+        <div>
+          <h4>Zdjęcia produktu:</h4>
+          <p>Dodaj zdjęcia produktu</p>
+        </div>
+      }
+    </div>
+
   </div>
 </div>

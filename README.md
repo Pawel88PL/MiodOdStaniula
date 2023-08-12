@@ -158,3 +158,15 @@ Data 08.08.2023
 Data 09.08.2023
 
 	W widoku współdzielonym '_WelcomePage.cshtml' dodano karuzelę zdjęć.
+<hr/>
+
+Data 10.08.2023
+	
+	Utworzno możliwość dodawania kilku zdjęć dla danego produktu.
+1. Utworzono tabelę 'ProductImages', przeprowadzono migrację i update bazy danych.
+2. Dla każdego produktu utworzono karuzelę zdjęć.
+<hr/>
+
+Data 12.08.2023
+
+	Dodano funkcję 'DeleteImage', która usuwa zdjęcie produktu.

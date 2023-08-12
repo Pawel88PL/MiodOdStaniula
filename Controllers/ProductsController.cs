@@ -34,7 +34,12 @@ namespace MiodOdStaniula.Controllers
                 Priority = product.Priority,
                 AmountAvailable = product.AmountAvailable,
                 PhotoUrlAddress = product.PhotoUrlAddress,
-                ProductImagesURL = product.ProductImages?.Select(pi => pi.ImagePath).ToList()
+                ProductImageInfos = product.ProductImages?.Select(pi => new ProductImageInfo
+                {
+                    ImageId = pi.ImageId,
+                    ImagePath = pi.ImagePath
+                }).ToList() ?? new List<ProductImageInfo>()
+
             }).ToList();
         }
 
@@ -50,9 +55,9 @@ namespace MiodOdStaniula.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Details(int id, ProductViewModel model)
+        public async Task<IActionResult> Details(int id)
         {
-            var product = await _warehouseService.GetProductAsync(id);
+            Product? product = await _warehouseService.GetProductAsync(id)!;
             var cartId = HttpContext.Session.GetString("CartId");
 
             ViewData["CartId"] = cartId;
@@ -61,31 +66,36 @@ namespace MiodOdStaniula.Controllers
             {
                 return View("_NotFound");
             }
-
-            if (_context.ProductImages != null)
+            else
             {
-                var productImages = await _context.ProductImages
-                                          .Where(pi => pi.ProductId == id)
-                                          .Select(pi => pi.ImagePath)
-                                          .ToListAsync();
+                var productImages = new List<ProductImageInfo>();
 
-                var productViewModel = new ProductViewModel
+                if (_context.ProductImages != null)
+                {
+                    productImages = await _context.ProductImages
+                              .Where(pi => pi.ProductId == id)
+                              .Select(pi => new ProductImageInfo
+                              {
+                                  ImageId = pi.ImageId,
+                                  ImagePath = pi.ImagePath
+                              })
+                              .ToListAsync();
+                }
+
+                ProductViewModel productViewModel = new()
                 {
                     ProductId = product.ProductId,
                     Name = product.Name,
+                    Priority = product.Priority,
+                    Description = product.Description,
                     Price = product.Price,
                     Weight = product.Weight,
-                    Description = product.Description,
-                    CategoryId = product.CategoryId,
-                    Priority = product.Priority,
                     AmountAvailable = product.AmountAvailable,
-                    PhotoUrlAddress = product.PhotoUrlAddress,
-                    ProductImagesURL = productImages
+                    CategoryId = product.CategoryId,
+                    ProductImageInfos = productImages
                 };
-
                 return View(productViewModel);
             }
-            return View("_NotFound");
         }
 
         [HttpGet]

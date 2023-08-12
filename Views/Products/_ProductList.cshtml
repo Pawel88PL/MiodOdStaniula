@@ -10,7 +10,7 @@
             <div id="carouselForProduct@(product?.ProductId)" class="carousel slide carousel-fade w-100"
                 data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    @for (int i = 0; i < product?.ProductImagesURL?.Count; i++)
+                    @for (int i = 0; i < product?.ProductImageInfos?.Count; i++)
                         {
                             <button type="button" data-bs-target="#carouselForProduct@(product?.ProductId)"
                                 data-bs-slide-to="@i" @(i == 0 ? "class=active aria-current=true" : "")
@@ -18,11 +18,11 @@
                         }
                     </div>
                     <div class="carousel-inner rounded-3 shadow">
-                        @for (int i = 0; i < product?.ProductImagesURL?.Count; i++)
+                        @for (int i = 0; i < product?.ProductImageInfos?.Count; i++)
                         {
-                            var image = product?.ProductImagesURL[i];
+                            var image = product?.ProductImageInfos[i];
                             <div class="carousel-item @(i == 0 ? "active" : "")" data-bs-interval="4000">
-                                <img src="@image" class="d-block w-100" alt="Produkt - zdjęcie @(i+1)" />
+                                <img src="@image?.ImagePath" class="d-block w-100" alt="Produkt - zdjęcie @(i+1)" />
                             </div>
                         }
                     </div>

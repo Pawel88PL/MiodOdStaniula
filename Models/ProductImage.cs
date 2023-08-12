@@ -10,10 +10,8 @@ namespace MiodOdStaniula.Models
         public int ProductId { get; set; }
         public string? ImagePath { get; set; }
 
-        
 
         [ForeignKey("ProductId")]
         public Product? Product { get; set; }
     }
-
 }
