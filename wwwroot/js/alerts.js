@@ -1,6 +1,6 @@
 function showCheckoutAlert() {
   Swal.fire({
-    title: 'Funkcja w trakcie tworzenia!',
+    title: 'Strona w trakcie tworzenia!',
     text: 'Przepraszamy, strona do przejścia do kasy jest w trakcie tworzenia.',
     icon: 'info'
   });
@@ -10,6 +10,14 @@ function showRegisterAlert() {
   Swal.fire({
     title: 'Funkcja w trakcie tworzenia!',
     text: 'Przepraszamy, możliwość rejestracji użytkowników jest w trakcie tworzenia.',
+    icon: 'info'
+  });
+}
+
+function showRegulationAlert() {
+  Swal.fire({
+    title: 'Strona w trakcie tworzenia!',
+    text: 'Przepraszamy, strona z regulaminem sklepu internetowego jest w trakcie tworzenia.',
     icon: 'info'
   });
 }
