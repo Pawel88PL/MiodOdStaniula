@@ -177,5 +177,11 @@ Data 13.08.2023
 	Usunięto właściwość 'PhotoUrlAddress' z modelu 'Product'.
 1. Przeprowadzono migrację i update bazy danych.
 2. Zdjęcia produktu są dostępne jako relacja jeden do wielu z tabelą 'ProductImages'
-3. W kontrolerze 'AddNewProduct' dodano polę, które wstawia datę dodania produktu.
-4. Dla kauzeli zdjęć z '_WelcomePage' ustalono maksymalną szerokość na 1600 px.
+<hr/>
+
+Data 15.08.2023
+
+	Obsłużono sytuację, w której klient chce dodać produkt, który jest sprzedany.
+1. W kontrolerze 'AddNewProduct' dodano polę, które wstawia datę utworzenia nowego produktu.
+2. Dla kauzeli zdjęć z '_WelcomePage' ustalono maksymalną szerokość na 1600 px.
+3. Do tabeli 'ShopingCart' dodano pole 'CreateCartDate', przeprowadzono migrację i update bazy danych.

@@ -28,6 +28,14 @@ function updateCartItemCount() {
     });
 }
 
+function outOfOrder() {
+  Swal.fire({
+    title: 'Bardzo nam przykro :(',
+    text: 'Przepraszamy, ale wybrany produkt został sprzedany.',
+    icon: 'info'
+  });
+}
+
 $(document).ready(function () {
     
     updateCartItemCount();
@@ -66,7 +74,7 @@ $(document).ready(function () {
                     var product = response.product;
                     showCartModal(product);
                 } else {
-                    // Handle error
+                    outOfOrder();
                 }
             },
             error: function (error) {

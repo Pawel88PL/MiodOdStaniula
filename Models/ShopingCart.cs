@@ -10,6 +10,8 @@ namespace MiodOdStaniula.Models
         public Guid ShopingCartId { get; set; } 
         
         public Guid? CustomerId { get; set; }
+
+        public DateTime CreateCartDate { get; set; }
         
         public List<CartItem> CartItems { get; set; } = new List<CartItem>();
 

@@ -8,10 +8,12 @@ namespace MiodOdStaniula.Services
     public class CartService : ICartService
     {
         private readonly DbStoreContext _context;
+        private readonly ILogger<CartService> _logger;
 
-        public CartService(DbStoreContext context)
+        public CartService(DbStoreContext context, ILogger<CartService> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         public async Task<ShopingCart?> GetCartAsync(Guid cartId)
@@ -47,8 +49,10 @@ namespace MiodOdStaniula.Services
                         var product = await _context.Products
                             .FirstOrDefaultAsync(p => p.ProductId == productId);
 
-                        if (product != null)
+
+                        if (product != null && product.AmountAvailable >= 1)
                         {
+                            
                             var cartItem = cart.CartItems
                                 .FirstOrDefault(i => i.Product?.ProductId == productId);
 
@@ -70,13 +74,13 @@ namespace MiodOdStaniula.Services
                         }
                         else
                         {
-                            throw new Exception("Product not found");
+                            _logger.LogError("Niestety brak produktu w magazynie.");
                         }
                     }
                 }
                 else
                 {
-                    throw new Exception("Cart not found");
+                    throw new Exception("Nie znaleziono koszyka.");
                 }
             }
         }

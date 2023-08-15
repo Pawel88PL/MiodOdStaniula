@@ -78,6 +78,7 @@ namespace MiodOdStaniula.Controllers
                     var newCart = new ShopingCart();
                     if (_context.ShopingCarts != null)
                     {
+                        newCart.CreateCartDate = DateTime.Now;
                         _context.ShopingCarts.Add(newCart);
                         await _context.SaveChangesAsync();
 
@@ -101,18 +102,24 @@ namespace MiodOdStaniula.Controllers
 
                         var firstImagePath = product?.ProductImages?.FirstOrDefault()?.ImagePath;
 
-                        return Json(new
+                        if (product?.AmountAvailable > 0)
                         {
-                            success = true,
-                            product = new
+                            return Json(new
                             {
-                                name = product?.Name,
-                                image = firstImagePath,
-                                weight = product?.Weight,
-                                price = product?.Price.ToString("C2"),
-                            }
-                        });
-
+                                success = true,
+                                product = new
+                                {
+                                    name = product?.Name,
+                                    image = firstImagePath,
+                                    weight = product?.Weight,
+                                    price = product?.Price.ToString("C2"),
+                                }
+                            });
+                        }
+                        else
+                        {
+                            return Json(new { success = false });
+                        }
                     }
 
                     return Json(new { success = false });
@@ -167,6 +174,5 @@ namespace MiodOdStaniula.Controllers
 
             return RedirectToAction("Index", "Cart");
         }
-
     }
 }
