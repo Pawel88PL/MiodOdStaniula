@@ -185,3 +185,5 @@ Data 15.08.2023
 1. W kontrolerze 'AddNewProduct' dodano polę, które wstawia datę utworzenia nowego produktu.
 2. Dla kauzeli zdjęć z '_WelcomePage' ustalono maksymalną szerokość na 1600 px.
 3. Do tabeli 'ShopingCart' dodano pole 'CreateCartDate', przeprowadzono migrację i update bazy danych.
+
+<h3>Opublikowano wersję 5.0.0</h3>

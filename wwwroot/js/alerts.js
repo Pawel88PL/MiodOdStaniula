@@ -1,8 +1,9 @@
 function showCheckoutAlert() {
   Swal.fire({
-    title: 'Strona w trakcie tworzenia!',
-    text: 'Przepraszamy, strona do przejścia do kasy jest w trakcie tworzenia.',
-    icon: 'info'
+    title: '+48 570 436 579',
+    text: 'Aktualnie, aby złożyć zamówienie zadzwoń do nas pod podany wyżej numer telefonu.',
+    icon: 'info',
+    footer: 'Za niedługo udostępnimy możliwość zamawiania bezpośrednio z naszej strony internetowej!'
   });
 }
 
@@ -17,7 +18,7 @@ function showRegisterAlert() {
 function showRegulationAlert() {
   Swal.fire({
     title: 'Strona w trakcie tworzenia!',
-    text: 'Przepraszamy, strona z regulaminem sklepu internetowego jest w trakcie tworzenia.',
+    text: 'Przepraszamy, aktualnie regulaminem sklepu internetowego jest w trakcie tworzenia.',
     icon: 'info'
   });
 }
