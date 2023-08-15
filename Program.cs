@@ -24,7 +24,7 @@ namespace MiodOdStaniula
 
             builder.Services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.IdleTimeout = TimeSpan.FromDays(2);
             });
 
             builder.Services.AddScoped<IAddProductService, AddProductService>();
