@@ -1,6 +1,6 @@
 namespace MiodOdStaniula.Models
 {
-    public class CartViewModel
+    public class CartViewModel : ProductViewModel
     {
         public List<CartItem>? CartItems { get; set; }
         public decimal ShippingCost { get; set; }

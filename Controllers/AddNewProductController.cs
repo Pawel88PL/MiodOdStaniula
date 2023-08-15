@@ -44,7 +44,6 @@ namespace MiodOdStaniula.Controllers
                 Weight = productViewModel.Weight,
                 AmountAvailable = productViewModel.AmountAvailable,
                 CategoryId = productViewModel.CategoryId,
-                PhotoUrlAddress = productViewModel.PhotoUrlAddress,
                 ProductImages = new List<ProductImage>()
             };
 

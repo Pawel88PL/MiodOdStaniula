@@ -170,3 +170,8 @@ Data 10.08.2023
 Data 12.08.2023
 
 	Dodano funkcję 'DeleteImage', która usuwa zdjęcie produktu.
+<hr/>
+
+Data 13.08.2023
+
+	

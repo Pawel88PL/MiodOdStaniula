@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiodOdStaniula.Models;
 using MiodOdStaniula.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace MiodOdStaniula.Controllers
@@ -94,14 +95,19 @@ namespace MiodOdStaniula.Controllers
 
                     if (_context.Products != null)
                     {
-                        var product = await _context.Products.FindAsync(model.ProductId);
+                        var product = await _context.Products
+                            .Include(p => p.ProductImages)
+                            .FirstOrDefaultAsync(p => p.ProductId == model.ProductId);
+
+                        var firstImagePath = product?.ProductImages?.FirstOrDefault()?.ImagePath;
+
                         return Json(new
                         {
                             success = true,
                             product = new
                             {
                                 name = product?.Name,
-                                image = product?.PhotoUrlAddress,
+                                image = firstImagePath,
                                 weight = product?.Weight,
                                 price = product?.Price.ToString("C2"),
                             }
@@ -144,7 +150,7 @@ namespace MiodOdStaniula.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Cart/DeleteItemFromCartAsync")]
-        public async Task<IActionResult> DeleteItemFromCartAsync([FromForm]int productId)
+        public async Task<IActionResult> DeleteItemFromCartAsync([FromForm] int productId)
         {
             var cartIdStr = HttpContext.Session.GetString("CartId");
             if (string.IsNullOrEmpty(cartIdStr))

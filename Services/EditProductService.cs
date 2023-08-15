@@ -34,7 +34,6 @@ namespace MiodOdStaniula.Services
                         productInDb.Weight = product.Weight;
                         productInDb.Description = product.Description;
                         productInDb.AmountAvailable = product.AmountAvailable;
-                        productInDb.PhotoUrlAddress = product.PhotoUrlAddress;
                         productInDb.CategoryId = product.CategoryId;
 
                         if (product.ProductImages != null)

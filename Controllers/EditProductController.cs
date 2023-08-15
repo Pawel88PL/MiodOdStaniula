@@ -93,7 +93,6 @@ namespace MiodOdStaniula.Controllers
                 return View(product);
             }
 
-            string? photoUrlAddress = product.PhotoUrlAddress;
 
             // If a new photo was uploaded.
             if (model.ProductImages != null && model.ProductImages.Any())
@@ -117,7 +116,6 @@ namespace MiodOdStaniula.Controllers
                 Weight = model.Weight,
                 Description = model.Description,
                 AmountAvailable = model.AmountAvailable,
-                PhotoUrlAddress = photoUrlAddress
             };
 
             var (IsSuccess, Error) = await _editProductService.UpdateProductAsync(product);

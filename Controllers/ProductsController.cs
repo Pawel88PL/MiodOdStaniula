@@ -33,7 +33,6 @@ namespace MiodOdStaniula.Controllers
                 CategoryId = product.CategoryId,
                 Priority = product.Priority,
                 AmountAvailable = product.AmountAvailable,
-                PhotoUrlAddress = product.PhotoUrlAddress,
                 ProductImageInfos = product.ProductImages?.Select(pi => new ProductImageInfo
                 {
                     ImageId = pi.ImageId,

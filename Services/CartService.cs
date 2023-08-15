@@ -18,12 +18,15 @@ namespace MiodOdStaniula.Services
         {
             if (_context.ShopingCarts != null)
             {
-                var cart = await _context.ShopingCarts
-                    .Include(p => p.CartItems)
-                    .ThenInclude(c => c.Product)
-                    .FirstOrDefaultAsync(p => p.ShopingCartId == cartId);
+                if (_context.Products != null)
+                {
+                    var cart = await _context.ShopingCarts
+                        .Include(p => p.CartItems)
+                        .ThenInclude(p => p.Product!.ProductImages)
+                        .FirstOrDefaultAsync(p => p.ShopingCartId == cartId);
 
-                return cart;
+                    return cart;
+                }
             }
             return null;
         }
