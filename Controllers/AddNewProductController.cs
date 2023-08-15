@@ -43,6 +43,7 @@ namespace MiodOdStaniula.Controllers
                 Price = productViewModel.Price,
                 Weight = productViewModel.Weight,
                 AmountAvailable = productViewModel.AmountAvailable,
+                DateAdded = DateTime.Today,
                 CategoryId = productViewModel.CategoryId,
                 ProductImages = new List<ProductImage>()
             };
