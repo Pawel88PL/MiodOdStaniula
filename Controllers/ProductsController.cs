@@ -101,9 +101,9 @@ namespace MiodOdStaniula.Controllers
         public async Task<IActionResult> GetProducts(string sortOrder, string filterCondition)
         {
             var products = await GetSortedAndFilteredProducts(sortOrder, filterCondition);
+            var viewModel = ConvertToViewModel(products);
             ViewBag.FilterCondition = filterCondition;
-
-            return PartialView("_ProductList", products);
+            return PartialView("_ProductList", viewModel);
         }
 
         private async Task<IEnumerable<Product>> GetSortedAndFilteredProducts(string sortOrder, string filterCondition)

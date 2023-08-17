@@ -187,3 +187,8 @@ Data 15.08.2023
 3. Do tabeli 'ShopingCart' dodano pole 'CreateCartDate', przeprowadzono migrację i update bazy danych.
 
 <h3>Opublikowano wersję 5.0.0</h3>
+<hr/>
+
+Data 17.08.2023
+
+	Poprawiono błąd, który uniemożliwiał filtrowanie produktów.
