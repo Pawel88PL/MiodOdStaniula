@@ -192,3 +192,5 @@ Data 15.08.2023
 Data 17.08.2023
 
 	Poprawiono błąd, który uniemożliwiał filtrowanie produktów.
+1. Utworzono kontroler 'CheckoutController', serwis 'CheckoutSerwis', interfejs 'ICheckoutSerwis'
+	i folder 'Checkout' z widokiem 'Index.cshtml'.
