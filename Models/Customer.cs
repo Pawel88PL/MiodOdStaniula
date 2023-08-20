@@ -38,5 +38,8 @@ namespace MiodOdStaniula.Models
         [Required(ErrorMessage = "Podaj kod pocztowy")]
         [RegularExpression(@"^\d{2}-\d{3}$", ErrorMessage = "Niepoprawny format kodu pocztowego.")]
         public string? PostalCode { get; set; }
+
+        public virtual ICollection<Order>? Orders { get; set; }
+
     }
 }

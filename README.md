@@ -194,3 +194,11 @@ Data 17.08.2023
 	Poprawiono błąd, który uniemożliwiał filtrowanie produktów.
 1. Utworzono kontroler 'CheckoutController', serwis 'CheckoutSerwis', interfejs 'ICheckoutSerwis'
 	i folder 'Checkout' z widokiem 'Index.cshtml'.
+<hr/>
+
+Data 18.09.2023
+
+	Utworzono klasę 'Order.cs', 'OrderDetail.cs'.
+1. Przeprowadzono migrację i update bazy danych.
+2. Utworzono widok 'Tunel.cshtm' i 'Index.cshtml' w folderze 'Checkout'.
+3. W serwisie 'CheckoutService.cs' utworzono metodę 'CreateOrderAsync()'.

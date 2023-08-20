@@ -34,6 +34,9 @@ namespace MiodOdStaniula.Models
 
         public ICollection<ProductImage>? ProductImages { get; set; }
 
+        public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
+
+
 
         // Categories  
         [ForeignKey("Category")]

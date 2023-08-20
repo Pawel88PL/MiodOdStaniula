@@ -16,12 +16,11 @@
     </div>
     <br />
 
-    <div class="form-group">
-      <p><b>Nazwa produktu</b></p>
-      <input asp-for="Name" class="form-control" />
+    <div class="form-floating mb-3">
+      <input asp-for="Name" type="text" class="form-control" placeholder="Nazwa produktu"/>
+      <label for="floatingInput">Nazwa produktu:</label>
       <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    <br />
 
     <div class="form-group">
       <p><b>Cena</b></p>

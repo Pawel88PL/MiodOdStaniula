@@ -1,0 +1,25 @@
+.tunel{
+    margin-top: 8rem;
+    margin-bottom: 10rem;
+}
+
+.checkout{
+    text-align: center;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
+.btn-outline-dark,
+.btn-dark {
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    padding: 1rem;
+}
+
+.btn-dark:hover {
+    background-color: #495158;
+    color: white;
+}
