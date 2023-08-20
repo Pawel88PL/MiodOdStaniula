@@ -1,0 +1,89 @@
+@model MiodOdStaniula.Models.Customer
+
+<link rel="stylesheet" href="~/css/Checkout.css" asp-append-version="true" />
+
+<div class="checkout container p-4">
+    <h3 class="text-center mb-3">Przejdź do kasy</h3>
+    <div class="row mt-5">
+        <div class="col-md-8 forms">
+            <form asp-action="AddNewCustomer" asp-controller="Checkout" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Imię:" />
+                            <label for="floatingInput">Imię:</label>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Surname" type="text" class="form-control" placeholder="Nazwisko:" />
+                            <label for="floatingInput">Nazwisko:</label>
+                            <span asp-validation-for="Surname" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Street" type="text" class="form-control" placeholder="Ulica:" />
+                            <label for="floatingInput">Ulica:</label>
+                            <span asp-validation-for="Street" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Address" type="text" class="form-control" placeholder="Nr domu:" />
+                            <label for="floatingInput">Nr domu:</label>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="City" type="text" class="form-control" placeholder="Miejscowość:" />
+                            <label for="floatingInput">Miejscowość:</label>
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="PostalCode" type="text" class="form-control" placeholder="Kod pocztowy:" />
+                            <label for="floatingInput">Kod pocztowy:</label>
+                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Email" type="email" class="form-control" placeholder="Adres email:" />
+                            <label for="floatingInput">Adres email:</label>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Nr telefonu:" />
+                            <label for="floatingInput">Nr telefonu:</label>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-dark btn-lg">Zapisz i przejdź dalej</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

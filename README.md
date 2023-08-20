@@ -202,3 +202,10 @@ Data 18.09.2023
 1. Przeprowadzono migrację i update bazy danych.
 2. Utworzono widok 'Tunel.cshtm' i 'Index.cshtml' w folderze 'Checkout'.
 3. W serwisie 'CheckoutService.cs' utworzono metodę 'CreateOrderAsync()'.
+<hr/>
+
+Data 20.09.2023
+
+	Utworzono formularz dodania nowego klienta do bazy danych.
+1. Utworzono serwis 'CustomerService.cs' i interfejs 'ICustomerService.cs', a w nich metody dodające
+	nowego klienta do bazy danych.
