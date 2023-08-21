@@ -216,3 +216,4 @@ Data 21.09.2023
 	Utworzono kontroler bazowy 'BaseController'.
 1. W kontrolerze 'BaseController' utworzono metodę 'PrepareCartViewModel()', która przekazuje widok koszyka
 	do metod w 'CartController' i 'CheckoutContoller'.
+2. W kontrolerze 'BaseController' utworzono metodę 'PrepareProductViewModel()', która przekazuje widok produktu.

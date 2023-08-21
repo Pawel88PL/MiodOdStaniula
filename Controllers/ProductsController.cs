@@ -6,16 +6,22 @@ using MiodOdStaniula.Services.Interfaces;
 
 namespace MiodOdStaniula.Controllers
 {
-    public class ProductsController : Controller
+    public class ProductsController : BaseController
     {
-        private readonly DbStoreContext _context;
         private readonly IWarehouseService _warehouseService;
         private readonly IProductService _productService;
 
-        public ProductsController(DbStoreContext context, IWarehouseService warehouseService,
-            IProductService productService)
+        public ProductsController(
+            DbStoreContext context,
+                ICartService cartService,
+                ICheckoutService checkoutService,
+                ICustomerService customerService,
+                IProductService productService,
+                ITotalCostService totalCostService,
+                ILogger<IEditProductService> logger,
+                IWarehouseService warehouseService
+            ) : base(context, cartService, checkoutService, customerService, totalCostService)
         {
-            _context = context;
             _warehouseService = warehouseService;
             _productService = productService;
         }
@@ -67,32 +73,7 @@ namespace MiodOdStaniula.Controllers
             }
             else
             {
-                var productImages = new List<ProductImageInfo>();
-
-                if (_context.ProductImages != null)
-                {
-                    productImages = await _context.ProductImages
-                              .Where(pi => pi.ProductId == id)
-                              .Select(pi => new ProductImageInfo
-                              {
-                                  ImageId = pi.ImageId,
-                                  ImagePath = pi.ImagePath
-                              })
-                              .ToListAsync();
-                }
-
-                ProductViewModel productViewModel = new()
-                {
-                    ProductId = product.ProductId,
-                    Name = product.Name,
-                    Priority = product.Priority,
-                    Description = product.Description,
-                    Price = product.Price,
-                    Weight = product.Weight,
-                    AmountAvailable = product.AmountAvailable,
-                    CategoryId = product.CategoryId,
-                    ProductImageInfos = productImages
-                };
+                ProductViewModel productViewModel = await PrepareProductViewModel(product);
                 return View(productViewModel);
             }
         }

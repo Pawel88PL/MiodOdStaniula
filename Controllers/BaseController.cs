@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MiodOdStaniula.Models;
 using MiodOdStaniula.Services.Interfaces;
 
@@ -49,5 +50,36 @@ namespace MiodOdStaniula.Controllers
             }
             return cartViewModel;
         }
+
+        protected async Task<ProductViewModel> PrepareProductViewModel(Product product)
+        {
+            var productImages = new List<ProductImageInfo>();
+
+            if (_context.ProductImages != null)
+            {
+                productImages = await _context.ProductImages
+                              .Where(pi => pi.ProductId == product.ProductId)
+                              .Select(pi => new ProductImageInfo
+                              {
+                                  ImageId = pi.ImageId,
+                                  ImagePath = pi.ImagePath
+                              })
+                              .ToListAsync();
+            }
+
+            return new ProductViewModel
+            {
+                ProductId = product.ProductId,
+                Name = product.Name,
+                Priority = product.Priority,
+                Description = product.Description,
+                Price = product.Price,
+                Weight = product.Weight,
+                AmountAvailable = product.AmountAvailable,
+                CategoryId = product.CategoryId,
+                ProductImageInfos = productImages
+            };
+        }
+
     }
 }

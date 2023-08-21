@@ -8,9 +8,8 @@ using MiodOdStaniula.Services.Interfaces;
 namespace MiodOdStaniula.Controllers
 {
     [Authorize]
-    public class EditProductController : Controller
+    public class EditProductController : BaseController
     {
-        private readonly DbStoreContext _context;
         private readonly IEditProductService _editProductService;
         private readonly IFileUploadService _fileUploadService;
         private readonly IWarehouseService _warehouseService;
@@ -21,13 +20,16 @@ namespace MiodOdStaniula.Controllers
             (
                 DbStoreContext context,
                 IEditProductService editProductService,
+                ICartService cartService,
+                ICheckoutService checkoutService,
+                ICustomerService customerService,
+                ITotalCostService totalCostService,
                 IFileUploadService fileUploadService,
                 ILogger<IEditProductService> logger,
                 IWarehouseService warehouseService,
                 IWebHostEnvironment webHostEnvironment
-            )
+            ) : base(context, cartService, checkoutService, customerService, totalCostService)
         {
-            _context = context;
             _editProductService = editProductService;
             _fileUploadService = fileUploadService;
             _logger = logger;
@@ -46,32 +48,7 @@ namespace MiodOdStaniula.Controllers
             }
             else
             {
-                var productImages = new List<ProductImageInfo>();
-
-                if (_context.ProductImages != null)
-                {
-                    productImages = await _context.ProductImages
-                              .Where(pi => pi.ProductId == id)
-                              .Select(pi => new ProductImageInfo
-                              {
-                                  ImageId = pi.ImageId,
-                                  ImagePath = pi.ImagePath
-                              })
-                              .ToListAsync();
-                }
-
-                ProductViewModel productViewModel = new()
-                {
-                    ProductId = product.ProductId,
-                    Name = product.Name,
-                    Priority = product.Priority,
-                    Description = product.Description,
-                    Price = product.Price,
-                    Weight = product.Weight,
-                    AmountAvailable = product.AmountAvailable,
-                    CategoryId = product.CategoryId,
-                    ProductImageInfos = productImages
-                };
+                ProductViewModel productViewModel = await PrepareProductViewModel(product);
                 return View(productViewModel);
             }
         }
