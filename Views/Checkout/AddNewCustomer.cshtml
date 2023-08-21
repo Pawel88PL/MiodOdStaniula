@@ -1,4 +1,4 @@
-@model MiodOdStaniula.Models.Customer
+@model MiodOdStaniula.Models.CheckoutViewModel
 
 <link rel="stylesheet" href="~/css/Checkout.css" asp-append-version="true" />
 
@@ -8,20 +8,22 @@
         <div class="col-md-8 forms">
             <form asp-action="AddNewCustomer" asp-controller="Checkout" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.AntiForgeryToken()
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="Name" type="text" class="form-control" placeholder="Imię:" />
+                            <input asp-for="Customer.Name" type="text" class="form-control" placeholder="Imię:" />
                             <label for="floatingInput">Imię:</label>
-                            <span asp-validation-for="Name" class="text-danger"></span>
+                            <span asp-validation-for="Customer.Name" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="Surname" type="text" class="form-control" placeholder="Nazwisko:" />
+                            <input asp-for="Customer.Surname" type="text" class="form-control"
+                                placeholder="Nazwisko:" />
                             <label for="floatingInput">Nazwisko:</label>
-                            <span asp-validation-for="Surname" class="text-danger"></span>
+                            <span asp-validation-for="Customer.Surname" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -29,17 +31,17 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="Street" type="text" class="form-control" placeholder="Ulica:" />
+                            <input asp-for="Customer.Street" type="text" class="form-control" placeholder="Ulica:" />
                             <label for="floatingInput">Ulica:</label>
-                            <span asp-validation-for="Street" class="text-danger"></span>
+                            <span asp-validation-for="Customer.Street" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="Address" type="text" class="form-control" placeholder="Nr domu:" />
+                            <input asp-for="Customer.Address" type="text" class="form-control" placeholder="Nr domu:" />
                             <label for="floatingInput">Nr domu:</label>
-                            <span asp-validation-for="Address" class="text-danger"></span>
+                            <span asp-validation-for="Customer.Address" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -47,17 +49,19 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="City" type="text" class="form-control" placeholder="Miejscowość:" />
+                            <input asp-for="Customer.City" type="text" class="form-control"
+                                placeholder="Miejscowość:" />
                             <label for="floatingInput">Miejscowość:</label>
-                            <span asp-validation-for="City" class="text-danger"></span>
+                            <span asp-validation-for="Customer.City" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="PostalCode" type="text" class="form-control" placeholder="Kod pocztowy:" />
+                            <input asp-for="Customer.PostalCode" type="text" class="form-control"
+                                placeholder="Kod pocztowy:" />
                             <label for="floatingInput">Kod pocztowy:</label>
-                            <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            <span asp-validation-for="Customer.PostalCode" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -65,17 +69,19 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="Email" type="email" class="form-control" placeholder="Adres email:" />
+                            <input asp-for="Customer.Email" type="email" class="form-control"
+                                placeholder="Adres email:" />
                             <label for="floatingInput">Adres email:</label>
-                            <span asp-validation-for="Email" class="text-danger"></span>
+                            <span asp-validation-for="Customer.Email" class="text-danger"></span>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
-                            <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Nr telefonu:" />
+                            <input asp-for="Customer.PhoneNumber" type="tel" class="form-control"
+                                placeholder="Nr telefonu:" />
                             <label for="floatingInput">Nr telefonu:</label>
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            <span asp-validation-for="Customer.PhoneNumber" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -85,5 +91,56 @@
                 </div>
             </form>
         </div>
+
+        <div class="col-md-4 cart">
+            <h4>Twój koszyk</h3>
+                <br>
+                <div class="row mt-1">
+                    <div class="col-7">
+                        <p>Suma częściowa:</p>
+                        <p>Szacowany koszt wysyłki:</p>
+                    </div>
+                    <div class="col-5 d-flex flex-column align-items-end">
+                        <div>
+                            <p>@Model?.Cart?.ProductCost.ToString("C2")</p>
+                        </div>
+                        <div>
+                            <p>@Model?.Cart?.ShippingCost.ToString("C2")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row mb-5">
+                    <div class="col-7">
+                        <h4>Suma:</h4>
+                    </div>
+                    <div class="col-5 d-flex flex-column align-items-end">
+                        <h4>@Model?.Cart?.TotalCost.ToString("C2")</h4>
+                    </div>
+                </div>
+                @if (Model?.Cart?.CartItems != null)
+                {
+                    @foreach (var item in Model.Cart.CartItems)
+                    {
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <img src="@item?.Product?.ProductImages?.FirstOrDefault()?.ImagePath" alt="@item?.Product?.Name"
+                                    class="w-75 shadow rounded-3" />
+                            </div>
+                            <div class="col-6">
+                                <p>@item?.Product?.Name</p>
+                                <p>Ilość: @item?.Quantity za @item?.Product?.Price.ToString("C2")</p>
+                                @{
+                                    var totalItemPrice = item?.Product?.Price * item?.Quantity;
+                                    <p>@(totalItemPrice.HasValue ? totalItemPrice.Value.ToString("C2") : "N/A")</p>
+                                }
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                }
     </div>
+
+</div>
 </div>

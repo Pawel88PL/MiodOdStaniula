@@ -209,3 +209,10 @@ Data 20.09.2023
 	Utworzono formularz dodania nowego klienta do bazy danych.
 1. Utworzono serwis 'CustomerService.cs' i interfejs 'ICustomerService.cs', a w nich metody dodające
 	nowego klienta do bazy danych.
+<hr/>
+
+Data 21.09.2023
+
+	Utworzono kontroler bazowy 'BaseController'.
+1. W kontrolerze 'BaseController' utworzono metodę 'PrepareCartViewModel()', która przekazuje widok koszyka
+	do metod w 'CartController' i 'CheckoutContoller'.

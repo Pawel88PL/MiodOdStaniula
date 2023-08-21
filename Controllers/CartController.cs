@@ -1,54 +1,32 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiodOdStaniula.Models;
 using MiodOdStaniula.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace MiodOdStaniula.Controllers
 {
-    public class CartController : Controller
+    public class CartController : BaseController
     {
-        private readonly ICartService _cartService;
-        private readonly ITotalCostService _totalCostService;
-        private readonly DbStoreContext _context;
+        private readonly ILogger<ICartService> _logger;
 
-        public CartController(ICartService cartService, DbStoreContext context,
-            ITotalCostService totalCostService)
+        public CartController(
+            DbStoreContext context,
+            ICartService cartService,
+            ICheckoutService checkoutService,
+            ICustomerService customerService,
+            ILogger<ICartService> logger,
+            ITotalCostService totalCostService) :
+            base(context, cartService, checkoutService, customerService, totalCostService)
         {
-            _cartService = cartService;
-            _totalCostService = totalCostService;
-            _context = context;
+            _logger = logger;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var cartIdStr = HttpContext.Session.GetString("CartId");
-
-            if (string.IsNullOrEmpty(cartIdStr))
-            {
-                return View(new CartViewModel() { CartItems = new List<CartItem>(), TotalCost = 0 });
-            }
-
-            var cartId = Guid.Parse(cartIdStr);
-            var cart = await _cartService.GetCartAsync(cartId);
-            var productCost = await _totalCostService.CalculateProductCostAsync(cartId);
-            var shippingCost = await _totalCostService.CalculateShippingCostAsync(cartId);
-            var totalCost = await _totalCostService.CalculateTotalAsync(cartId);
-
-            var cartViewModel = new CartViewModel
-            {
-                CartItems = cart?.CartItems ?? new List<CartItem>(),
-                ProductCost = productCost,
-                ShippingCost = shippingCost,
-                TotalCost = totalCost
-            };
-
+            var cartViewModel = await PrepareCartViewModel();
             return View(cartViewModel);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> GetCartItemCount()
@@ -61,10 +39,8 @@ namespace MiodOdStaniula.Controllers
                 var cartId = Guid.Parse(cartIdStr);
                 itemCount = await _cartService.GetCartItemCount(cartId);
             }
-
             return Ok(itemCount);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> AddItemToCart(AddCartItemModel model)
@@ -91,7 +67,6 @@ namespace MiodOdStaniula.Controllers
                 if (cartIdStr != null)
                 {
                     var cartId = Guid.Parse(cartIdStr);
-
                     await _cartService.AddItemToCart(cartId, model.ProductId, model.Quantity);
 
                     if (_context.Products != null)
@@ -121,9 +96,9 @@ namespace MiodOdStaniula.Controllers
                             return Json(new { success = false });
                         }
                     }
-
                     return Json(new { success = false });
                 }
+                _logger.LogError("Nie udało się dodać produktu do koszyka");
                 return View("_NotFound");
             }
             catch (Exception)
@@ -147,9 +122,9 @@ namespace MiodOdStaniula.Controllers
             var result = await _cartService.UpdateCartItemQuantityAsync(cartId, productId, quantity);
             if (!result)
             {
+                _logger.LogError("Nie udało się zaktualizować ilości produktu w koszyku");
                 return View("_NotFound");
             }
-
             return RedirectToAction("Index", "Cart");
         }
 
@@ -169,6 +144,7 @@ namespace MiodOdStaniula.Controllers
 
             if (!result)
             {
+                _logger.LogError("Nie udało się usunąć produktu z koszyka");
                 return View("_NotFound");
             }
 

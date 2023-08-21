@@ -5,15 +5,9 @@ using MiodOdStaniula.Services.Interfaces;
 
 namespace MiodOdStaniula.Controllers
 {
-    public class CheckoutController : Controller
+    public class CheckoutController : BaseController
     {
-        private readonly DbStoreContext _context;
-        private readonly ICartService _cartService;
-        private readonly ICheckoutService _checkoutService;
-        private readonly ICustomerService _customerService;
         private readonly ILogger<ICheckoutService> _logger;
-        private readonly ITotalCostService _totalCostService;
-
 
         public CheckoutController(
             DbStoreContext context,
@@ -21,20 +15,10 @@ namespace MiodOdStaniula.Controllers
             ICheckoutService checkoutService,
             ICustomerService customerService,
             ILogger<ICheckoutService> logger,
-            ITotalCostService totalCostService)
+            ITotalCostService totalCostService) :
+            base(context, cartService, checkoutService, customerService, totalCostService)
         {
-            _cartService = cartService;
-            _checkoutService = checkoutService;
-            _customerService = customerService;
-            _context = context;
             _logger = logger;
-            _totalCostService = totalCostService;
-        }
-
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
         }
 
         [HttpGet]
@@ -44,24 +28,51 @@ namespace MiodOdStaniula.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddNewCustomer()
+        public async Task<IActionResult> Index(Guid id)
         {
-            return View();
+            var cartViewModel = await PrepareCartViewModel();
+            var model = new CheckoutViewModel
+            {
+                Customer = await _customerService.GetCustomerAsync(id),
+                Cart = cartViewModel
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddNewCustomer()
+        {
+            var cartViewModel = await PrepareCartViewModel();
+            var model = new CheckoutViewModel
+            {
+                Customer = new Customer(),
+                Cart = cartViewModel
+            };
+
+            return View(model);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddNewCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
             {
+                var cartViewModel = await PrepareCartViewModel();
                 _logger.LogError("Nie udało się dodać nowego klienta");
-                return View(customer);
+
+                var checkoutViewModel = new CheckoutViewModel
+                {
+                    Customer = customer,
+                    Cart = cartViewModel
+                };
+
+                return View(checkoutViewModel);
             }
 
             await _customerService.AddNewCustomer(customer);
-            return RedirectToAction("Index", "Checkout");
+            return RedirectToAction("Index", "Checkout", new { id = customer?.CustomerId });
         }
-
 
         [HttpGet]
         public IActionResult OrderConfirmation(int id)
