@@ -101,9 +101,15 @@
                 </div>
                 <hr>
                 <div class="col-sm-12">
-                    <a asp-controller="Checkout" asp-action="Tunel" class="btn btn-lg btn-dark mt-2 w-100">
+                    @{
+                        var targetAction = User.Identity?.IsAuthenticated == true ? "Index" : "Tunel";
+                        var isDisabled = Model.CartItems == null ? "disabled" : "";
+                    }
+
+                    <button type="button" class="btn btn-lg btn-dark mt-2 w-100" @isDisabled
+                        onclick="window.location.href='@Url.Action(targetAction, "Checkout")';">
                         Przejdź do kasy
-                    </a>
+                    </button>
                 </div>
         </div>
     </div>

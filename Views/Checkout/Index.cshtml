@@ -1,5 +1,141 @@
-@model MiodOdStaniula.Models.Customer
+@model MiodOdStaniula.Models.CheckoutViewModel
 
+<link rel="stylesheet" href="~/css/Checkout.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://geowidget.inpost.pl/inpost-geowidget.css"/>
 
-<h3>Twoje dane:</h3>
-<p>@Model.Name @Model.Surname</p>
+<div class="checkout container p-4">
+    <h3 class="text-center mb-3">Przejdź do kasy</h3>
+    <div class="row mt-5">
+        <div class="col-md-8 forms">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.Name" disabled/>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.Surname" disabled/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.Street" disabled/>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.Address" disabled/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.City" disabled/>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.PostalCode" disabled/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.Email" disabled/>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input class="form-control mb-3" type="text" value="@Model?.Customer?.PhoneNumber" disabled/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="inpost">
+                        <h3>Wybierz paczkomat:</h3>
+                        <inpost-geowidget onpoint="onpointselect"
+                            token='eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzQlpXVzFNZzVlQnpDYU1XU3JvTlBjRWFveFpXcW9Ua2FuZVB3X291LWxvIn0.eyJleHAiOjIwMDgwMDIxMjgsImlhdCI6MTY5MjY0MjEyOCwianRpIjoiZTA1NmY1ODctZTIxMi00ZjkxLTllZWEtYzQwOWU4YzA0NjgwIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5pbnBvc3QucGwvYXV0aC9yZWFsbXMvZXh0ZXJuYWwiLCJzdWIiOiJmOjEyNDc1MDUxLTFjMDMtNGU1OS1iYTBjLTJiNDU2OTVlZjUzNTpiNEVIdUo1enV5d2lfakN5OTJNZ1dLeU1UZFF1Mnk1VXFjZHpJaGo2QTVBIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoic2hpcHgiLCJzZXNzaW9uX3N0YXRlIjoiMzRiNTJiODQtODExMS00NjlkLWExYTgtZThlY2IxZTZmNDg4Iiwic2NvcGUiOiJvcGVuaWQgYXBpOmFwaXBvaW50cyIsInNpZCI6IjM0YjUyYjg0LTgxMTEtNDY5ZC1hMWE4LWU4ZWNiMWU2ZjQ4OCIsImFsbG93ZWRfcmVmZXJyZXJzIjoibWlvZG9kc3Rhbml1bGEucGwiLCJ1dWlkIjoiM2ZmYTdlYzItOWZkZi00NTM1LWE1NjktZmZkZjY0NGQ5M2JiIn0.COGlPLZwRwLtZFo3Y858PNQzdiwzkN7n1IW5eCKrNEsYITdJeUhy8gYpAEYqel_9SUUHJkPLCq6rmySXgq6z8yYRPNTAa0NNS8b6pKQrIGjWUdWmfQ6rGMO9FcY3npma55VgYFmXONqv9jAIYktjEVl_geAYjbw-LTsrQvVbNQkGCtT3kUwoZPkj4xliNEzhcIzebGLhfWuGk_6rurh2ZvLlCi5fui8LTKW0k9lSJwtJLXZU2TM9KOotwxpjr09wnJCzGTSgZpAx0ulwYpFrFXKrtce9Nq0YYeS5144ZgI2mGG8Lkf36htZRqh8wzHdR49vejUONAJl7lN3GKANQgA'
+                            language='pl' config='parcelcollect'>
+                        </inpost-geowidget>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <h3>Wybierz formę płatności:</h3>
+                    </div>
+                </div>
+
+                <form asp-action="PlaceOrderAsync" asp-controller="Checkout" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-dark btn-lg">Złóż zamówienie</button>
+                    </div>
+                </form>
+        </div>
+
+        <div class="col-md-4 cart">
+            <div class="row">
+                <div class="col">
+                    <h4>Twój koszyk</h4>
+                </div>
+                <div class="col">
+                    <a class="edit d-flex justify-content-end" asp-action="Index" asp-controller="Cart">
+                        Edytuj  <i class="bi bi-pencil"></i>
+                    </a>
+                </div>
+            </div>
+                <br>
+                <div class="row mt-1">
+                    <div class="col-7">
+                        <p>Suma częściowa:</p>
+                        <p>Szacowany koszt wysyłki:</p>
+                    </div>
+                    <div class="col-5 d-flex flex-column align-items-end">
+                        <div>
+                            <p>@Model?.Cart?.ProductCost.ToString("C2")</p>
+                        </div>
+                        <div>
+                            <p>@Model?.Cart?.ShippingCost.ToString("C2")</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row mb-5">
+                    <div class="col-7">
+                        <h4>Suma:</h4>
+                    </div>
+                    <div class="col-5 d-flex flex-column align-items-end">
+                        <h4>@Model?.Cart?.TotalCost.ToString("C2")</h4>
+                    </div>
+                </div>
+                @if (Model?.Cart?.CartItems != null)
+                {
+                    @foreach (var item in Model.Cart.CartItems)
+                    {
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <img src="@item?.Product?.ProductImages?.FirstOrDefault()?.ImagePath" alt="@item?.Product?.Name"
+                                    class="w-75 shadow rounded-3" />
+                            </div>
+                            <div class="col-6">
+                                <p>@item?.Product?.Name</p>
+                                <p>Ilość: @item?.Quantity za @item?.Product?.Price.ToString("C2")</p>
+                                @{
+                                    var totalItemPrice = item?.Product?.Price * item?.Quantity;
+                                    <p>@(totalItemPrice.HasValue ? totalItemPrice.Value.ToString("C2") : "N/A")</p>
+                                }
+                            </div>
+                        </div>
+                        <hr />
+                    }
+                }
+    </div>
+
+</div>
+</div>
+@section Scripts{
+    <script src='https://geowidget.inpost.pl/inpost-geowidget.js' defer></script>
+    <script>
+        document.addEventListener('onpointselect', (event) => alert(event.details.name));
+    </script>
+}
