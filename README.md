@@ -217,3 +217,9 @@ Data 21.09.2023
 1. W kontrolerze 'BaseController' utworzono metodę 'PrepareCartViewModel()', która przekazuje widok koszyka
 	do metod w 'CartController' i 'CheckoutContoller'.
 2. W kontrolerze 'BaseController' utworzono metodę 'PrepareProductViewModel()', która przekazuje widok produktu.
+<hr/>
+
+Data 22.09.2023
+
+	Przycisk 'Przejdź do kasy' ustawiono jako 'disabled' kiedy nie ma produktów w koszyku.
+1. 
